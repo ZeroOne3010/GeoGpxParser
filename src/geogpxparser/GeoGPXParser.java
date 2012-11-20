@@ -143,7 +143,6 @@ public class GeoGPXParser {
         cache.setCountry(getSubElementContent(groundspeak, "groundspeak:country"));
         cache.setState(getSubElementContent(groundspeak, "groundspeak:state"));
         cache.setName(getSubElementContent(groundspeak, "groundspeak:name"));
-        cache.setCountry(getSubElementContent(groundspeak, "groundspeak:name"));
         cache.setState(getSubElementContent(groundspeak, "groundspeak:state"));
         cache.setOwner(getSubElementContent(groundspeak, "groundspeak:owner"));
         switch (getSubElementContent(groundspeak, "groundspeak:type")) {
@@ -197,14 +196,13 @@ public class GeoGPXParser {
 
         // Parse the attributes into a map where key is the attribute name and
         // value is the value of that attribute:
-        Map<String, Boolean> attributes = new HashMap<>();
         Element attributesElement = getSubElement(groundspeak, "groundspeak:attributes");
         if (attributesElement != null) {
             Node attributeNode = attributesElement.getFirstChild();
             while (attributeNode != null) {
                 if (attributeNode != null && attributeNode instanceof Element) {
                     Element attributeElement = (Element) attributeNode;
-                    attributes.put(attributeElement.getTagName(), "1".equals(attributeElement.getAttribute("inc")));
+                    cache.setAttribute(attributeElement.getTextContent(), "1".equals(attributeElement.getAttribute("inc")));
                 }
                 attributeNode = attributeNode.getNextSibling();
             }
