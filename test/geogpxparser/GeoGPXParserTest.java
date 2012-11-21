@@ -2,6 +2,8 @@ package geogpxparser;
 
 import java.util.List;
 import java.util.Map;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -57,8 +59,13 @@ public class GeoGPXParserTest {
     
     @Test
     public void test_published() {
-        //assertEquals("London", cache1.getState());
-        //assertEquals("Oslo", cache2.getState());
+        assertEquals(2001, cache1.getPublished().getYear());
+        assertEquals(10, cache1.getPublished().getMonthOfYear());
+        assertEquals(27, cache1.getPublished().getDayOfMonth());
+        
+        assertEquals(2010, cache2.getPublished().getYear());
+        assertEquals(2, cache2.getPublished().getMonthOfYear());
+        assertEquals(28, cache2.getPublished().getDayOfMonth());
     }
     
     @Test
