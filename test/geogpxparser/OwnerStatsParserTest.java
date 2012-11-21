@@ -2,7 +2,6 @@ package geogpxparser;
 
 import geogpxparser.tabular.TableData;
 import geogpxparser.tabular.TableRow;
-import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -10,39 +9,8 @@ import org.junit.Test;
 /**
  * Tests for the OwnerStatsParser class.
  */
-public class OwnerStatsParserTest {
+public class OwnerStatsParserTest extends AbstractParserTest {
     
-    private List<Geocache> caches;
-    
-    public OwnerStatsParserTest() {
-        caches = new ArrayList<>();
-        Geocache cache1 = new Geocache();
-        cache1.setOwner("John");
-        cache1.setType(Geocache.CacheType.Traditional);
-        
-        Geocache cache2 = new Geocache();
-        cache2.setOwner("Mike");
-        cache2.setType(Geocache.CacheType.Multi);
-        
-        Geocache cache3 = new Geocache();
-        cache3.setOwner("John");
-        cache3.setType(Geocache.CacheType.Traditional);
-        
-        Geocache cache4 = new Geocache();
-        cache4.setOwner("Mike");
-        cache4.setType(Geocache.CacheType.Letterbox);
-        
-        Geocache cache5 = new Geocache();
-        cache5.setOwner("Jake");
-        cache5.setType(Geocache.CacheType.Mystery);
-        
-        caches.add(cache1);
-        caches.add(cache2);
-        caches.add(cache3);
-        caches.add(cache4);
-        caches.add(cache5);
-    }
-
     @Test
     public void test_getTabularInfo() {
         // Assert that the test data has been initialized correctly:
