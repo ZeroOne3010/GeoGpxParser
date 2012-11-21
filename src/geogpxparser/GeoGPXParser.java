@@ -23,15 +23,14 @@
 package geogpxparser;
 
 import geogpxparser.Geocache.CacheType;
+import geogpxparser.tabular.TableData;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -68,12 +67,12 @@ public class GeoGPXParser {
         List<Geocache> caches = parser.parse();
 
         info("Writing the caches into a file...");
-        String tabularRepresentation = new CacheListParser().getInfoAsText(caches);
-        writeFile("caches.txt", tabularRepresentation);
+        TableData tabularRepresentation = new CacheListParser().getTabularInfo(caches);
+        writeFile("caches.txt", new TabSeparatedValuesFormatter(tabularRepresentation).toString());
 
         info("Writing owner stats into a file...");
-        String ownerStats = new OwnerStatsParser().getInfoAsText(caches);
-        writeFile("owners.txt", ownerStats);
+        TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
+        writeFile("owners.txt", new TabSeparatedValuesFormatter(ownerStats).toString());
 
         info("Done!");
     }
