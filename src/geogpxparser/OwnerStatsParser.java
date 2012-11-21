@@ -1,6 +1,9 @@
 package geogpxparser;
 
 import geogpxparser.Geocache.CacheType;
+import geogpxparser.tabular.CellData;
+import geogpxparser.tabular.TableData;
+import geogpxparser.tabular.TableRow;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +18,6 @@ import java.util.Map.Entry;
 public class OwnerStatsParser implements ICachesToTextParser {
 
     private Map<String, Owner> owners = new LinkedHashMap<>();
-    private static final String SEPARATOR = "\t";
 
     /**
      * Returns a String of the tabular format with data about cache owners.
@@ -25,37 +27,41 @@ public class OwnerStatsParser implements ICachesToTextParser {
      * spreadsheet program.
      */
     @Override
-    public String getInfoAsText(List<Geocache> caches) {
+    public TableData getTabularInfo(List<Geocache> caches) {
 
         // Parse cache owner info into a map:
         for (Geocache cache : caches) {
             addCacheForOwner(cache.getOwner(), cache.getType());
         }
 
+        TableData result = new TableData();
+        
         // Create titles:
-        StringBuilder sb = new StringBuilder();
-        sb.append("Owner").append(SEPARATOR);
-        sb.append("Number of caches").append(SEPARATOR);
-        sb.append("Number of cache types").append(SEPARATOR);
+        TableRow headerRow = new TableRow(true);
+        headerRow.addCell(new CellData.CellBuilder().text("Owner").build());
+        headerRow.addCell(new CellData.CellBuilder().text("Number of caches").build());
+        headerRow.addCell(new CellData.CellBuilder().text("Number of cache types").build());
         for (CacheType cacheType : CacheType.values()) {
-            sb.append(cacheType).append(SEPARATOR);
+            headerRow.addCell(new CellData.CellBuilder().text(cacheType.name()).build());
         }
-        sb.append("\n");
+        result.addRow(headerRow);
 
         // Create data rows:
         for (Owner owner : owners.values()) {
-            sb.append(owner.getName().replace(SEPARATOR, "")).append(SEPARATOR);
-            sb.append(owner.getTotalNumberOfCaches()).append(SEPARATOR);
-            sb.append(owner.getNumberOfCacheTypes()).append(SEPARATOR);
+            TableRow dataRow = new TableRow(false);
+            dataRow.addCell(new CellData.CellBuilder().text(owner.getName()).build());
+            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(owner.getTotalNumberOfCaches())).build());
+            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(owner.getNumberOfCacheTypes())).build());
+
             Map<CacheType, Integer> cacheMap = owner.getCaches();
 
             for (Entry<CacheType, Integer> entry : cacheMap.entrySet()) {
-                sb.append(entry.getValue()).append(SEPARATOR);
+                dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(entry.getValue())).build());
             }
-            sb.append("\n");
+            result.addRow(dataRow);
         }
 
-        return sb.toString();
+        return result;
     }
 
     /**
