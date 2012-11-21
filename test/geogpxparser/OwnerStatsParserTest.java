@@ -1,12 +1,11 @@
 package geogpxparser;
 
-import geogpxparser.tabular.CellData;
 import geogpxparser.tabular.TableData;
 import geogpxparser.tabular.TableRow;
 import java.util.ArrayList;
 import java.util.List;
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * Tests for the OwnerStatsParser class.
