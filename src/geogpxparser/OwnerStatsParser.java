@@ -15,7 +15,7 @@ import java.util.Map.Entry;
  *
  * @author Ville Saalo (http://coord.info/PR32K8V)
  */
-public class OwnerStatsParser implements ICachesToTextParser {
+public class OwnerStatsParser implements ICachesToTabularDataParser {
 
     private Map<String, Owner> owners = new LinkedHashMap<>();
 

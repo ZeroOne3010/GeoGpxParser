@@ -12,10 +12,9 @@ import org.joda.time.format.DateTimeFormatter;
  *
  * @author Ville Saalo (http://coord.info/PR32K8V)
  */
-public class CacheListParser implements ICachesToTextParser {
+public class CacheListParser implements ICachesToTabularDataParser {
 
     private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd");
-    private static final String separator = "\t";
 
     @Override
     public TableData getTabularInfo(final List<Geocache> caches) {
