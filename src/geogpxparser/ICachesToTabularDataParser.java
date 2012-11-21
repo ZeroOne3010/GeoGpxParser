@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Ville Saalo (http://coord.info/PR32K8V)
  */
-public interface ICachesToTextParser {
+public interface ICachesToTabularDataParser {
 
     public TableData getTabularInfo(final List<Geocache> caches);
 }
