@@ -14,41 +14,28 @@ public class CellData {
     
     /** The URL to which the text should link to, if any. **/
     private final URL url;
-    
-    private CellData(CellBuilder builder) {
-        this.text = builder.text;
-        this.url = builder.url;
+
+    public CellData(String text) {
+        this.text = text;
+        this.url = null;
     }
-    
+
+    public CellData(String text, String url) {
+        this.text = text;
+        URL tempUrl = null;
+        try {
+            tempUrl = new URL(url);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(CellData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.url = tempUrl;
+    }
+
     public String getText() {
         return text;
     }
 
     public URL getUrl() {
         return url;
-    }
-    
-    /** A builder to avoid telescopic constructors. **/
-    public static class CellBuilder {
-        private String text = "";
-        private URL url = null;
-        
-        public CellBuilder text(String text) {
-            this.text = text;
-            return this;
-        }
-        
-        public CellBuilder url(String url) {
-            try {
-                this.url = new URL(url);
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(CellData.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return this;
-        }
-        
-        public CellData build() {
-            return new CellData(this);
-        }
     }
 }

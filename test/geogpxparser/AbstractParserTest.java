@@ -3,10 +3,12 @@ package geogpxparser;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
+import org.junit.Ignore;
 
 /**
  * Provides test data for subclasses.
  */
+@Ignore
 public abstract class AbstractParserTest {
     protected List<Geocache> caches;
 
