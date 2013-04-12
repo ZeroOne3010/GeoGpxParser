@@ -10,20 +10,20 @@ import org.junit.Test;
  * Tests the CacheListParser.
  */
 public class CacheListParserTest extends AbstractParserTest {
-    
+
     @Test
     public void test_getTabularInfo() {
         TableData result = new CacheListParser().getTabularInfo(caches);
         assertNotNull(result);
-        
+
         List<TableRow> rows = result.getRows();
         assertNotNull(rows);
         assertEquals(6, rows.size());
-        
+
         int row = 0;
         assertTrue(rows.get(0).isHeader());
         int col = 0;
-        
+
         assertEquals("gccode", rows.get(row).getCells().get(col++).getText());
         assertEquals("type", rows.get(row).getCells().get(col++).getText());
         assertEquals("name", rows.get(row).getCells().get(col++).getText());
@@ -32,9 +32,9 @@ public class CacheListParserTest extends AbstractParserTest {
         assertEquals("size", rows.get(row).getCells().get(col++).getText());
         assertEquals("difficulty", rows.get(row).getCells().get(col++).getText());
         assertEquals("terrain", rows.get(row).getCells().get(col++).getText());
-        assertEquals("published", rows.get(row).getCells().get(col++).getText());
+        assertEquals("hidden", rows.get(row).getCells().get(col++).getText());
         assertEquals("owner", rows.get(row).getCells().get(col++).getText());
-        
+
         row = 1;
         col = 0;
         assertEquals("GC111", rows.get(row).getCells().get(col++).getText());
@@ -47,7 +47,7 @@ public class CacheListParserTest extends AbstractParserTest {
         assertEquals("5.0", rows.get(row).getCells().get(col++).getText());
         assertEquals("2001-01-02", rows.get(row).getCells().get(col++).getText());
         assertEquals("John", rows.get(row).getCells().get(col++).getText());
-        
+
         row = 2;
         col = 0;
         assertEquals("GC222", rows.get(row).getCells().get(col++).getText());
@@ -60,7 +60,7 @@ public class CacheListParserTest extends AbstractParserTest {
         assertEquals("4.5", rows.get(row).getCells().get(col++).getText());
         assertEquals("2002-03-04", rows.get(row).getCells().get(col++).getText());
         assertEquals("Mike", rows.get(row).getCells().get(col++).getText());
-        
+
         row = 3;
         col = 0;
         assertEquals("GC333", rows.get(row).getCells().get(col++).getText());
@@ -73,7 +73,7 @@ public class CacheListParserTest extends AbstractParserTest {
         assertEquals("4.0", rows.get(row).getCells().get(col++).getText());
         assertEquals("2003-05-06", rows.get(row).getCells().get(col++).getText());
         assertEquals("John", rows.get(row).getCells().get(col++).getText());
-        
+
         row = 4;
         col = 0;
         assertEquals("GC444", rows.get(row).getCells().get(col++).getText());
@@ -86,7 +86,7 @@ public class CacheListParserTest extends AbstractParserTest {
         assertEquals("3.5", rows.get(row).getCells().get(col++).getText());
         assertEquals("2004-07-08", rows.get(row).getCells().get(col++).getText());
         assertEquals("Mike", rows.get(row).getCells().get(col++).getText());
-        
+
         row = 5;
         col = 0;
         assertEquals("GC555", rows.get(row).getCells().get(col++).getText());
