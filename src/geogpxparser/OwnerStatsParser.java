@@ -38,25 +38,25 @@ public class OwnerStatsParser implements ICachesToTabularDataParser {
         
         // Create titles:
         TableRow headerRow = new TableRow(true);
-        headerRow.addCell(new CellData.CellBuilder().text("Owner").build());
-        headerRow.addCell(new CellData.CellBuilder().text("Number of caches").build());
-        headerRow.addCell(new CellData.CellBuilder().text("Number of cache types").build());
+        headerRow.addCell(new CellData("Owner"));
+        headerRow.addCell(new CellData("Number of caches"));
+        headerRow.addCell(new CellData("Number of cache types"));
         for (CacheType cacheType : CacheType.values()) {
-            headerRow.addCell(new CellData.CellBuilder().text(cacheType.name()).build());
+            headerRow.addCell(new CellData(cacheType.name()));
         }
         result.addRow(headerRow);
 
         // Create data rows:
         for (Owner owner : owners.values()) {
             TableRow dataRow = new TableRow(false);
-            dataRow.addCell(new CellData.CellBuilder().text(owner.getName()).build());
-            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(owner.getTotalNumberOfCaches())).build());
-            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(owner.getNumberOfCacheTypes())).build());
+            dataRow.addCell(new CellData(owner.getName()));
+            dataRow.addCell(new CellData(String.valueOf(owner.getTotalNumberOfCaches())));
+            dataRow.addCell(new CellData(String.valueOf(owner.getNumberOfCacheTypes())));
 
             Map<CacheType, Integer> cacheMap = owner.getCaches();
 
             for (Entry<CacheType, Integer> entry : cacheMap.entrySet()) {
-                dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(entry.getValue())).build());
+                dataRow.addCell(new CellData(String.valueOf(entry.getValue())));
             }
             result.addRow(dataRow);
         }

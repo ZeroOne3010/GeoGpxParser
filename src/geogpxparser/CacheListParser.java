@@ -21,32 +21,31 @@ public class CacheListParser implements ICachesToTabularDataParser {
 
         TableData result = new TableData();
         TableRow headerRow = new TableRow(true);
-        
-        headerRow.addCell(new CellData.CellBuilder().text("gccode").build());
-        headerRow.addCell(new CellData.CellBuilder().text("type").build());
-        headerRow.addCell(new CellData.CellBuilder().text("name").build());
-        headerRow.addCell(new CellData.CellBuilder().text("longitude").build());
-        headerRow.addCell(new CellData.CellBuilder().text("latitude").build());
-        headerRow.addCell(new CellData.CellBuilder().text("size").build());
-        headerRow.addCell(new CellData.CellBuilder().text("difficulty").build());
-        headerRow.addCell(new CellData.CellBuilder().text("terrain").build());
-        headerRow.addCell(new CellData.CellBuilder().text("published").build());
-        headerRow.addCell(new CellData.CellBuilder().text("owner").build());
+
+        headerRow.addCell(new CellData("gccode"));
+        headerRow.addCell(new CellData("type"));
+        headerRow.addCell(new CellData("name"));
+        headerRow.addCell(new CellData("longitude"));
+        headerRow.addCell(new CellData("latitude"));
+        headerRow.addCell(new CellData("size"));
+        headerRow.addCell(new CellData("difficulty"));
+        headerRow.addCell(new CellData("terrain"));
+        headerRow.addCell(new CellData("published"));
+        headerRow.addCell(new CellData("owner"));
         result.addRow(headerRow);
-        
+
         for (Geocache cache : caches) {
             TableRow dataRow = new TableRow(false);
-            dataRow.addCell(new CellData.CellBuilder().text(cache.getGcCode())
-                            .url("http://coord.info/" + cache.getGcCode()).build());
-            dataRow.addCell(new CellData.CellBuilder().text(cache.getType().name()).build());
-            dataRow.addCell(new CellData.CellBuilder().text(cache.getName()).build());
-            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(cache.getLongitude())).build());
-            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(cache.getLatitude())).build());
-            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(cache.getSize())).build());
-            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(cache.getDifficulty())).build());
-            dataRow.addCell(new CellData.CellBuilder().text(String.valueOf(cache.getTerrain())).build());
-            dataRow.addCell(new CellData.CellBuilder().text(OUTPUT_DATE_TIME_FORMAT.print(cache.getPublished())).build());
-            dataRow.addCell(new CellData.CellBuilder().text(cache.getOwner()).build());
+            dataRow.addCell(new CellData(cache.getGcCode(), "http://coord.info/" + cache.getGcCode()));
+            dataRow.addCell(new CellData(cache.getType().name()));
+            dataRow.addCell(new CellData(cache.getName()));
+            dataRow.addCell(new CellData(String.valueOf(cache.getLongitude())));
+            dataRow.addCell(new CellData(String.valueOf(cache.getLatitude())));
+            dataRow.addCell(new CellData(String.valueOf(cache.getSize())));
+            dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
+            dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
+            dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getPublished())));
+            dataRow.addCell(new CellData(cache.getOwner()));
             result.addRow(dataRow);
         }
 
