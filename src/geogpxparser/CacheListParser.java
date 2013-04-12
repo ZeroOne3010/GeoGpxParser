@@ -30,7 +30,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
         headerRow.addCell(new CellData("size"));
         headerRow.addCell(new CellData("difficulty"));
         headerRow.addCell(new CellData("terrain"));
-        headerRow.addCell(new CellData("published"));
+        headerRow.addCell(new CellData("hidden"));
         headerRow.addCell(new CellData("owner"));
         result.addRow(headerRow);
 
@@ -44,7 +44,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(String.valueOf(cache.getSize())));
             dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
-            dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getPublished())));
+            dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getHidden())));
             dataRow.addCell(new CellData(cache.getOwner()));
             result.addRow(dataRow);
         }

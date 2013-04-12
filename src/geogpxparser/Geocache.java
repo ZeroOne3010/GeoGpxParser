@@ -48,7 +48,7 @@ public class Geocache {
     private double longitude;
     private String country;
     private String state;
-    private DateTime published;
+    private DateTime hidden;
     private CacheType type;
     private CacheSize size;
     private float difficulty;
@@ -102,12 +102,12 @@ public class Geocache {
         this.state = state;
     }
 
-    public DateTime getPublished() {
-        return published;
+    public DateTime getHidden() {
+        return hidden;
     }
 
-    public void setPublished(DateTime published) {
-        this.published = published;
+    public void setHidden(DateTime published) {
+        this.hidden = published;
     }
 
     public CacheType getType() {

@@ -131,7 +131,7 @@ public class GeoGPXParser {
         cache.setLongitude(Double.valueOf(wptElement.getAttribute("lon")));
 
         DateTime time = XML_DATE_TIME_FORMAT.parseDateTime(getSubElementContent(wptElement, "time"));
-        cache.setPublished(time);
+        cache.setHidden(time);
         cache.setGcCode(getSubElementContent(wptElement, "name"));
 
         Element groundspeak = getSubElement(wptElement, "groundspeak:cache");
