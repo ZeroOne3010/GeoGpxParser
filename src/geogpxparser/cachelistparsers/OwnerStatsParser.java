@@ -1,5 +1,7 @@
-package geogpxparser;
+package geogpxparser.cachelistparsers;
 
+import geogpxparser.CacheType;
+import geogpxparser.Geocache;
 import geogpxparser.tabular.CellData;
 import geogpxparser.tabular.TableData;
 import geogpxparser.tabular.TableRow;
