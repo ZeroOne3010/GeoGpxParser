@@ -28,6 +28,15 @@ public class TableRow {
     }
 
     @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        for(CellData cell : cells) {
+            sb.append(cell.toString());
+        }
+        return sb.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (!(o instanceof TableRow)) {
             return false;
