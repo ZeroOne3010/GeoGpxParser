@@ -1,5 +1,6 @@
-package geogpxparser;
+package geogpxparser.cachelistparsers;
 
+import geogpxparser.Geocache;
 import geogpxparser.tabular.TableData;
 import java.util.List;
 

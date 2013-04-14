@@ -22,6 +22,8 @@
  */
 package geogpxparser;
 
+import geogpxparser.cachelistparsers.CacheListParser;
+import geogpxparser.cachelistparsers.OwnerStatsParser;
 import geogpxparser.tabular.TableData;
 import java.io.File;
 import java.io.FilenameFilter;
