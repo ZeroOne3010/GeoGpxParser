@@ -143,44 +143,7 @@ public class GeoGPXParser {
         cache.setName(getSubElementContent(groundspeak, "groundspeak:name"));
         cache.setState(getSubElementContent(groundspeak, "groundspeak:state"));
         cache.setOwner(getSubElementContent(groundspeak, "groundspeak:owner"));
-        switch (getSubElementContent(groundspeak, "groundspeak:type")) {
-            case "Traditional Cache":
-                cache.setType(CacheType.Traditional);
-                break;
-            case "Unknown Cache":
-                cache.setType(CacheType.Mystery);
-                break;
-            case "Multi-cache":
-                cache.setType(CacheType.Multi);
-                break;
-            case "Letterbox Hybrid":
-                cache.setType(CacheType.Letterbox);
-                break;
-            case "Event Cache":
-                cache.setType(CacheType.Event);
-                break;
-            case "Mega-Event Cache":
-                cache.setType(CacheType.MegaEvent);
-                break;
-            case "Cache In Trash Out Event":
-                cache.setType(CacheType.CITO);
-                break;
-            case "Earthcache":
-                cache.setType(CacheType.EarthCache);
-                break;
-            case "Virtual Cache":
-                cache.setType(CacheType.Virtual);
-                break;
-            case "Webcam Cache":
-                cache.setType(CacheType.Webcam);
-                break;
-            case "Wherigo Cache":
-                cache.setType(CacheType.Wherigo);
-                break;
-            default:
-                cache.setType(CacheType.Other);
-                break;
-        }
+        cache.setType(CacheType.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:type")));
         try {
             cache.setSize(Geocache.CacheSize.valueOf(getSubElementContent(groundspeak, "groundspeak:container")));
         } catch (IllegalArgumentException ex) {
