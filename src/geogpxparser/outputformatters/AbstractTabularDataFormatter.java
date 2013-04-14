@@ -1,4 +1,4 @@
-package geogpxparser;
+package geogpxparser.outputformatters;
 
 import geogpxparser.tabular.TableData;
 
@@ -10,11 +10,11 @@ public abstract class AbstractTabularDataFormatter {
     public AbstractTabularDataFormatter(TableData data) {
         this.table = data;
     }
-    
+
     protected TableData getTable() {
         return this.table;
     }
-    
+
     @Override
     public abstract String toString();
 }

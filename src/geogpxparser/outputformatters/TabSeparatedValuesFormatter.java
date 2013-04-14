@@ -1,4 +1,4 @@
-package geogpxparser;
+package geogpxparser.outputformatters;
 
 import geogpxparser.tabular.CellData;
 import geogpxparser.tabular.TableData;
