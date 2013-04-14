@@ -1,6 +1,5 @@
 package geogpxparser;
 
-import geogpxparser.Geocache.CacheType;
 import geogpxparser.tabular.CellData;
 import geogpxparser.tabular.TableData;
 import geogpxparser.tabular.TableRow;
@@ -35,7 +34,7 @@ public class OwnerStatsParser implements ICachesToTabularDataParser {
         }
 
         TableData result = new TableData();
-        
+
         // Create titles:
         TableRow headerRow = new TableRow(true);
         headerRow.addCell(new CellData("Owner"));

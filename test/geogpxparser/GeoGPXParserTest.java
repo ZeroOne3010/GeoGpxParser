@@ -68,8 +68,8 @@ public class GeoGPXParserTest {
 
     @Test
     public void test_type() {
-        assertEquals(Geocache.CacheType.Multi, cache1.getType());
-        assertEquals(Geocache.CacheType.Traditional, cache2.getType());
+        assertEquals(CacheType.Multi, cache1.getType());
+        assertEquals(CacheType.Traditional, cache2.getType());
     }
 
     @Test
