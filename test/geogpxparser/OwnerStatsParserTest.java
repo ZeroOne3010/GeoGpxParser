@@ -27,7 +27,7 @@ public class OwnerStatsParserTest extends AbstractParserTest {
         assertEquals(4, rows.size());
 
         int row = 0;
-        assertEquals(row(true, "Owner", "Number of caches", "Number of cache types", "Traditional", "Multi", "Mystery",
+        assertEquals(headerRow("Owner", "Number of caches", "Number of cache types", "Traditional", "Multi", "Mystery",
                 "Letterbox", "Event", "EarthCache", "Virtual", "Webcam", "Wherigo", "MegaEvent", "CITO", "Other"),
                 rows.get(0));
 
