@@ -12,18 +12,6 @@ import org.junit.Test;
  */
 public class OwnerStatsParserTest extends AbstractParserTest {
 
-    private TableRow row(boolean header, String... cellValues) {
-        TableRow row = new TableRow(header);
-        for (String cellValue : cellValues) {
-            row.addCell(new CellData(cellValue));
-        }
-        return row;
-    }
-
-    private TableRow row(String... cellValues) {
-        return this.row(false, cellValues);
-    }
-
     @Test
     public void test_getTabularInfo() {
         // Assert that the test data has been initialized correctly:
