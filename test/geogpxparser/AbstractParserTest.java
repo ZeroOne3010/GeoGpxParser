@@ -15,16 +15,26 @@ public abstract class AbstractParserTest {
 
     protected List<Geocache> caches;
 
-    protected static TableRow row(boolean header, String... cellValues) {
+    private static TableRow row(boolean header, Object... cellValues) {
         TableRow row = new TableRow(header);
-        for (String cellValue : cellValues) {
-            row.addCell(new CellData(cellValue));
+        for (Object cellValue : cellValues) {
+            if (cellValue instanceof String) {
+                row.addCell(new CellData((String) cellValue));
+            } else if (cellValue instanceof CellData) {
+                row.addCell((CellData) cellValue);
+            } else {
+                throw new UnsupportedOperationException("Only String and CellData objects are accepted.");
+            }
         }
         return row;
     }
 
-    protected static TableRow row(String... cellValues) {
+    protected static TableRow row(Object... cellValues) {
         return row(false, cellValues);
+    }
+
+    protected static TableRow headerRow(Object... cellValues) {
+        return row(true, cellValues);
     }
 
     public AbstractParserTest() {
