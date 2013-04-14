@@ -1,5 +1,7 @@
 package geogpxparser;
 
+import geogpxparser.tabular.CellData;
+import geogpxparser.tabular.TableRow;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.DateTime;
@@ -10,7 +12,20 @@ import org.junit.Ignore;
  */
 @Ignore
 public abstract class AbstractParserTest {
+
     protected List<Geocache> caches;
+
+    protected static TableRow row(boolean header, String... cellValues) {
+        TableRow row = new TableRow(header);
+        for (String cellValue : cellValues) {
+            row.addCell(new CellData(cellValue));
+        }
+        return row;
+    }
+
+    protected static TableRow row(String... cellValues) {
+        return row(false, cellValues);
+    }
 
     public AbstractParserTest() {
         caches = new ArrayList<>();
@@ -80,5 +95,4 @@ public abstract class AbstractParserTest {
         caches.add(cache4);
         caches.add(cache5);
     }
-
 }
