@@ -3,11 +3,14 @@ package geogpxparser.tabular;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  * A class that represents a table row.
  */
 public class TableRow {
+
     private final boolean header;
     private final List<CellData> cells = new ArrayList<>();
 
@@ -15,10 +18,12 @@ public class TableRow {
         this.header = header;
     }
 
+    @XmlAttribute(name="header")
     public boolean isHeader() {
         return header;
     }
 
+    @XmlElement(name = "cell")
     public List<CellData> getCells() {
         return cells;
     }
@@ -30,7 +35,7 @@ public class TableRow {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        for(CellData cell : cells) {
+        for (CellData cell : cells) {
             sb.append(cell.toString());
         }
         return sb.toString();

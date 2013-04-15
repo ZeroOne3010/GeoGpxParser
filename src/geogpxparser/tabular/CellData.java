@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlValue;
 
 /**
  * A class that represents data in a table cell.
@@ -34,10 +36,12 @@ public class CellData {
         this.url = tempUrl;
     }
 
+    @XmlValue
     public String getText() {
         return text;
     }
 
+    @XmlAttribute
     public URL getUrl() {
         return url;
     }
