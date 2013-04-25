@@ -25,7 +25,9 @@ package geogpxparser;
 import geogpxparser.cachelistparsers.CacheListParser;
 import geogpxparser.cachelistparsers.OwnerStatsParser;
 import geogpxparser.outputformatters.TabSeparatedValuesFormatter;
+import geogpxparser.outputformatters.XmlFormatter;
 import geogpxparser.tabular.TableData;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -46,9 +48,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 /**
- * This class can be used to parse geocaches from a Groundspeak .gpx file into
- * plain old Java objects (POJO). The cache list can then be processed further
- * and various text files can be created out of it.
+ * This class can be used to parse geocaches from a Groundspeak .gpx file into plain old Java objects (POJO). The cache
+ * list can then be processed further and various text files can be created out of it.
  *
  * @author Ville Saalo (http://coord.info/PR32K8V)
  */
@@ -57,24 +58,41 @@ public class GeoGPXParser {
     private String file = null;
     private final DateTimeFormatter XML_DATE_TIME_FORMAT = ISODateTimeFormat.dateTimeNoMillis();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         if (args == null || args.length == 0) {
             System.out.println("Usage:");
-            System.out.println("1) java -jar GeoGPXParser.jar caches.gpx");
-            System.out.println("2) java -jar GeoGPXParser.jar some/directory/with/gpx/files");
+            System.out.println("1) java [-Doutput=xml] -jar GeoGPXParser.jar caches.gpx");
+            System.out.println("2) java [-Doutput=xml] -jar GeoGPXParser.jar some/directory/with/gpx/files");
+            System.out.println("...where \"[...]\" denotes an optional parameter.");
             System.exit(1);
         }
 
         GeoGPXParser parser = new GeoGPXParser(args[0]);
         List<Geocache> caches = parser.parse();
+        TableData tabularRepresentation = new CacheListParser().getTabularInfo(caches);
+        TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
+
+        String outputType = System.getProperty("output", "txt").toLowerCase();
+        String cachesOutput;
+        String ownersOutput;
+
+        switch (outputType) {
+            case "xml":
+                cachesOutput = new XmlFormatter(tabularRepresentation).toString();
+                ownersOutput = new XmlFormatter(ownerStats).toString();
+                break;
+            default:
+                outputType = "txt";
+                cachesOutput = new TabSeparatedValuesFormatter(tabularRepresentation).toString();
+                ownersOutput = new TabSeparatedValuesFormatter(ownerStats).toString();
+                break;
+        }
 
         info("Writing the caches into a file...");
-        TableData tabularRepresentation = new CacheListParser().getTabularInfo(caches);
-        writeFile("caches.txt", new TabSeparatedValuesFormatter(tabularRepresentation).toString());
+        writeFile("caches." + outputType, cachesOutput);
 
         info("Writing owner stats into a file...");
-        TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
-        writeFile("owners.txt", new TabSeparatedValuesFormatter(ownerStats).toString());
+        writeFile("owners." + outputType, ownersOutput);
 
         info("Done!");
     }
