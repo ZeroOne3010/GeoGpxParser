@@ -6,7 +6,7 @@ import geogpxparser.tabular.TableRow;
 import java.util.Iterator;
 
 /**
- * Formats the given TableData object into a plain text file.
+ * Formats the given TableData object into a string of tab separated values.
  */
 public class TabSeparatedValuesFormatter extends AbstractTabularDataFormatter {
 
