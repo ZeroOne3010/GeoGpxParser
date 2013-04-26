@@ -5,7 +5,7 @@ import java.io.ByteArrayOutputStream;
 import javax.xml.bind.JAXB;
 
 /**
- * Formats the given TableData object into a plain text file.
+ * Formats the given TableData object into an XML string.
  */
 public class XmlFormatter extends AbstractTabularDataFormatter {
 
