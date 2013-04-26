@@ -24,10 +24,10 @@ package geogpxparser;
 
 import geogpxparser.cachelistparsers.CacheListParser;
 import geogpxparser.cachelistparsers.OwnerStatsParser;
+import geogpxparser.outputformatters.HtmlFormatter;
 import geogpxparser.outputformatters.TabSeparatedValuesFormatter;
 import geogpxparser.outputformatters.XmlFormatter;
 import geogpxparser.tabular.TableData;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -61,9 +61,9 @@ public class GeoGPXParser {
     public static void main(String[] args) throws IOException {
         if (args == null || args.length == 0) {
             System.out.println("Usage:");
-            System.out.println("1) java [-Doutput=xml] -jar GeoGPXParser.jar caches.gpx");
-            System.out.println("2) java [-Doutput=xml] -jar GeoGPXParser.jar some/directory/with/gpx/files");
-            System.out.println("...where \"[...]\" denotes an optional parameter.");
+            System.out.println("1) java [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar caches.gpx");
+            System.out.println("2) java [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar some/directory/with/gpx/files");
+            System.out.println("...where \"[...]\" denotes an optional parameter and \"(A|B|C)\" denotes alternatives: either A or B or C.");
             System.exit(1);
         }
 
@@ -80,6 +80,10 @@ public class GeoGPXParser {
             case "xml":
                 cachesOutput = new XmlFormatter(tabularRepresentation).toString();
                 ownersOutput = new XmlFormatter(ownerStats).toString();
+                break;
+            case "html":
+                cachesOutput = new HtmlFormatter(tabularRepresentation).toString();
+                ownersOutput = new HtmlFormatter(ownerStats).toString();
                 break;
             default:
                 outputType = "txt";
