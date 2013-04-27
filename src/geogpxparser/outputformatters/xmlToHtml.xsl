@@ -34,6 +34,13 @@
     </xsl:template>
 
     <xsl:template match="cell">
-        <td><xsl:value-of select="." /></td>
+        <xsl:choose>
+            <xsl:when test="@url">
+                <td><a href="{@url}" target="_blank"><xsl:value-of select="." /></a></td>
+            </xsl:when>
+            <xsl:otherwise>
+                <td><xsl:value-of select="." /></td>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
