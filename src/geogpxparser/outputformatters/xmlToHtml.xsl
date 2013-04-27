@@ -9,6 +9,15 @@
         <html>
             <head>
                 <title>Caches</title>
+                <style type="text/css">
+                    table {
+                        border-collapse: collapse;
+                    }
+                    td {
+                        border: 1px solid #aaa;
+                        padding: 2px 4px;
+                    }
+                </style>
             </head>
             <body>
                 <table>
