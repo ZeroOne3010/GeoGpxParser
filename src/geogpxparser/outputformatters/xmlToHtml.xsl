@@ -13,7 +13,7 @@
                     table {
                         border-collapse: collapse;
                     }
-                    td {
+                    td, th {
                         border: 1px solid #aaa;
                         padding: 2px 4px;
                     }
@@ -39,7 +39,14 @@
                 <td><a href="{@url}" target="_blank"><xsl:value-of select="." /></a></td>
             </xsl:when>
             <xsl:otherwise>
-                <td><xsl:value-of select="." /></td>
+                <xsl:choose>
+                    <xsl:when test="../@header='true'">
+                        <th><xsl:value-of select="." /></th>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <td><xsl:value-of select="." /></td>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
