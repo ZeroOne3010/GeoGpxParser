@@ -21,7 +21,12 @@
             </head>
             <body>
                 <table>
-                    <xsl:apply-templates select="row" />
+                    <thead>
+                        <xsl:apply-templates select="row[@header='true']" />
+                    </thead>
+                    <tbody>
+                        <xsl:apply-templates select="row[@header='false']" />
+                    </tbody>
                 </table>
             </body>
         </html>
