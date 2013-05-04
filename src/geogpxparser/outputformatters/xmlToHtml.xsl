@@ -20,6 +20,13 @@
                         padding: 2px 4px;
                     }
                 </style>
+                <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+                <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
+                <script type="text/javascript">
+                $(document).ready(function() {
+                    $("table").tablesorter();
+                });
+                </script>
             </head>
             <body>
                 <table>

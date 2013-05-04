@@ -31,8 +31,11 @@ import geogpxparser.tabular.TableData;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.LinkedList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -84,6 +87,7 @@ public class GeoGPXParser {
             case "html":
                 cachesOutput = new HtmlFormatter(tabularRepresentation).toString();
                 ownersOutput = new HtmlFormatter(ownerStats).toString();
+                parser.writeHtmlResources();
                 break;
             default:
                 outputType = "txt";
@@ -119,6 +123,14 @@ public class GeoGPXParser {
         } catch (IOException ex) {
             System.out.println("Saving the file " + fileName + " failed!");
             ex.printStackTrace();
+        }
+    }
+
+    private void writeHtmlResources() throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        for (String filename : new String[]{"jquery-1.9.1.min.js", "jquery.tablesorter.min.js"}) {
+            InputStream inputStream = classLoader.getResourceAsStream("geogpxparser/outputformatters/resources/" + filename);
+            Files.copy(inputStream, Paths.get(filename), StandardCopyOption.REPLACE_EXISTING);
         }
     }
 
