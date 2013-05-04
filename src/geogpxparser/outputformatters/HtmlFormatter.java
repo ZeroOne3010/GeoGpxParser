@@ -19,6 +19,7 @@ import javax.xml.transform.stream.StreamSource;
  * Formats the given TableData object into an HTML string.
  */
 public class HtmlFormatter extends AbstractTabularDataFormatter {
+    private static final String XSLT_FILE_NAME = "xmlToHtml.xsl";
 
     public HtmlFormatter(TableData data) {
         super(data);
@@ -40,7 +41,7 @@ public class HtmlFormatter extends AbstractTabularDataFormatter {
 
     private Source findXslt() {
         Source xslt;
-        File xslFile = new File("xmlToHtml.xsl");
+        File xslFile = new File(XSLT_FILE_NAME);
         if (xslFile.canRead()) {
             // Found an external XSL file:
             xslt = new StreamSource(xslFile);
