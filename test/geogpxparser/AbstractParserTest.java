@@ -37,6 +37,10 @@ public abstract class AbstractParserTest {
         return row(true, cellValues);
     }
 
+    protected static CellData owner(String owner) {
+        return new CellData(owner, "http://www.geocaching.com/seek/nearest.aspx?u=" + owner);
+    }
+
     public AbstractParserTest() {
         caches = new ArrayList<>();
         Geocache cache1 = new Geocache();

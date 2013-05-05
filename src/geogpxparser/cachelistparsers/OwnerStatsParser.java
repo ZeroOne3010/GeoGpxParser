@@ -50,7 +50,7 @@ public class OwnerStatsParser implements ICachesToTabularDataParser {
         // Create data rows:
         for (Owner owner : owners.values()) {
             TableRow dataRow = new TableRow(false);
-            dataRow.addCell(new CellData(owner.getName()));
+            dataRow.addCell(new CellData(owner.getName(), Utility.getOwnerUrl(owner.getName())));
             dataRow.addCell(new CellData(String.valueOf(owner.getTotalNumberOfCaches())));
             dataRow.addCell(new CellData(String.valueOf(owner.getNumberOfCacheTypes())));
 

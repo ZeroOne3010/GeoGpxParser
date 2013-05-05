@@ -34,12 +34,12 @@ public class OwnerStatsParserTest extends AbstractParserTest {
                 rows.get(0));
 
         row = 1;
-        assertEquals(row("John", "2", "1", "2", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"), rows.get(row));
+        assertEquals(row(owner("John"), "2", "1", "2", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0"), rows.get(row));
 
         row = 2;
-        assertEquals(row("Mike", "2", "2", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0"), rows.get(row));
+        assertEquals(row(owner("Mike"), "2", "2", "0", "1", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0"), rows.get(row));
 
         row = 3;
-        assertEquals(row("Jake", "1", "1", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0"), rows.get(row));
+        assertEquals(row(owner("Jake"), "1", "1", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "0"), rows.get(row));
     }
 }
