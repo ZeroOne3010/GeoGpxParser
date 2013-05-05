@@ -12,19 +12,31 @@
             <head>
                 <title>Caches</title>
                 <style type="text/css">
+                    body {
+                        font-family: sans-serif;
+                        font-size: 11pt;
+                    }
                     table {
                         border-collapse: collapse;
                     }
+                    th {
+                        background-color: #cacaca;
+                    }
                     td, th {
-                        border: 1px solid #aaa;
+                        border: 1px solid #999;
                         padding: 2px 4px;
+                    }
+                    tr.odd td {
+                        background-color: #e0e0e0;
                     }
                 </style>
                 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
                 <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
                 <script type="text/javascript">
                 $(document).ready(function() {
-                    $("table").tablesorter();
+                    $("table").tablesorter({
+                        widgets: ['zebra']
+                    });
                 });
                 </script>
             </head>
