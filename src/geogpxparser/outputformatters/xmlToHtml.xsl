@@ -29,6 +29,16 @@
                     tr.odd td {
                         background-color: #e0e0e0;
                     }
+
+                    td.traditional {
+                        background-color: #e0eee0 !important;
+                    }
+                    td.multi {
+                        background-color: #eeeee0 !important;
+                    }
+                    td.mystery {
+                        background-color: #e0e0ee !important;
+                    }
                 </style>
                 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
                 <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
@@ -62,7 +72,13 @@
                         }
                         </xsl:if>
                     });
+                    colorCacheTypes();
                 });
+                function colorCacheTypes() {
+                    $("table#caches td:nth-child(2):contains('Mystery')").addClass('mystery');
+                    $("table#caches td:nth-child(2):contains('Traditional')").addClass('traditional');
+                    $("table#caches td:nth-child(2):contains('Multi')").addClass('multi');
+                }
                 </script>
             </head>
             <body>
