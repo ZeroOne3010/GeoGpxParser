@@ -29,7 +29,7 @@
                 </script>
             </head>
             <body>
-                <table>
+                <table id="{@identifier}">
                     <thead>
                         <xsl:apply-templates select="row[@header='true']" />
                     </thead>

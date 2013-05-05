@@ -15,7 +15,7 @@ public class TabSeparatedValuesFormatterTest {
     private TableData table;
 
     public TabSeparatedValuesFormatterTest() {
-        table = new TableData();
+        table = new TableData("testTable");
         TableRow row1 = new TableRow(true);
         TableRow row2 = new TableRow(false);
         TableRow row3 = new TableRow(false);
@@ -36,7 +36,7 @@ public class TabSeparatedValuesFormatterTest {
     }
 
     @Test
-    public void testSomeMethod() {
+    public void test_formatting_a_table() {
         assertNotNull(table);
 
         String result = new TabSeparatedValuesFormatter(table).toString();

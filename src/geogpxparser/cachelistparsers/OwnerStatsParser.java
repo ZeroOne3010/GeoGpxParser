@@ -35,7 +35,7 @@ public class OwnerStatsParser implements ICachesToTabularDataParser {
             addCacheForOwner(cache.getOwner(), cache.getType());
         }
 
-        TableData result = new TableData();
+        TableData result = new TableData("owners");
 
         // Create titles:
         TableRow headerRow = new TableRow(true);
