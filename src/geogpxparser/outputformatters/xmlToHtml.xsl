@@ -33,9 +33,34 @@
                 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
                 <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
                 <script type="text/javascript">
+                <xsl:if test="boolean(/table/@identifier = 'caches')">
+                $.tablesorter.addParser({
+                    id: 'cacheSizes',
+                    is: function(s) {
+                       return false;
+                    },
+                    format: function(s) {
+                        var size = s.toLowerCase();
+                        size = size.replace(/micro/,0);
+                        size = size.replace(/small/,1);
+                        size = size.replace(/regular/,2);
+                        size = size.replace(/large/,3);
+                        size = size.replace(/not_chosen/,4);
+                        return size;
+                    },
+                    type: 'numeric'
+                });
+                </xsl:if>
                 $(document).ready(function() {
                     $("table").tablesorter({
-                        widgets: ['zebra']
+                        widgets: ['zebra'],
+                        <xsl:if test="boolean(/table/@identifier = 'caches')">
+                        headers: {
+                            5: {
+                                sorter:'cacheSizes'
+                            }
+                        }
+                        </xsl:if>
                     });
                 });
                 </script>
