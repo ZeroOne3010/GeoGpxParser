@@ -46,7 +46,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
             dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getHidden())));
-            dataRow.addCell(new CellData(cache.getOwner()));
+            dataRow.addCell(new CellData(cache.getOwner(), Utility.getOwnerUrl(cache.getOwner())));
             result.addRow(dataRow);
         }
 
