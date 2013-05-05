@@ -20,7 +20,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
     @Override
     public TableData getTabularInfo(final List<Geocache> caches) {
 
-        TableData result = new TableData();
+        TableData result = new TableData("caches");
         TableRow headerRow = new TableRow(true);
 
         headerRow.addCell(new CellData("gccode"));
