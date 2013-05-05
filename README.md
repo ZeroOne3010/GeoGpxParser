@@ -17,9 +17,11 @@ not care about the source code. :) The usage happens from the command line and
 the simple instructions for that are inside the download package as README.txt.
 
 Note: This project was previously hosted
-at http://code.google.com/p/geocache-gpx-parser/
+at [Google Code](http://code.google.com/p/geocache-gpx-parser/)
 
 This project uses the following external JavaScript libraries:
+
 - [jQuery](http://jquery.com/)
 - [tablesorter](http://tablesorter.com/docs/)
+
 Both are released under the [MIT-license](http://www.opensource.org/licenses/mit-license.php).
