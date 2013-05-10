@@ -62,8 +62,26 @@
                 });
                 </xsl:if>
                 $(document).ready(function() {
+
+                    $.tablesorter.addWidget({
+                        id: "rowNumbers",
+                        format: function(table) {
+                            $(".rowNumber", table).remove();
+
+                            for(var i=0; i &lt; table.tBodies[0].rows.length; i++) {
+                                $("tbody tr:eq("+i+") td:eq(0)", table).before(
+                                    $("&lt;td>"+(i+1)+".&lt;/td>").addClass("rowNumber")
+                                );
+                            }
+
+                            $("thead tr th:eq(0)", table).before(
+                                $("&lt;th>#&lt;/th>").addClass("rowNumber")
+                            );
+                        }
+                    });
+
                     $("table").tablesorter({
-                        widgets: ['zebra'],
+                        widgets: ['zebra', 'rowNumbers'],
                         <xsl:if test="boolean(/table/@identifier = 'caches')">
                         headers: {
                             5: {
