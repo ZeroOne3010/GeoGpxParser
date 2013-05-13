@@ -50,7 +50,7 @@ public abstract class AbstractParserTest {
         cache1.setType(CacheType.Traditional);
         cache1.setLongitude(1.1);
         cache1.setLatitude(2.2);
-        cache1.setSize(Geocache.CacheSize.Micro);
+        cache1.setSize(CacheSize.Micro);
         cache1.setDifficulty(1);
         cache1.setTerrain(5);
         cache1.setHidden(new DateTime(2001, 1, 2, 00, 00));
@@ -62,7 +62,7 @@ public abstract class AbstractParserTest {
         cache2.setType(CacheType.Multi);
         cache2.setLongitude(3.3);
         cache2.setLatitude(4.4);
-        cache2.setSize(Geocache.CacheSize.Small);
+        cache2.setSize(CacheSize.Small);
         cache2.setDifficulty(1.5f);
         cache2.setTerrain(4.5f);
         cache2.setHidden(new DateTime(2002, 3, 4, 01, 00));
@@ -74,7 +74,7 @@ public abstract class AbstractParserTest {
         cache3.setType(CacheType.Traditional);
         cache3.setLongitude(5.5);
         cache3.setLatitude(6.6);
-        cache3.setSize(Geocache.CacheSize.Regular);
+        cache3.setSize(CacheSize.Regular);
         cache3.setDifficulty(2);
         cache3.setTerrain(4);
         cache3.setHidden(new DateTime(2003, 5, 6, 02, 00));
@@ -86,7 +86,7 @@ public abstract class AbstractParserTest {
         cache4.setType(CacheType.Letterbox);
         cache4.setLongitude(7.7);
         cache4.setLatitude(8.8);
-        cache4.setSize(Geocache.CacheSize.Large);
+        cache4.setSize(CacheSize.Large);
         cache4.setDifficulty(2.5f);
         cache4.setTerrain(3.5f);
         cache4.setHidden(new DateTime(2004, 7, 8, 03, 00));
@@ -98,7 +98,7 @@ public abstract class AbstractParserTest {
         cache5.setType(CacheType.Mystery);
         cache5.setLongitude(9.9);
         cache5.setLatitude(10.10);
-        cache5.setSize(Geocache.CacheSize.Not_chosen);
+        cache5.setSize(CacheSize.Not_chosen);
         cache5.setDifficulty(3);
         cache5.setTerrain(3);
         cache5.setHidden(new DateTime(2005, 9, 10, 06, 07));

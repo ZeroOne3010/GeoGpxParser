@@ -33,10 +33,6 @@ import org.joda.time.DateTime;
  */
 public class Geocache {
 
-    public enum CacheSize {
-
-        Micro, Small, Regular, Large, Not_chosen
-    };
     private String gcCode;
     private double latitude;
     private double longitude;

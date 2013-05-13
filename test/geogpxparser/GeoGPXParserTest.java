@@ -74,8 +74,8 @@ public class GeoGPXParserTest {
 
     @Test
     public void test_size() {
-        assertEquals(Geocache.CacheSize.Not_chosen, cache1.getSize());
-        assertEquals(Geocache.CacheSize.Micro, cache2.getSize());
+        assertEquals(CacheSize.Not_chosen, cache1.getSize());
+        assertEquals(CacheSize.Micro, cache2.getSize());
     }
 
     @Test
