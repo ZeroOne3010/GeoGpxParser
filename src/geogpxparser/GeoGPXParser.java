@@ -97,10 +97,10 @@ public class GeoGPXParser {
         }
 
         info("Writing the caches into a file...");
-        writeFile("caches." + outputType, cachesOutput);
+        writeFile(tabularRepresentation.getIdentifier() + "." + outputType, cachesOutput);
 
         info("Writing owner stats into a file...");
-        writeFile("owners." + outputType, ownersOutput);
+        writeFile(ownerStats.getIdentifier() + "." + outputType, ownersOutput);
 
         info("Done!");
     }
