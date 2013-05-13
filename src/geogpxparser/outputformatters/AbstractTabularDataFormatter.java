@@ -17,4 +17,10 @@ public abstract class AbstractTabularDataFormatter {
 
     @Override
     public abstract String toString();
+
+    public abstract String getFileExtension();
+
+    public String getFileName() {
+        return this.table.getIdentifier() + "." + getFileExtension();
+    }
 }
