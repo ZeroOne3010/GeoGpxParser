@@ -9,6 +9,8 @@ import javax.xml.bind.JAXB;
  */
 public class XmlFormatter extends AbstractTabularDataFormatter {
 
+    private static final String FILE_EXTENSION = "xml";
+
     public XmlFormatter(TableData data) {
         super(data);
     }
@@ -18,5 +20,10 @@ public class XmlFormatter extends AbstractTabularDataFormatter {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         JAXB.marshal(getTable(), outputStream);
         return outputStream.toString();
+    }
+
+    @Override
+    public String getFileExtension() {
+        return FILE_EXTENSION;
     }
 }

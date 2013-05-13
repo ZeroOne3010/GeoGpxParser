@@ -12,6 +12,7 @@ public class TabSeparatedValuesFormatter extends AbstractTabularDataFormatter {
 
     private static final String SEPARATOR = "\t";
     private static final String REPLACEMENT = " ";
+    private static final String FILE_EXTENSION = "txt";
 
     public TabSeparatedValuesFormatter(TableData data) {
         super(data);
@@ -37,5 +38,10 @@ public class TabSeparatedValuesFormatter extends AbstractTabularDataFormatter {
         }
 
         return sb.toString();
+    }
+
+    @Override
+    public String getFileExtension() {
+        return FILE_EXTENSION;
     }
 }

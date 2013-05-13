@@ -19,7 +19,9 @@ import javax.xml.transform.stream.StreamSource;
  * Formats the given TableData object into an HTML string.
  */
 public class HtmlFormatter extends AbstractTabularDataFormatter {
+
     private static final String XSLT_FILE_NAME = "xmlToHtml.xsl";
+    private static final String FILE_EXTENSION = "html";
 
     public HtmlFormatter(TableData data) {
         super(data);
@@ -52,5 +54,10 @@ public class HtmlFormatter extends AbstractTabularDataFormatter {
             xslt = new StreamSource(inputStream);
         }
         return xslt;
+    }
+
+    @Override
+    public String getFileExtension() {
+        return FILE_EXTENSION;
     }
 }

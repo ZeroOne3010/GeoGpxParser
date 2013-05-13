@@ -24,6 +24,7 @@ package geogpxparser;
 
 import geogpxparser.cachelistparsers.CacheListParser;
 import geogpxparser.cachelistparsers.OwnerStatsParser;
+import geogpxparser.outputformatters.AbstractTabularDataFormatter;
 import geogpxparser.outputformatters.HtmlFormatter;
 import geogpxparser.outputformatters.TabSeparatedValuesFormatter;
 import geogpxparser.outputformatters.XmlFormatter;
@@ -76,31 +77,22 @@ public class GeoGPXParser {
         TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
 
         String outputType = System.getProperty("output", "txt").toLowerCase();
-        String cachesOutput;
-        String ownersOutput;
 
         switch (outputType) {
             case "xml":
-                cachesOutput = new XmlFormatter(tabularRepresentation).toString();
-                ownersOutput = new XmlFormatter(ownerStats).toString();
+                writeDataToFile(new XmlFormatter(tabularRepresentation));
+                writeDataToFile(new XmlFormatter(ownerStats));
                 break;
             case "html":
-                cachesOutput = new HtmlFormatter(tabularRepresentation).toString();
-                ownersOutput = new HtmlFormatter(ownerStats).toString();
+                writeDataToFile(new HtmlFormatter(tabularRepresentation));
+                writeDataToFile(new HtmlFormatter(ownerStats));
                 parser.writeHtmlResources();
                 break;
             default:
-                outputType = "txt";
-                cachesOutput = new TabSeparatedValuesFormatter(tabularRepresentation).toString();
-                ownersOutput = new TabSeparatedValuesFormatter(ownerStats).toString();
+                writeDataToFile(new TabSeparatedValuesFormatter(tabularRepresentation));
+                writeDataToFile(new TabSeparatedValuesFormatter(ownerStats));
                 break;
         }
-
-        info("Writing the caches into a file...");
-        writeFile(tabularRepresentation.getIdentifier() + "." + outputType, cachesOutput);
-
-        info("Writing owner stats into a file...");
-        writeFile(ownerStats.getIdentifier() + "." + outputType, ownersOutput);
 
         info("Done!");
     }
@@ -117,9 +109,11 @@ public class GeoGPXParser {
         return parseXmlFilesToObjects(this.file);
     }
 
-    private static void writeFile(final String fileName, final String contents) {
+    private static <T extends AbstractTabularDataFormatter> void writeDataToFile(T formatter) {
+        final String fileName = formatter.getFileName();
         try {
-            Files.write(Paths.get(fileName), contents.getBytes());
+            info("Writing "+fileName+"...");
+            Files.write(Paths.get(fileName), formatter.toString().getBytes());
         } catch (IOException ex) {
             System.out.println("Saving the file " + fileName + " failed!");
             ex.printStackTrace();
