@@ -175,11 +175,7 @@ public class GeoGPXParser {
         cache.setState(getSubElementContent(groundspeak, "groundspeak:state"));
         cache.setOwner(getSubElementContent(groundspeak, "groundspeak:owner"));
         cache.setType(CacheType.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:type")));
-        try {
-            cache.setSize(CacheSize.valueOf(getSubElementContent(groundspeak, "groundspeak:container")));
-        } catch (IllegalArgumentException ex) {
-            cache.setSize(CacheSize.Not_chosen);
-        }
+        cache.setSize(CacheSize.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:container")));
         cache.setDifficulty(Float.parseFloat(getSubElementContent(groundspeak, "groundspeak:difficulty")));
         cache.setTerrain(Float.parseFloat(getSubElementContent(groundspeak, "groundspeak:terrain")));
         cache.setShortDescription(getSubElementContent(groundspeak, "groundspeak:short_description"));
