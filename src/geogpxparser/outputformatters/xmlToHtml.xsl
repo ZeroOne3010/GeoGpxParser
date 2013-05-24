@@ -55,7 +55,7 @@
                         size = size.replace(/small/,1);
                         size = size.replace(/regular/,2);
                         size = size.replace(/large/,3);
-                        size = size.replace(/not_chosen/,4);
+                        size = size.replace(/not chosen/,4);
                         return size;
                     },
                     type: 'numeric'

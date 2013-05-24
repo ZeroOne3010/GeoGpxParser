@@ -42,7 +42,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(cache.getName()));
             dataRow.addCell(new CellData(String.valueOf(cache.getLongitude())));
             dataRow.addCell(new CellData(String.valueOf(cache.getLatitude())));
-            dataRow.addCell(new CellData(String.valueOf(cache.getSize())));
+            dataRow.addCell(new CellData(cache.getSize().getGpxDescription()));
             dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
             dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getHidden())));
