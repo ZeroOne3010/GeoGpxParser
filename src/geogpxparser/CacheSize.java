@@ -9,6 +9,8 @@ public enum CacheSize {
     Small("Small"),
     Regular("Regular"),
     Large("Large"),
+    Virtual("Virtual"),
+    Other("Other"),
     Not_chosen("Not chosen");
     private final String gpxDescription;
     private static final Map<String, CacheSize> gpxToSize;
