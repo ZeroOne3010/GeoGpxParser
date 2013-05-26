@@ -10,7 +10,7 @@
     <xsl:template match="/table">
         <html>
             <head>
-                <title>Caches</title>
+                <title><xsl:value-of select="/table/@identifier"/></title>
                 <style type="text/css">
                     body {
                         font-family: sans-serif;
