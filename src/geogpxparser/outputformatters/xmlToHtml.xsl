@@ -10,6 +10,11 @@
     <xsl:template match="/table">
         <html>
             <head>
+                <link rel="shortcut icon" href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAACXBIWXMAAAsTAAALEwEAmp
+wYAAAAElBMVEV/f3/////5oToAo7P/8QAwtFdRtwOOAAAAT0lEQVR4Xj3OsQ2AMBDFUH8I
+/d0GUSZAygIUGYAm+6+CTl/C1StNBoCSYPQ5ETEKU2DAYdwFMLriNDJxmW09XPtVGBuWsV
+sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                 <title><xsl:value-of select="/table/@identifier"/></title>
                 <style type="text/css">
                     body {
