@@ -14,17 +14,20 @@ import org.junit.Test;
 public class GeoGPXParserTest {
     Geocache cache1;
     Geocache cache2;
+    Geocache cache3;
 
     @Before
     public void loadCaches() {
         GeoGPXParser parser = new GeoGPXParser("test/geogpxparser/test.gpx");
         List<Geocache> caches = parser.parse();
         assertNotNull(caches);
-        assertEquals(2, caches.size());
+        assertEquals(3, caches.size());
         cache1 = caches.get(0);
         cache2 = caches.get(1);
+        cache3 = caches.get(2);
         assertNotNull(cache1);
         assertNotNull(cache2);
+        assertNotNull(cache3);
     }
 
     @Test
@@ -96,6 +99,7 @@ public class GeoGPXParserTest {
     public void test_attributes() {
         Map<String,Boolean> attributes1 = cache1.getAttributes();
         Map<String,Boolean> attributes2 = cache2.getAttributes();
+        Map<String,Boolean> attributes3 = cache3.getAttributes();
 
         assertEquals(2, attributes1.size());
         assertEquals(true, attributes1.get("Public transportation"));
@@ -104,6 +108,9 @@ public class GeoGPXParserTest {
         assertEquals(2, attributes2.size());
         assertEquals(false, attributes2.get("Available at all times"));
         assertEquals(true, attributes2.get("Stealth required"));
+
+        assertNotNull(attributes3);
+        assertEquals(0, attributes3.size());
     }
 
     @Test
@@ -160,6 +167,7 @@ public class GeoGPXParserTest {
         assertEquals("Example user", logs1.get(0).getUser());
         assertEquals("TFTC!", logs1.get(0).getText());
     }
+
     @Test
     public void test_logs2() {
         List<Log> logs2 = cache2.getLogs();
@@ -173,5 +181,11 @@ public class GeoGPXParserTest {
         assertEquals("No luck.", logs2.get(0).getText());
         assertEquals("Example user", logs2.get(1).getUser());
         assertEquals("TNLN.", logs2.get(1).getText());
+    }
+
+    @Test
+    public void test_empty_logs3() {
+        assertNotNull(cache3.getLogs());
+        assertEquals(0, cache3.getLogs().size());
     }
 }
