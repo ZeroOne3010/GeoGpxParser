@@ -196,6 +196,23 @@ public class GeoGPXParser {
             }
         }
 
+        Element logsElement = getSubElement(groundspeak, "groundspeak:logs");
+        if (logsElement != null) {
+            Node logNode = logsElement.getFirstChild();
+            while (logNode != null) {
+                if (logNode instanceof Element) {
+                    Element logElement = (Element) logNode;
+                    final Log log = new Log();
+                    log.setDate(XML_DATE_TIME_FORMAT.parseDateTime(getSubElementContent(logElement, "groundspeak:date")));
+                    log.setType(LogType.getByGpxDescription(getSubElementContent(logElement, "groundspeak:type")));
+                    log.setUser(getSubElementContent(logElement, "groundspeak:finder"));
+                    log.setText(getSubElementContent(logElement, "groundspeak:text"));
+                    cache.addLog(log);
+                }
+                logNode = logNode.getNextSibling();
+            }
+        }
+
         return cache;
     }
 
