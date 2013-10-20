@@ -43,6 +43,14 @@ public abstract class AbstractParserTest {
 
     public AbstractParserTest() {
         caches = new ArrayList<>();
+
+        final Log dnfLog1 = new Log().setDate(new DateTime(2010, 6, 13, 15, 00)).setText(":(").setType(LogType.DNF).setUser("a");
+        final Log dnfLog2 = new Log().setDate(new DateTime(2010, 7, 13, 15, 00)).setText(":((").setType(LogType.DNF).setUser("a");
+        final Log foundLog = new Log().setDate(new DateTime(2010, 8, 13, 15, 00)).setText(":)").setType(LogType.FOUND).setUser("a");
+        final Log attendedLog = new Log().setDate(new DateTime(2010, 9, 13, 15, 00)).setText(":)").setType(LogType.ATTENDED).setUser("a");
+        final Log webcamLog = new Log().setDate(new DateTime(2010, 10, 13, 15, 00)).setText(":)").setType(LogType.WEBCAM_PHOTO_TAKEN).setUser("a");
+
+
         Geocache cache1 = new Geocache();
         cache1.setGcCode("GC111");
         cache1.setName("Cache I");
@@ -54,6 +62,7 @@ public abstract class AbstractParserTest {
         cache1.setDifficulty(1);
         cache1.setTerrain(5);
         cache1.setHidden(new DateTime(2001, 1, 2, 00, 00));
+        cache1.addLog(dnfLog1);
 
         Geocache cache2 = new Geocache();
         cache2.setGcCode("GC222");
@@ -66,6 +75,8 @@ public abstract class AbstractParserTest {
         cache2.setDifficulty(1.5f);
         cache2.setTerrain(4.5f);
         cache2.setHidden(new DateTime(2002, 3, 4, 01, 00));
+        cache2.addLog(dnfLog2);
+        cache2.addLog(foundLog);
 
         Geocache cache3 = new Geocache();
         cache3.setGcCode("GC333");
@@ -78,6 +89,7 @@ public abstract class AbstractParserTest {
         cache3.setDifficulty(2);
         cache3.setTerrain(4);
         cache3.setHidden(new DateTime(2003, 5, 6, 02, 00));
+        cache3.addLog(attendedLog);
 
         Geocache cache4 = new Geocache();
         cache4.setGcCode("GC444");
@@ -90,6 +102,7 @@ public abstract class AbstractParserTest {
         cache4.setDifficulty(2.5f);
         cache4.setTerrain(3.5f);
         cache4.setHidden(new DateTime(2004, 7, 8, 03, 00));
+        cache4.addLog(webcamLog);
 
         Geocache cache5 = new Geocache();
         cache5.setGcCode("GC555");
@@ -102,6 +115,8 @@ public abstract class AbstractParserTest {
         cache5.setDifficulty(3);
         cache5.setTerrain(3);
         cache5.setHidden(new DateTime(2005, 9, 10, 06, 07));
+        cache5.addLog(foundLog);
+        cache5.addLog(dnfLog2);
 
         caches.add(cache1);
         caches.add(cache2);

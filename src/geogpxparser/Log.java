@@ -12,31 +12,35 @@ public class Log {
         return user;
     }
 
-    public void setUser(String user) {
+    public Log setUser(String user) {
         this.user = user;
+        return this;
     }
 
     public DateTime getDate() {
         return date;
     }
 
-    public void setDate(DateTime date) {
+    public Log setDate(DateTime date) {
         this.date = date;
+        return this;
     }
 
     public LogType getType() {
         return type;
     }
 
-    public void setType(LogType type) {
+    public Log setType(LogType type) {
         this.type = type;
+        return this;
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public Log setText(String text) {
         this.text = text;
+        return this;
     }
 }
