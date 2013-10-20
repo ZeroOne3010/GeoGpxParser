@@ -69,6 +69,12 @@
       <groundspeak:long_description html="True">Long description 2.</groundspeak:long_description>
       <groundspeak:encoded_hints>Hint 2.</groundspeak:encoded_hints>
       <groundspeak:logs>
+        <groundspeak:log id="450">
+          <groundspeak:date>2011-05-10T19:00:00Z</groundspeak:date>
+          <groundspeak:type>Didn't find it</groundspeak:type>
+          <groundspeak:finder id="3">Example user</groundspeak:finder>
+          <groundspeak:text encoded="False">No luck.</groundspeak:text>
+        </groundspeak:log>
         <groundspeak:log id="456">
           <groundspeak:date>2011-05-15T19:00:00Z</groundspeak:date>
           <groundspeak:type>Found it</groundspeak:type>

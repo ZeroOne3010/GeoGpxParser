@@ -2,6 +2,8 @@ package geogpxparser;
 
 import java.util.List;
 import java.util.Map;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -144,5 +146,32 @@ public class GeoGPXParserTest {
     public void test_archived() {
         assertEquals(false, cache1.isArchived());
         assertEquals(true, cache2.isArchived());
+    }
+
+    @Test
+    public void test_logs1() {
+        List<Log> logs1 = cache1.getLogs();
+        assertNotNull(logs1);
+        assertEquals(1, logs1.size());
+        assertEquals(2010, logs1.get(0).getDate().getYear());
+        assertEquals(7, logs1.get(0).getDate().getMonthOfYear());
+        assertEquals(8, logs1.get(0).getDate().getDayOfMonth());
+        assertEquals(LogType.FOUND, logs1.get(0).getType());
+        assertEquals("Example user", logs1.get(0).getUser());
+        assertEquals("TFTC!", logs1.get(0).getText());
+    }
+    @Test
+    public void test_logs2() {
+        List<Log> logs2 = cache2.getLogs();
+        assertNotNull(logs2);
+        assertEquals(2, logs2.size());
+        assertEquals(10, logs2.get(0).getDate().getDayOfMonth());
+        assertEquals(15, logs2.get(1).getDate().getDayOfMonth());
+        assertEquals(LogType.DNF, logs2.get(0).getType());
+        assertEquals(LogType.FOUND, logs2.get(1).getType());
+        assertEquals("Example user", logs2.get(0).getUser());
+        assertEquals("No luck.", logs2.get(0).getText());
+        assertEquals("Example user", logs2.get(1).getUser());
+        assertEquals("TNLN.", logs2.get(1).getText());
     }
 }
