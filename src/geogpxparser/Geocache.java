@@ -22,7 +22,9 @@
  */
 package geogpxparser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.joda.time.DateTime;
 
@@ -51,6 +53,7 @@ public class Geocache {
     private String hint;
     private boolean available;
     private boolean archived;
+    private final List<Log> logs = new ArrayList<>();
 
     public String getGcCode() {
         return gcCode;
@@ -212,5 +215,13 @@ public class Geocache {
 
     public void setArchived(boolean archived) {
         this.archived = archived;
+    }
+
+    public List<Log> getLogs() {
+        return logs;
+    }
+
+    public void addLog(Log log) {
+        this.logs.add(log);
     }
 }
