@@ -1,6 +1,8 @@
 package geogpxparser.cachelistparsers;
 
 import geogpxparser.Geocache;
+import geogpxparser.Log;
+import geogpxparser.LogType;
 import geogpxparser.tabular.CellData;
 import geogpxparser.tabular.TableData;
 import geogpxparser.tabular.TableRow;
@@ -33,6 +35,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
         headerRow.addCell(new CellData("terrain"));
         headerRow.addCell(new CellData("hidden"));
         headerRow.addCell(new CellData("owner"));
+        headerRow.addCell(new CellData("found"));
         result.addRow(headerRow);
 
         for (Geocache cache : caches) {
@@ -47,9 +50,21 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
             dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getHidden())));
             dataRow.addCell(new CellData(cache.getOwner(), Utility.getOwnerUrl(cache.getOwner())));
+            dataRow.addCell(new CellData(findFoundDate(cache)));
             result.addRow(dataRow);
         }
 
         return result;
+    }
+
+    private String findFoundDate(final Geocache cache) {
+        for (Log log : cache.getLogs()) {
+            if (LogType.ATTENDED.equals(log.getType()) || LogType.FOUND.equals(log.getType()) || LogType.WEBCAM_PHOTO_TAKEN.equals(log.getType())) {
+                if (log.getDate() != null) {
+                    return OUTPUT_DATE_TIME_FORMAT.print(log.getDate());
+                }
+            }
+        }
+        return "-";
     }
 }
