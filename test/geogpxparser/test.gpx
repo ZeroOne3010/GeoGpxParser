@@ -85,4 +85,29 @@
       <groundspeak:travelbugs />
     </groundspeak:cache>
   </wpt>
+  <wpt lat="60.876" lon="25.111">
+    <time>2010-02-28T07:00:00Z</time>
+    <name>GCIJKL</name>
+    <desc>Missing attributes, empty logs</desc>
+    <url>http://www.geocaching.com/seek/cache_details.aspx?guid=1111-2222-3333</url>
+    <urlname>Cache 3 URL name</urlname>
+    <sym>Geocache Found</sym>
+    <type>Geocache|Traditional Cache</type>
+    <groundspeak:cache id="567890" available="True" archived="True" xmlns:groundspeak="http://www.groundspeak.com/cache/1/0/1">
+      <groundspeak:name>Cache III name</groundspeak:name>
+      <groundspeak:placed_by>Placed by 3</groundspeak:placed_by>
+      <groundspeak:owner id="3344">owner 3</groundspeak:owner>
+      <groundspeak:type>Traditional Cache</groundspeak:type>
+      <groundspeak:container>Micro</groundspeak:container>
+      <groundspeak:difficulty>4.5</groundspeak:difficulty>
+      <groundspeak:terrain>1</groundspeak:terrain>
+      <groundspeak:country>Finland</groundspeak:country>
+      <groundspeak:state>Helsinki</groundspeak:state>
+      <groundspeak:short_description html="True">Short description 3.</groundspeak:short_description>
+      <groundspeak:long_description html="True">Long description 3.</groundspeak:long_description>
+      <groundspeak:encoded_hints />
+      <groundspeak:logs />
+      <groundspeak:travelbugs />
+    </groundspeak:cache>
+  </wpt>
 </gpx>

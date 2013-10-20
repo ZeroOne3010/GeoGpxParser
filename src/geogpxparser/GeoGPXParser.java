@@ -37,6 +37,7 @@ import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -185,32 +186,18 @@ public class GeoGPXParser {
         // Parse the attributes into a map where key is the attribute name and
         // value is the value of that attribute:
         Element attributesElement = getSubElement(groundspeak, "groundspeak:attributes");
-        if (attributesElement != null) {
-            Node attributeNode = attributesElement.getFirstChild();
-            while (attributeNode != null) {
-                if (attributeNode != null && attributeNode instanceof Element) {
-                    Element attributeElement = (Element) attributeNode;
-                    cache.setAttribute(attributeElement.getTextContent(), "1".equals(attributeElement.getAttribute("inc")));
-                }
-                attributeNode = attributeNode.getNextSibling();
-            }
+        for (Element attributeElement : new IterableSubElements(attributesElement)) {
+            cache.setAttribute(attributeElement.getTextContent(), "1".equals(attributeElement.getAttribute("inc")));
         }
 
         Element logsElement = getSubElement(groundspeak, "groundspeak:logs");
-        if (logsElement != null) {
-            Node logNode = logsElement.getFirstChild();
-            while (logNode != null) {
-                if (logNode instanceof Element) {
-                    Element logElement = (Element) logNode;
-                    final Log log = new Log();
-                    log.setDate(XML_DATE_TIME_FORMAT.parseDateTime(getSubElementContent(logElement, "groundspeak:date")));
-                    log.setType(LogType.getByGpxDescription(getSubElementContent(logElement, "groundspeak:type")));
-                    log.setUser(getSubElementContent(logElement, "groundspeak:finder"));
-                    log.setText(getSubElementContent(logElement, "groundspeak:text"));
-                    cache.addLog(log);
-                }
-                logNode = logNode.getNextSibling();
-            }
+        for (Element logElement : new IterableSubElements(logsElement)) {
+            final Log log = new Log();
+            log.setDate(XML_DATE_TIME_FORMAT.parseDateTime(getSubElementContent(logElement, "groundspeak:date")));
+            log.setType(LogType.getByGpxDescription(getSubElementContent(logElement, "groundspeak:type")));
+            log.setUser(getSubElementContent(logElement, "groundspeak:finder"));
+            log.setText(getSubElementContent(logElement, "groundspeak:text"));
+            cache.addLog(log);
         }
 
         return cache;
