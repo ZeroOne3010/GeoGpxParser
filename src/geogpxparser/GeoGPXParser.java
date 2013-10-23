@@ -1,5 +1,5 @@
 /*
- * The MIT License - Copyright (c) 2011-2012 Ville Saalo (http://coord.info/PR32K8V)
+ * The MIT License - Copyright (c) 2011-2013 Ville Saalo (http://coord.info/PR32K8V)
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
