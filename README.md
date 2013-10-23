@@ -2,12 +2,14 @@ This program is great especially for analyzing your My Finds Pocket Query files.
 You can also use it to analyze other Pocket Queries in order to learn about the
 caches in the given area.
 
-Technically this program is used to parse a .gpx file, which is an XML file, of
+Technically this program is used to parse one or more .gpx files of
 geocaches into plain old Java objects (POJO). The caches are then saved as a tab
 delimited text file, one cache per row. In this format it is easy to load the
-caches into a spreadsheet program for further inspection.
+caches into a spreadsheet program for further inspection. Alternatively you
+can choose to save the caches as an HTML file instead for inspecting them with
+your browser of choice.
 
-In addition to saving the caches as a text file, another text file is also
+In addition to saving the caches as one file, another file is also
 saved: one with statistics about the owners of the caches. This file contains
 details on how many caches have each of them hidden and what type of caches
 are they.
