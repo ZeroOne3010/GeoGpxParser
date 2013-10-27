@@ -3,10 +3,19 @@ package geogpxparser;
 import org.joda.time.DateTime;
 
 public class Log {
+    private long id;
     private String user;
     private DateTime date;
     private LogType type;
     private String text;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getUser() {
         return user;

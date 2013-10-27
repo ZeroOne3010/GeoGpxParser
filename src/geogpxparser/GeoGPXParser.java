@@ -193,6 +193,7 @@ public class GeoGPXParser {
         Element logsElement = getSubElement(groundspeak, "groundspeak:logs");
         for (Element logElement : new IterableSubElements(logsElement)) {
             final Log log = new Log();
+            log.setId(Long.parseLong(logElement.getAttribute("id")));
             log.setDate(XML_DATE_TIME_FORMAT.parseDateTime(getSubElementContent(logElement, "groundspeak:date")));
             log.setType(LogType.getByGpxDescription(getSubElementContent(logElement, "groundspeak:type")));
             log.setUser(getSubElementContent(logElement, "groundspeak:finder"));
