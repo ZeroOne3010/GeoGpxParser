@@ -161,6 +161,7 @@ public class GeoGPXParserTest {
         assertNotNull(logs1);
         assertEquals(1, logs1.size());
         assertEquals(2010, logs1.get(0).getDate().getYear());
+        assertEquals(123, logs1.get(0).getId());
         assertEquals(7, logs1.get(0).getDate().getMonthOfYear());
         assertEquals(8, logs1.get(0).getDate().getDayOfMonth());
         assertEquals(LogType.FOUND, logs1.get(0).getType());
@@ -173,6 +174,8 @@ public class GeoGPXParserTest {
         List<Log> logs2 = cache2.getLogs();
         assertNotNull(logs2);
         assertEquals(2, logs2.size());
+        assertEquals(450, logs2.get(0).getId());
+        assertEquals(456, logs2.get(1).getId());
         assertEquals(10, logs2.get(0).getDate().getDayOfMonth());
         assertEquals(15, logs2.get(1).getDate().getDayOfMonth());
         assertEquals(LogType.DNF, logs2.get(0).getType());
