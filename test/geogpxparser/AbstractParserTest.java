@@ -46,9 +46,9 @@ public abstract class AbstractParserTest {
 
         final Log dnfLog1 = new Log().setDate(new DateTime(2010, 6, 13, 15, 00)).setText(":(").setType(LogType.DNF).setUser("a");
         final Log dnfLog2 = new Log().setDate(new DateTime(2010, 7, 13, 15, 00)).setText(":((").setType(LogType.DNF).setUser("a");
-        final Log foundLog = new Log().setDate(new DateTime(2010, 8, 13, 15, 00)).setText(":)").setType(LogType.FOUND).setUser("a");
-        final Log attendedLog = new Log().setDate(new DateTime(2010, 9, 13, 15, 00)).setText(":)").setType(LogType.ATTENDED).setUser("a");
-        final Log webcamLog = new Log().setDate(new DateTime(2010, 10, 13, 15, 00)).setText(":)").setType(LogType.WEBCAM_PHOTO_TAKEN).setUser("a");
+        final Log foundLog = new Log().setDate(new DateTime(2010, 8, 13, 15, 00)).setText(":)").setType(LogType.FOUND).setUser("a").setId(13);
+        final Log attendedLog = new Log().setDate(new DateTime(2010, 9, 13, 15, 00)).setText(":)").setType(LogType.ATTENDED).setUser("a").setId(21);
+        final Log webcamLog = new Log().setDate(new DateTime(2010, 10, 13, 15, 00)).setText(":)").setType(LogType.WEBCAM_PHOTO_TAKEN).setUser("a").setId(34);
 
 
         Geocache cache1 = new Geocache();

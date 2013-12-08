@@ -48,23 +48,32 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(cache.getSize().getGpxDescription()));
             dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
-            dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getHidden())));
+            if( cache.getHidden() != null) {
+                dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getHidden())));
+            } else {
+                dataRow.addCell(new CellData("-"));
+            }
             dataRow.addCell(new CellData(cache.getOwner(), Utility.getOwnerUrl(cache.getOwner())));
-            dataRow.addCell(new CellData(findFoundDate(cache)));
+            final Log log = findFoundLog(cache);
+            if (log != null) {
+                dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(log.getDate()), "http://www.geocaching.com/seek/log.aspx?LID=" + log.getId()));
+            } else {
+                dataRow.addCell(new CellData("-"));
+            }
             result.addRow(dataRow);
         }
 
         return result;
     }
 
-    private String findFoundDate(final Geocache cache) {
+    private Log findFoundLog(final Geocache cache) {
         for (Log log : cache.getLogs()) {
-            if (LogType.ATTENDED.equals(log.getType()) || LogType.FOUND.equals(log.getType()) || LogType.WEBCAM_PHOTO_TAKEN.equals(log.getType())) {
+            if (LogType.FOUND.equals(log.getType()) || LogType.ATTENDED.equals(log.getType()) || LogType.WEBCAM_PHOTO_TAKEN.equals(log.getType())) {
                 if (log.getDate() != null) {
-                    return OUTPUT_DATE_TIME_FORMAT.print(log.getDate());
+                    return log;
                 }
             }
         }
-        return "-";
+        return null;
     }
 }
