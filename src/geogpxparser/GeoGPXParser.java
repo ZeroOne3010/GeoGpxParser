@@ -33,22 +33,18 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
@@ -61,7 +57,6 @@ import org.xml.sax.SAXException;
 public class GeoGPXParser {
 
     private String file = null;
-    private final DateTimeFormatter XML_DATE_TIME_FORMAT = ISODateTimeFormat.dateTimeNoMillis();
 
     public static void main(String[] args) throws IOException {
         if (args == null || args.length == 0) {
@@ -161,8 +156,7 @@ public class GeoGPXParser {
         cache.setLatitude(Double.valueOf(wptElement.getAttribute("lat")));
         cache.setLongitude(Double.valueOf(wptElement.getAttribute("lon")));
 
-        DateTime time = XML_DATE_TIME_FORMAT.parseDateTime(getSubElementContent(wptElement, "time"));
-        cache.setHidden(time);
+        cache.setHidden(parseTime(getSubElementContent(wptElement, "time")));
         cache.setGcCode(getSubElementContent(wptElement, "name"));
 
         Element groundspeak = getSubElement(wptElement, "groundspeak:cache");
@@ -194,7 +188,7 @@ public class GeoGPXParser {
         for (Element logElement : new IterableSubElements(logsElement)) {
             final Log log = new Log();
             log.setId(Long.parseLong(logElement.getAttribute("id")));
-            log.setDate(XML_DATE_TIME_FORMAT.parseDateTime(getSubElementContent(logElement, "groundspeak:date")));
+            log.setDate(parseTime(getSubElementContent(logElement, "groundspeak:date")));
             log.setType(LogType.getByGpxDescription(getSubElementContent(logElement, "groundspeak:type")));
             log.setUser(getSubElementContent(logElement, "groundspeak:finder"));
             log.setText(getSubElementContent(logElement, "groundspeak:text"));
@@ -231,6 +225,24 @@ public class GeoGPXParser {
             }
         }
         return caches;
+    }
+
+    private DateTime parseTime(String xmlTimeString) {
+        try {
+            return ISODateTimeFormat.dateTimeNoMillis().parseDateTime(xmlTimeString);
+        } catch (IllegalArgumentException tryOtherFormat) {
+            try {
+                return ISODateTimeFormat.dateTime().parseDateTime(xmlTimeString);
+            } catch (IllegalArgumentException tryFormatWithTimeZoneMissing) {
+                if (xmlTimeString.matches("\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d")) {
+                    try {
+                        return ISODateTimeFormat.dateTimeNoMillis().parseDateTime(xmlTimeString + "Z");
+                    } catch (IllegalArgumentException ignore) {
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     private static final class GpxFileFilter implements FilenameFilter {
