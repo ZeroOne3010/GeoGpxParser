@@ -1,3 +1,5 @@
+[![Build Status](https://drone.io/bitbucket.org/ZeroOne3010/geogpxparser/status.png)](https://drone.io/bitbucket.org/ZeroOne3010/geogpxparser/latest)
+
 This program is great especially for analyzing your My Finds Pocket Query files.
 You can also use it to analyze other Pocket Queries in order to learn about the
 caches in the given area.
