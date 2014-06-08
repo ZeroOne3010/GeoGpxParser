@@ -1,6 +1,7 @@
 package zeroone3010.geogpxparser;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
 /**

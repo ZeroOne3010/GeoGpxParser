@@ -1,12 +1,16 @@
 package zeroone3010.geogpxparser.cachelistparsers;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.List;
+
+import org.junit.Test;
+
 import zeroone3010.geogpxparser.AbstractParserTest;
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableData;
 import zeroone3010.geogpxparser.tabular.TableRow;
-import java.util.List;
-import static org.junit.Assert.*;
-import org.junit.Test;
 
 /**
  * Tests the CacheListParser.

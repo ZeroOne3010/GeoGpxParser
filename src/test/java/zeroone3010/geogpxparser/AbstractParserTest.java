@@ -1,11 +1,13 @@
 package zeroone3010.geogpxparser;
 
-import zeroone3010.geogpxparser.tabular.CellData;
-import zeroone3010.geogpxparser.tabular.TableRow;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.joda.time.DateTime;
 import org.junit.Ignore;
+
+import zeroone3010.geogpxparser.tabular.CellData;
+import zeroone3010.geogpxparser.tabular.TableRow;
 
 /**
  * Provides test data for subclasses.

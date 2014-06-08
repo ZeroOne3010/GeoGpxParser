@@ -22,13 +22,6 @@
  */
 package zeroone3010.geogpxparser;
 
-import zeroone3010.geogpxparser.cachelistparsers.CacheListParser;
-import zeroone3010.geogpxparser.cachelistparsers.OwnerStatsParser;
-import zeroone3010.geogpxparser.outputformatters.AbstractTabularDataFormatter;
-import zeroone3010.geogpxparser.outputformatters.HtmlFormatter;
-import zeroone3010.geogpxparser.outputformatters.TabSeparatedValuesFormatter;
-import zeroone3010.geogpxparser.outputformatters.XmlFormatter;
-import zeroone3010.geogpxparser.tabular.TableData;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -38,15 +31,25 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import zeroone3010.geogpxparser.cachelistparsers.CacheListParser;
+import zeroone3010.geogpxparser.cachelistparsers.OwnerStatsParser;
+import zeroone3010.geogpxparser.outputformatters.AbstractTabularDataFormatter;
+import zeroone3010.geogpxparser.outputformatters.HtmlFormatter;
+import zeroone3010.geogpxparser.outputformatters.TabSeparatedValuesFormatter;
+import zeroone3010.geogpxparser.outputformatters.XmlFormatter;
+import zeroone3010.geogpxparser.tabular.TableData;
 
 /**
  * This class can be used to parse geocaches from a Groundspeak .gpx file into plain old Java objects (POJO). The cache

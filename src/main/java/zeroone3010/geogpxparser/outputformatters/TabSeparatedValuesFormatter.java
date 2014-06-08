@@ -1,9 +1,10 @@
 package zeroone3010.geogpxparser.outputformatters;
 
+import java.util.Iterator;
+
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableData;
 import zeroone3010.geogpxparser.tabular.TableRow;
-import java.util.Iterator;
 
 /**
  * Formats the given TableData object into a string of tab separated values.

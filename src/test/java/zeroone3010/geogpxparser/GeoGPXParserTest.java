@@ -1,10 +1,11 @@
 package zeroone3010.geogpxparser;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
 import java.util.Map;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
-import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,6 +1,8 @@
 package zeroone3010.geogpxparser.tabular;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
+
 import org.junit.Test;
 
 public class TableRowTest {
