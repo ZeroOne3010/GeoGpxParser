@@ -1,5 +1,5 @@
 package zeroone3010.geogpxparser;
-        
+
 import java.util.List;
 import java.util.Map;
 import org.joda.time.DateTime;
@@ -18,7 +18,7 @@ public class GeoGPXParserTest {
 
     @Before
     public void loadCaches() {
-        GeoGPXParser parser = new GeoGPXParser("test/zeroone3010/geogpxparser/test.gpx");
+        GeoGPXParser parser = new GeoGPXParser("src/test/java/zeroone3010/geogpxparser/test.gpx");
         List<Geocache> caches = parser.parse();
         assertNotNull(caches);
         assertEquals(3, caches.size());
