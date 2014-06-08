@@ -1,9 +1,7 @@
 package zeroone3010.geogpxparser.cachelistparsers;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 import zeroone3010.geogpxparser.Geocache;
 import zeroone3010.geogpxparser.Log;
@@ -19,7 +17,7 @@ import zeroone3010.geogpxparser.tabular.TableRow;
  */
 public class CacheListParser implements ICachesToTabularDataParser {
 
-    private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     @Override
     public TableData getTabularInfo(final List<Geocache> caches) {
@@ -51,14 +49,14 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
             if( cache.getHidden() != null) {
-                dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(cache.getHidden())));
+                dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.format(cache.getHidden())));
             } else {
                 dataRow.addCell(new CellData("-"));
             }
             dataRow.addCell(new CellData(cache.getOwner(), Utility.getOwnerUrl(cache.getOwner())));
             final Log log = findFoundLog(cache);
             if (log != null) {
-                dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.print(log.getDate()), "http://www.geocaching.com/seek/log.aspx?LID=" + log.getId()));
+                dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.format(log.getDate()), "http://www.geocaching.com/seek/log.aspx?LID=" + log.getId()));
             } else {
                 dataRow.addCell(new CellData("-"));
             }

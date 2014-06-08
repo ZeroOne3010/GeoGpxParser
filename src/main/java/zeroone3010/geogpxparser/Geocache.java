@@ -22,12 +22,11 @@
  */
 package zeroone3010.geogpxparser;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.joda.time.DateTime;
 
 /**
  * This class represents one geocache.
@@ -41,7 +40,7 @@ public class Geocache {
     private double longitude;
     private String country;
     private String state;
-    private DateTime hidden;
+    private LocalDateTime hidden;
     private CacheType type;
     private CacheSize size;
     private float difficulty;
@@ -96,11 +95,11 @@ public class Geocache {
         this.state = state;
     }
 
-    public DateTime getHidden() {
+    public LocalDateTime getHidden() {
         return hidden;
     }
 
-    public void setHidden(DateTime published) {
+    public void setHidden(LocalDateTime published) {
         this.hidden = published;
     }
 

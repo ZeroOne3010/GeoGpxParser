@@ -1,11 +1,11 @@
 package zeroone3010.geogpxparser;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
 
 public class Log {
     private long id;
     private String user;
-    private DateTime date;
+    private LocalDateTime date;
     private LogType type;
     private String text;
 
@@ -27,11 +27,11 @@ public class Log {
         return this;
     }
 
-    public DateTime getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public Log setDate(DateTime date) {
+    public Log setDate(LocalDateTime date) {
         this.date = date;
         return this;
     }

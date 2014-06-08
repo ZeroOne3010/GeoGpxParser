@@ -29,6 +29,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,8 +39,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.ISODateTimeFormat;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -122,7 +123,7 @@ public class GeoGPXParser {
     private void writeHtmlResources() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
         for (String filename : new String[]{"jquery-1.9.1.min.js", "jquery.tablesorter.min.js"}) {
-            InputStream inputStream = classLoader.getResourceAsStream("geogpxparser/outputformatters/resources/" + filename);
+            InputStream inputStream = classLoader.getResourceAsStream(filename);
             Files.copy(inputStream, Paths.get(filename), StandardCopyOption.REPLACE_EXISTING);
         }
     }
@@ -230,18 +231,14 @@ public class GeoGPXParser {
         return caches;
     }
 
-    private DateTime parseTime(String xmlTimeString) {
+    private LocalDateTime parseTime(String xmlTimeString) {
         try {
-            return ISODateTimeFormat.dateTimeNoMillis().parseDateTime(xmlTimeString);
-        } catch (IllegalArgumentException tryOtherFormat) {
-            try {
-                return ISODateTimeFormat.dateTime().parseDateTime(xmlTimeString);
-            } catch (IllegalArgumentException tryFormatWithTimeZoneMissing) {
-                if (xmlTimeString.matches("\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d")) {
-                    try {
-                        return ISODateTimeFormat.dateTimeNoMillis().parseDateTime(xmlTimeString + "Z");
-                    } catch (IllegalArgumentException ignore) {
-                    }
+            return ZonedDateTime.parse(xmlTimeString).toLocalDateTime();
+        } catch (DateTimeParseException tryFormatWithTimeZoneMissing) {
+            if (xmlTimeString.matches("\\d\\d\\d\\d-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d")) {
+                try {
+                    return ZonedDateTime.parse(xmlTimeString + "Z").toLocalDateTime();
+                } catch (IllegalArgumentException ignore) {
                 }
             }
         }
