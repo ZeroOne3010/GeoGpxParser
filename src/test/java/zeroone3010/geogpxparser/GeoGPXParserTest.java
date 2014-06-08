@@ -64,11 +64,11 @@ public class GeoGPXParserTest {
     @Test
     public void test_hidden() {
         assertEquals(2001, cache1.getHidden().getYear());
-        assertEquals(10, cache1.getHidden().getMonthOfYear());
+        assertEquals(10, cache1.getHidden().getMonthValue());
         assertEquals(27, cache1.getHidden().getDayOfMonth());
 
         assertEquals(2010, cache2.getHidden().getYear());
-        assertEquals(2, cache2.getHidden().getMonthOfYear());
+        assertEquals(2, cache2.getHidden().getMonthValue());
         assertEquals(28, cache2.getHidden().getDayOfMonth());
     }
 
@@ -163,7 +163,7 @@ public class GeoGPXParserTest {
         assertEquals(1, logs1.size());
         assertEquals(2010, logs1.get(0).getDate().getYear());
         assertEquals(123, logs1.get(0).getId());
-        assertEquals(7, logs1.get(0).getDate().getMonthOfYear());
+        assertEquals(7, logs1.get(0).getDate().getMonthValue());
         assertEquals(8, logs1.get(0).getDate().getDayOfMonth());
         assertEquals(LogType.FOUND, logs1.get(0).getType());
         assertEquals("Example user", logs1.get(0).getUser());

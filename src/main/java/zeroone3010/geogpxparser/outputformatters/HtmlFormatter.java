@@ -52,7 +52,7 @@ public class HtmlFormatter extends AbstractTabularDataFormatter {
         } else {
             // Default to an internal XSL file inside the application .jar file:
             ClassLoader classLoader = getClass().getClassLoader();
-            InputStream inputStream = classLoader.getResourceAsStream("geogpxparser/outputformatters/xmlToHtml.xsl");
+            InputStream inputStream = classLoader.getResourceAsStream("xmlToHtml.xsl");
             xslt = new StreamSource(inputStream);
         }
         return xslt;

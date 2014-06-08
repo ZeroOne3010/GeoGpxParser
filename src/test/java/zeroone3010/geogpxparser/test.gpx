@@ -44,7 +44,7 @@
     </groundspeak:cache>
   </wpt>
   <wpt lat="59.8765" lon="10.6543">
-    <time>2010-02-28T07:00:00Z</time>
+    <time>2010-02-28T07:00:00</time> <!-- Note: missing the time zone letter on purpose here -->
     <name>GC456DEF</name>
     <desc>Cache 2 desc</desc>
     <url>http://www.geocaching.com/seek/cache_details.aspx?guid=abcd-ef00-abcd-ef00</url>

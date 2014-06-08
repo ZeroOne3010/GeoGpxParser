@@ -4,7 +4,7 @@
 
   <groupId>zeroone3010</groupId>
   <artifactId>geogpxparser</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>GeoGPXParser</name>
@@ -20,11 +20,6 @@
       <artifactId>junit</artifactId>
       <version>4.8.2</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>joda-time</groupId>
-        <artifactId>joda-time</artifactId>
-        <version>2.3</version>
     </dependency>
   </dependencies>
 
