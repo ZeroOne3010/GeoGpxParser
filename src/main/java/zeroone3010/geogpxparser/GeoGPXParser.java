@@ -63,7 +63,7 @@ public class GeoGPXParser {
 
     public static void main(String[] args) throws IOException {
         if (args == null || args.length == 0) {
-            System.out.println("Usage:"+DateTime.now());
+            System.out.println("Usage:");
             System.out.println("1) java [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar caches.gpx");
             System.out.println("2) java [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar some/directory/with/gpx/files");
             System.out.println("...where \"[...]\" denotes an optional parameter and \"(A|B|C)\" denotes alternatives: either A or B or C.");
