@@ -1,10 +1,10 @@
 package zeroone3010.geogpxparser.outputformatters;
 
-import zeroone3010.geogpxparser.tabular.TableData;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.util.JAXBSource;
@@ -14,6 +14,8 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import zeroone3010.geogpxparser.tabular.TableData;
 
 /**
  * Formats the given TableData object into an HTML string.

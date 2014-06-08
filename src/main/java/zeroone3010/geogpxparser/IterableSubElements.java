@@ -1,6 +1,7 @@
 package zeroone3010.geogpxparser;
 
 import java.util.Iterator;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 

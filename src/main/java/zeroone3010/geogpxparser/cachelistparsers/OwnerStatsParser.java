@@ -1,14 +1,15 @@
 package zeroone3010.geogpxparser.cachelistparsers;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 import zeroone3010.geogpxparser.CacheType;
 import zeroone3010.geogpxparser.Geocache;
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableData;
 import zeroone3010.geogpxparser.tabular.TableRow;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * Parses owner statistics from the given list of caches: the number of caches

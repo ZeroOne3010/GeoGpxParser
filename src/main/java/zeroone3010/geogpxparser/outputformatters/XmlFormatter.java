@@ -1,8 +1,10 @@
 package zeroone3010.geogpxparser.outputformatters;
 
-import zeroone3010.geogpxparser.tabular.TableData;
 import java.io.ByteArrayOutputStream;
+
 import javax.xml.bind.JAXB;
+
+import zeroone3010.geogpxparser.tabular.TableData;
 
 /**
  * Formats the given TableData object into an XML string.

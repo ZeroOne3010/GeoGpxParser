@@ -1,8 +1,12 @@
 package zeroone3010.geogpxparser.tabular;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
+
 import java.util.Arrays;
 import java.util.Collection;
-import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
