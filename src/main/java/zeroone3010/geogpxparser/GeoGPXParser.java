@@ -170,8 +170,6 @@ public class GeoGPXParser {
         cache.setName(getSubElementContent(groundspeak, "groundspeak:name"));
         cache.setCountry(getSubElementContent(groundspeak, "groundspeak:country"));
         cache.setState(getSubElementContent(groundspeak, "groundspeak:state"));
-        cache.setName(getSubElementContent(groundspeak, "groundspeak:name"));
-        cache.setState(getSubElementContent(groundspeak, "groundspeak:state"));
         cache.setOwner(getSubElementContent(groundspeak, "groundspeak:owner"));
         cache.setType(CacheType.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:type")));
         cache.setSize(CacheSize.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:container")));
