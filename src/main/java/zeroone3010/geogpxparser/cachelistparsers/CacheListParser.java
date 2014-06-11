@@ -5,7 +5,6 @@ import java.util.List;
 
 import zeroone3010.geogpxparser.Geocache;
 import zeroone3010.geogpxparser.Log;
-import zeroone3010.geogpxparser.LogType;
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableData;
 import zeroone3010.geogpxparser.tabular.TableRow;
@@ -67,13 +66,8 @@ public class CacheListParser implements ICachesToTabularDataParser {
     }
 
     private Log findFoundLog(final Geocache cache) {
-        for (Log log : cache.getLogs()) {
-            if (LogType.FOUND.equals(log.getType()) || LogType.ATTENDED.equals(log.getType()) || LogType.WEBCAM_PHOTO_TAKEN.equals(log.getType())) {
-                if (log.getDate() != null) {
-                    return log;
-                }
-            }
-        }
-        return null;
+        return cache.getLogs().stream() //
+                .filter(log -> log.getType().countsAsFind() && log.getDate() != null) //
+                .findFirst().orElse(null);
     }
 }
