@@ -27,4 +27,8 @@ public enum LogType {
     public static LogType getByGpxDescription(String description) {
         return gpxToType.containsKey(description) ? gpxToType.get(description) : OTHER;
     }
+    
+    public boolean countsAsFind() {
+        return this == FOUND || this == ATTENDED || this == WEBCAM_PHOTO_TAKEN;
+    }
 }
