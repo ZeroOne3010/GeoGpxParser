@@ -105,21 +105,11 @@ public class OwnerStatsParser implements ICachesToTabularDataParser {
         }
 
         public int getTotalNumberOfCaches() {
-            int result = 0;
-            for (Integer value : caches.values()) {
-                result += value;
-            }
-            return result;
+            return caches.values().stream().reduce(0, Integer::sum);
         }
 
         public int getNumberOfCacheTypes() {
-            int result = 0;
-            for (Integer value : caches.values()) {
-                if (value > 0) {
-                    result++;
-                }
-            }
-            return result;
+            return (int) caches.values().stream().filter(val -> val > 0).count();
         }
 
         @Override
