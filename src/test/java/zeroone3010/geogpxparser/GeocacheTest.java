@@ -42,4 +42,32 @@ public class GeocacheTest {
         result = instance.getHint(decrypted);
         assertEquals(expResult, result);
     }
+    
+    @Test
+    public void test_northern_latitudeString() {
+        Geocache instance = new Geocache();
+        instance.setLatitude(60.16872);
+        assertEquals("N 60° 10.123'", instance.getLatitudeString());
+    }
+
+    @Test
+    public void test_southern_latitudeString() {
+        Geocache instance = new Geocache();
+        instance.setLatitude(-15.42292);
+        assertEquals("S 15° 25.375'", instance.getLatitudeString());
+    }
+    
+    @Test
+    public void test_eastern_longitudeString() {
+        Geocache instance = new Geocache();
+        instance.setLongitude(24.41667);
+        assertEquals("E 24° 25.000'", instance.getLongitudeString());
+    }
+    
+    @Test
+    public void test_western_longitudeString() {
+        Geocache instance = new Geocache();
+        instance.setLongitude(-100.20575);
+        assertEquals("W 100° 12.345'", instance.getLongitudeString());
+    }
 }
