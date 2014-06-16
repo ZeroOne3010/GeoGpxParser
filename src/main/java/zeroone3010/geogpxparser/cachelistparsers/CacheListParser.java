@@ -5,6 +5,8 @@ import java.util.List;
 
 import zeroone3010.geogpxparser.Geocache;
 import zeroone3010.geogpxparser.Log;
+import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
+import zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableData;
 import zeroone3010.geogpxparser.tabular.TableRow;
@@ -17,6 +19,15 @@ import zeroone3010.geogpxparser.tabular.TableRow;
 public class CacheListParser implements ICachesToTabularDataParser {
 
     private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final CoordinateFormatter coordinateFormatter;
+
+    public CacheListParser() {
+        this(new DefaultCoordinateFormatter());
+    }
+
+    public CacheListParser(CoordinateFormatter coordinateFormatter) {
+        this.coordinateFormatter = coordinateFormatter;
+    }
 
     @Override
     public TableData getTabularInfo(final List<Geocache> caches) {
@@ -42,8 +53,8 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(cache.getGcCode(), "http://coord.info/" + cache.getGcCode()));
             dataRow.addCell(new CellData(cache.getType().name()));
             dataRow.addCell(new CellData(cache.getName()));
-            dataRow.addCell(new CellData(String.valueOf(cache.getLongitude())));
-            dataRow.addCell(new CellData(String.valueOf(cache.getLatitude())));
+            dataRow.addCell(new CellData(coordinateFormatter.formatLongitude(cache.getLongitude())));
+            dataRow.addCell(new CellData(coordinateFormatter.formatLatitude(cache.getLatitude())));
             dataRow.addCell(new CellData(cache.getSize().getGpxDescription()));
             dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
