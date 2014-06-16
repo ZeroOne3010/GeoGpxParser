@@ -26,7 +26,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -78,21 +77,6 @@ public class Geocache {
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
-    }
-
-    public String getLatitudeString() {
-        return getCoordinateInDegreesAndMinutes('N', 'S', latitude);
-    }
-
-    public String getLongitudeString() {
-        return getCoordinateInDegreesAndMinutes('E', 'W', longitude);
-    }
-
-    private static String getCoordinateInDegreesAndMinutes(char posLetter, char negLetter, double value) {
-        final int degrees = Math.abs((int) value);
-        final double minutes = (Math.abs(value) - degrees) * 60d;
-        final char letter = value >= 0 ? posLetter : negLetter;
-        return String.format(Locale.US, "%c %d° %5.3f'", letter, degrees, minutes);
     }
 
     public String getCountry() {

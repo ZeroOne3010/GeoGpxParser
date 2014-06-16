@@ -46,6 +46,9 @@ import org.xml.sax.SAXException;
 
 import zeroone3010.geogpxparser.cachelistparsers.CacheListParser;
 import zeroone3010.geogpxparser.cachelistparsers.OwnerStatsParser;
+import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
+import zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
+import zeroone3010.geogpxparser.coordinateformatters.DegreesAndMinutesFormatter;
 import zeroone3010.geogpxparser.outputformatters.AbstractTabularDataFormatter;
 import zeroone3010.geogpxparser.outputformatters.HtmlFormatter;
 import zeroone3010.geogpxparser.outputformatters.TabSeparatedValuesFormatter;
@@ -65,15 +68,15 @@ public class GeoGPXParser {
     public static void main(String[] args) throws IOException {
         if (args == null || args.length == 0) {
             System.out.println("Usage:");
-            System.out.println("1) java [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar caches.gpx");
-            System.out.println("2) java [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar some/directory/with/gpx/files");
+            System.out.println("1) java [-DcoordinateFormat=(dd|ddmm)] [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar caches.gpx");
+            System.out.println("2) java [-DcoordinateFormat=(dd|ddmm)] [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar some/directory/with/gpx/files");
             System.out.println("...where \"[...]\" denotes an optional parameter and \"(A|B|C)\" denotes alternatives: either A or B or C.");
             System.exit(1);
         }
 
         GeoGPXParser parser = new GeoGPXParser(args[0]);
         List<Geocache> caches = parser.parse();
-        TableData tabularRepresentation = new CacheListParser().getTabularInfo(caches);
+        TableData tabularRepresentation = new CacheListParser(buildCoordinateFormatter()).getTabularInfo(caches);
         TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
 
         String outputType = System.getProperty("output", "txt").toLowerCase();
@@ -95,6 +98,20 @@ public class GeoGPXParser {
         }
 
         info("Done!");
+    }
+
+    private static CoordinateFormatter buildCoordinateFormatter() {
+        CoordinateFormatter coordinateFormatter;
+        String coordinateFormat = System.getProperty("coordinateFormat", "ddmm").toLowerCase();
+        switch (coordinateFormat) {
+        case "dd":
+            coordinateFormatter = new DefaultCoordinateFormatter();
+            break;
+        default:
+            coordinateFormatter = new DegreesAndMinutesFormatter();
+            break;
+        }
+        return coordinateFormatter;
     }
 
     private static void info(String text) {
