@@ -66,6 +66,12 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                     td.mystery {
                         background-color: #e0e0ee !important;
                     }
+                    <xsl:if test="boolean(/table/@identifier = 'caches')">
+                    /* Coordinates and the size column: */
+                    td:nth-child(5), td:nth-child(6), td:nth-child(7) {
+                        white-space: nowrap;
+                    }
+                    </xsl:if>
                 </style>
                 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
                 <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
@@ -91,6 +97,13 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                     type: 'numeric'
                 });
                 </xsl:if>
+                var rowShouldStayFullWidthWhenDragged = function(e, ui) {
+                    ui.children().each(function() {
+                        $(this).css("width", $(this).css("width"));
+                        $(this).css("white-space", "nowrap");
+                    });
+                    return ui;
+                };
                 $(document).ready(function() {
                     $("table").tablesorter({
                         headers: {
@@ -103,7 +116,10 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                         }
                     });
                     colorCacheTypes();
-                    $("tbody").sortable({axis: "y"});
+                    $("tbody").sortable({
+                        axis: "y",
+                        helper: rowShouldStayFullWidthWhenDragged
+                    });
                 });
                 function colorCacheTypes() {
                     $("table#caches td:nth-child(2):contains('Mystery')").addClass('mystery');
