@@ -30,7 +30,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>zeroone3010.geogpxparser.GeoGPSParser</mainClass>
+              <mainClass>zeroone3010.geogpxparser.GeoGPXParser</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
