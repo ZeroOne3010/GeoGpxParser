@@ -26,6 +26,7 @@ at [Google Code](http://code.google.com/p/geocache-gpx-parser/)
 This project uses the following external JavaScript libraries:
 
 - [jQuery](http://jquery.com/)
+- [jQuery UI](http://jqueryui.com/)
 - [tablesorter](http://tablesorter.com/docs/)
 
-Both are released under the [MIT-license](http://www.opensource.org/licenses/mit-license.php).
+They all are released under the [MIT-license](http://www.opensource.org/licenses/mit-license.php).

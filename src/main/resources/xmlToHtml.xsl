@@ -23,6 +23,11 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                     }
                     table {
                         border-collapse: collapse;
+                        counter-reset: rownumber;
+                    }
+                    span.rowNumber:before {
+                        counter-increment:rownumber;
+                        content:counter(rownumber) ".";
                     }
                     th {
                         background-color: #cacaca;
@@ -45,8 +50,11 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                         background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAALCAMAAACah1cpAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAlQTFRFNDQ0gICA////76SQuwAAAAN0Uk5T//8A18oNQQAAADFJREFUeNpiYIIBBhSCgYEBwmJgADMZIAwgkwFJByMEgMQgDLAsmAFRxwg3FAwAAgwAH3wAl1zU290AAAAASUVORK5CYII=);
                     }
 
-                    tr.odd td {
+                    tr:nth-child(odd) {
                         background-color: #e0e0e0;
+                    }
+                    tr:nth-child(even) {
+                        background-color: #ffffff;
                     }
 
                     td.traditional {
@@ -61,6 +69,7 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                 </style>
                 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
                 <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
+                <script type="text/javascript" src="jquery-ui.min.js"></script>
                 <script type="text/javascript">
                 <xsl:if test="boolean(/table/@identifier = 'caches')">
                 $.tablesorter.addParser({
@@ -83,35 +92,18 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                 });
                 </xsl:if>
                 $(document).ready(function() {
-
-                    $.tablesorter.addWidget({
-                        id: "rowNumbers",
-                        format: function(table) {
-                            $(".rowNumber", table).remove();
-
-                            for(var i=0; i &lt; table.tBodies[0].rows.length; i++) {
-                                $("tbody tr:eq("+i+") td:eq(0)", table).before(
-                                    $("&lt;td>"+(i+1)+".&lt;/td>").addClass("rowNumber")
-                                );
-                            }
-
-                            $("thead tr th:eq(0)", table).before(
-                                $("&lt;th>#&lt;/th>").addClass("rowNumber")
-                            );
-                        }
-                    });
-
                     $("table").tablesorter({
-                        widgets: ['zebra', 'rowNumbers'],
-                        <xsl:if test="boolean(/table/@identifier = 'caches')">
                         headers: {
-                            5: {
+                            0: { sorter: false },
+                        <xsl:if test="boolean(/table/@identifier = 'caches')">
+                            6: {
                                 sorter:'cacheSizes'
                             }
-                        }
                         </xsl:if>
+                        }
                     });
                     colorCacheTypes();
+                    $("tbody").sortable({axis: "y"});
                 });
                 function colorCacheTypes() {
                     $("table#caches td:nth-child(2):contains('Mystery')").addClass('mystery');
@@ -135,6 +127,14 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
 
     <xsl:template match="row">
         <tr>
+            <xsl:choose>
+                <xsl:when test="@header='true'">
+                    <th>#</th>
+                </xsl:when>
+                <xsl:otherwise>
+                    <td><span class="rowNumber"></span></td>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:apply-templates select="cell" />
         </tr>
     </xsl:template>
