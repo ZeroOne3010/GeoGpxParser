@@ -139,7 +139,7 @@ public class GeoGPXParser {
 
     private void writeHtmlResources() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
-        for (String filename : new String[]{"jquery-1.9.1.min.js", "jquery.tablesorter.min.js"}) {
+        for (String filename : new String[]{"jquery-1.9.1.min.js", "jquery.tablesorter.min.js", "jquery-ui.min.js"}) {
             try (InputStream inputStream = classLoader.getResourceAsStream(filename)) {
                 Files.copy(inputStream, Paths.get(filename), StandardCopyOption.REPLACE_EXISTING);
             }
