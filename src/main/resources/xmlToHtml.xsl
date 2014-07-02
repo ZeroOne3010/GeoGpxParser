@@ -72,6 +72,21 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                         white-space: nowrap;
                     }
                     </xsl:if>
+
+                    span.why {
+                        color: #0000ee;
+                        border-bottom: 1px dotted #0000ee;
+                    }
+
+                    @media print { 
+                        .nonprintable {
+                            display: none; 
+                        }
+
+                        th {
+                            background-image: none;
+                        }
+                    }
                 </style>
                 <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
                 <script type="text/javascript" src="jquery.tablesorter.min.js"></script>
@@ -105,6 +120,16 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                     return ui;
                 };
                 $(document).ready(function() {
+                    $("#hideColsButton").click(function() {
+                        $("td, th").show();
+                        $.each($("#hideCols").val().split(","), function(index, value) {
+                            if( value != "" ) {
+                                selector = "td:nth-child(" + value + ")";
+                                selector += ", th:nth-child(" + value + ")";
+                                $(selector).hide();
+                            }
+                        });
+                    });
                     $("table").tablesorter({
                         headers: {
                             0: { sorter: false },
@@ -129,6 +154,11 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                 </script>
             </head>
             <body>
+                <div class="nonprintable">
+                    Hide these columns (<span class="why" title="You may want to do this if you intend to print this document. Just enter column numbers as a comma-separated list.">?</span>): 
+                    <input type="text" id="hideCols" placeholder="1,6,7" pattern="(\d+,?)*" />
+                    <input type="button" id="hideColsButton" value="Update" />
+                </div>
                 <table id="{@identifier}">
                     <thead>
                         <xsl:apply-templates select="row[@header='true']" />
