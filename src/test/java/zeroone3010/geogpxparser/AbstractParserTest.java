@@ -65,6 +65,7 @@ public abstract class AbstractParserTest {
         cache1.setTerrain(5);
         cache1.setHidden(LocalDateTime.of(2001, 1, 2, 00, 00));
         cache1.addLog(dnfLog1);
+        cache1.setCountry("Finland");
 
         Geocache cache2 = new Geocache();
         cache2.setGcCode("GC222");
@@ -79,6 +80,7 @@ public abstract class AbstractParserTest {
         cache2.setHidden(LocalDateTime.of(2002, 3, 4, 01, 00));
         cache2.addLog(dnfLog2);
         cache2.addLog(foundLog);
+        cache2.setCountry("Sweden");
 
         Geocache cache3 = new Geocache();
         cache3.setGcCode("GC333");
@@ -92,6 +94,7 @@ public abstract class AbstractParserTest {
         cache3.setTerrain(4);
         cache3.setHidden(LocalDateTime.of(2003, 5, 6, 02, 00));
         cache3.addLog(attendedLog);
+        cache3.setCountry("Finland");
 
         Geocache cache4 = new Geocache();
         cache4.setGcCode("GC444");
@@ -105,6 +108,7 @@ public abstract class AbstractParserTest {
         cache4.setTerrain(3.5f);
         cache4.setHidden(LocalDateTime.of(2004, 7, 8, 03, 00));
         cache4.addLog(webcamLog);
+        cache4.setCountry("United Kingdom");
 
         Geocache cache5 = new Geocache();
         cache5.setGcCode("GC555");
@@ -119,6 +123,7 @@ public abstract class AbstractParserTest {
         cache5.setHidden(LocalDateTime.of(2005, 9, 10, 06, 07));
         cache5.addLog(foundLog);
         cache5.addLog(dnfLog2);
+        cache5.setCountry("Sweden");
 
         caches.add(cache1);
         caches.add(cache2);
