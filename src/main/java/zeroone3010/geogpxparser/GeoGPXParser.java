@@ -45,6 +45,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import zeroone3010.geogpxparser.cachelistparsers.CacheListParser;
+import zeroone3010.geogpxparser.cachelistparsers.CountryStatsParser;
 import zeroone3010.geogpxparser.cachelistparsers.OwnerStatsParser;
 import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
 import zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
@@ -78,6 +79,7 @@ public class GeoGPXParser {
         List<Geocache> caches = parser.parse();
         TableData tabularRepresentation = new CacheListParser(buildCoordinateFormatter()).getTabularInfo(caches);
         TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
+        TableData countryStats = new CountryStatsParser().getTabularInfo(caches);
 
         String outputType = System.getProperty("output", "txt").toLowerCase();
 
@@ -85,15 +87,18 @@ public class GeoGPXParser {
             case "xml":
                 writeDataToFile(new XmlFormatter(tabularRepresentation));
                 writeDataToFile(new XmlFormatter(ownerStats));
+                writeDataToFile(new XmlFormatter(countryStats));
                 break;
             case "html":
                 writeDataToFile(new HtmlFormatter(tabularRepresentation));
                 writeDataToFile(new HtmlFormatter(ownerStats));
+                writeDataToFile(new HtmlFormatter(countryStats));
                 parser.writeHtmlResources();
                 break;
             default:
                 writeDataToFile(new TabSeparatedValuesFormatter(tabularRepresentation));
                 writeDataToFile(new TabSeparatedValuesFormatter(ownerStats));
+                writeDataToFile(new TabSeparatedValuesFormatter(countryStats));
                 break;
         }
 
