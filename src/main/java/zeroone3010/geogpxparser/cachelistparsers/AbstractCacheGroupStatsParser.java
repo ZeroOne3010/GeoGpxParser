@@ -1,6 +1,8 @@
 package zeroone3010.geogpxparser.cachelistparsers;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -40,7 +42,7 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
 
         // Parse cache group info into a map:
         for (Geocache cache : caches) {
-            addCacheToGroup(getCacheGroupKey(cache), cache.getType());
+            addCacheToGroup(getCacheGroupKey(cache), cache);
         }
 
         TableData result = new TableData(getTableId());
@@ -62,10 +64,10 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
             dataRow.addCell(new CellData(String.valueOf(group.getTotalNumberOfCaches())));
             dataRow.addCell(new CellData(String.valueOf(group.getNumberOfCacheTypes())));
 
-            Map<CacheType, Integer> cacheMap = group.getCaches();
+            Map<CacheType, Collection<Geocache>> cacheMap = group.getCaches();
 
-            for (Entry<CacheType, Integer> entry : cacheMap.entrySet()) {
-                dataRow.addCell(new CellData(String.valueOf(entry.getValue())));
+            for (Entry<CacheType, Collection<Geocache>> entry : cacheMap.entrySet()) {
+                dataRow.addCell(new CellData(String.valueOf(entry.getValue().size())));
             }
             result.addRow(dataRow);
         }
@@ -73,50 +75,46 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
         return result;
     }
 
-    /**
-     * Initializes a new group in the map if required, then adds +1 to the
-     * amount of the caches of the given type.
-     *
-     * @param owner Name of the cache group
-     * @param cacheType Type of the cache
-     */
-    private void addCacheToGroup(String groupName, CacheType cacheType) {
+    private void addCacheToGroup(String groupName, Geocache cache) {
         if (!groups.containsKey(groupName)) {
             groups.put(groupName, new Group(groupName));
         }
 
-        groups.get(groupName).addCache(cacheType);
+        groups.get(groupName).addCache(cache);
     }
 
     /**
      * Represents a group of geocaches. Keeps track of the name of the group and
-     * the amount of different cache types it has.
+     * the different cache types it has.
      */
     class Group {
 
         private final String name;
-        private Map<CacheType, Integer> caches;
+        private Map<CacheType, Collection<Geocache>> caches;
 
         public Group(String ownerName) {
             name = ownerName;
             caches = new LinkedHashMap<>();
             for (CacheType cacheType : CacheType.values()) {
-                caches.put(cacheType, 0);
+                caches.put(cacheType, new LinkedHashSet<>());
             }
         }
 
-        public void addCache(CacheType cacheType) {
-            int amount = caches.get(cacheType);
-            amount++;
-            caches.put(cacheType, amount);
+        public void addCache(Geocache cache) {
+            Collection<Geocache> cachesInGroup = caches.get(cache.getType());
+            if (cachesInGroup == null) {
+                cachesInGroup = new LinkedHashSet<>();
+                caches.put(cache.getType(), cachesInGroup);
+            }
+            cachesInGroup.add(cache);
         }
 
         public int getTotalNumberOfCaches() {
-            return caches.values().stream().reduce(0, Integer::sum);
+            return caches.values().stream().mapToInt(Collection::size).reduce(0, Integer::sum);
         }
 
         public int getNumberOfCacheTypes() {
-            return (int) caches.values().stream().filter(val -> val > 0).count();
+            return (int) caches.values().stream().filter(val -> val.size() > 0).count();
         }
 
         @Override
@@ -128,7 +126,7 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
             return name;
         }
 
-        public Map<CacheType, Integer> getCaches() {
+        public Map<CacheType, Collection<Geocache>> getCaches() {
             return caches;
         }
 
