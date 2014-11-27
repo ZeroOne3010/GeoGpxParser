@@ -76,10 +76,7 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
     }
 
     private void addCacheToGroup(String groupName, Geocache cache) {
-        if (!groups.containsKey(groupName)) {
-            groups.put(groupName, new Group(groupName));
-        }
-
+        groups.merge(groupName, new Group(groupName), (existing, x) -> existing);
         groups.get(groupName).addCache(cache);
     }
 
@@ -101,12 +98,7 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
         }
 
         public void addCache(Geocache cache) {
-            Collection<Geocache> cachesInGroup = caches.get(cache.getType());
-            if (cachesInGroup == null) {
-                cachesInGroup = new LinkedHashSet<>();
-                caches.put(cache.getType(), cachesInGroup);
-            }
-            cachesInGroup.add(cache);
+            caches.get(cache.getType()).add(cache);
         }
 
         public int getTotalNumberOfCaches() {
