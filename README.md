@@ -1,20 +1,21 @@
 [![Build Status](https://drone.io/bitbucket.org/ZeroOne3010/geogpxparser/status.png)](https://drone.io/bitbucket.org/ZeroOne3010/geogpxparser/latest)
 
 This program is great especially for analyzing your My Finds Pocket Query files.
-You can also use it to analyze other Pocket Queries in order to learn about the
-caches in the given area.
+You can also load in any other Pocket Query and, say, use this program to create
+a web page of the caches, which you can then print out as a reference when you go
+out caching. The web page version allows you to drag and drop caches into different
+order and to hide the columns that you don't need.
 
-Technically this program is used to parse one or more .gpx files of
-geocaches into plain old Java objects (POJO). The caches are then saved as a tab
-delimited text file, one cache per row. In this format it is easy to load the
-caches into a spreadsheet program for further inspection. Alternatively you
-can choose to save the caches as an HTML file instead for inspecting them with
-your browser of choice.
+Technically this program is used to parse one or more .gpx files of geocaches into 
+plain old Java objects (POJO). The caches are then saved as an HTML file or a tab
+delimited text file, one cache per row. In the latter format it is easy to load the
+caches into a spreadsheet program for further inspection.
 
-In addition to saving the caches as one file, another file is also
-saved: one with statistics about the owners of the caches. This file contains
-details on how many caches have each of them hidden and what type of caches
-are they.
+In addition to saving the caches as one file, a couple of other files are also
+created: one with statistics about the owners of the caches, and another with
+statistics about the countries of the caches. These files contains details on how 
+many and what kind of caches have you found from different owners and from different
+countries.
 
 Download the GeoGPXParser.zip file if you just want to use the program and do
 not care about the source code. :) The usage happens from the command line and
