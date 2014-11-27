@@ -81,7 +81,7 @@ public class GeoGPXParser {
         TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
         TableData countryStats = new CountryStatsParser().getTabularInfo(caches);
 
-        String outputType = System.getProperty("output", "txt").toLowerCase();
+        String outputType = System.getProperty("output", "html").toLowerCase();
 
         switch (outputType) {
             case "xml":
