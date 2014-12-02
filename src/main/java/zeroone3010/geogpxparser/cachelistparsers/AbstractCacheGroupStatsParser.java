@@ -89,8 +89,8 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
         private final String name;
         private Map<CacheType, Collection<Geocache>> caches;
 
-        public Group(String ownerName) {
-            name = ownerName;
+        public Group(String groupName) {
+            name = groupName;
             caches = new LinkedHashMap<>();
             for (CacheType cacheType : CacheType.values()) {
                 caches.put(cacheType, new LinkedHashSet<>());
