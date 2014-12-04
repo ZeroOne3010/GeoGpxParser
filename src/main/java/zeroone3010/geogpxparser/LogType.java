@@ -1,7 +1,11 @@
 package zeroone3010.geogpxparser;
 
-import java.util.HashMap;
+import static java.util.function.Function.identity;
+
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public enum LogType {
 
@@ -10,10 +14,8 @@ public enum LogType {
     private static final Map<String, LogType> gpxToType;
 
     static {
-        gpxToType = new HashMap<>();
-        for (LogType type : values()) {
-            gpxToType.put(type.getGpxDescription(), type);
-        }
+        gpxToType = Arrays.asList(LogType.values()).stream()
+                .collect(Collectors.toMap(LogType::getGpxDescription, identity()));
     }
 
     LogType(String gpxText) {
@@ -25,9 +27,9 @@ public enum LogType {
     }
 
     public static LogType getByGpxDescription(String description) {
-        return gpxToType.containsKey(description) ? gpxToType.get(description) : OTHER;
+        return Optional.ofNullable(gpxToType.get(description)).orElse(OTHER);
     }
-    
+
     public boolean countsAsFind() {
         return this == FOUND || this == ATTENDED || this == WEBCAM_PHOTO_TAKEN;
     }

@@ -1,7 +1,11 @@
 package zeroone3010.geogpxparser;
 
-import java.util.HashMap;
+import static java.util.function.Function.identity;
+
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public enum CacheType {
 
@@ -21,10 +25,8 @@ public enum CacheType {
     private static final Map<String, CacheType> gpxToType;
 
     static {
-        gpxToType = new HashMap<>();
-        for (CacheType type : values()) {
-            gpxToType.put(type.getGpxDescription(), type);
-        }
+        gpxToType = Arrays.asList(CacheType.values()).stream()
+                .collect(Collectors.toMap(CacheType::getGpxDescription, identity()));
     }
 
     private CacheType(String gpxDescriptionParam) {
@@ -36,6 +38,6 @@ public enum CacheType {
     }
 
     public static CacheType getByGpxDescription(String description) {
-        return gpxToType.containsKey(description) ? gpxToType.get(description) : Other;
+        return Optional.ofNullable(gpxToType.get(description)).orElse(Other);
     }
 };
