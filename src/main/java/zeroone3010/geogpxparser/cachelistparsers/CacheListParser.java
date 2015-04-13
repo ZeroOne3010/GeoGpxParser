@@ -45,6 +45,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
         headerRow.addCell(new CellData("terrain"));
         headerRow.addCell(new CellData("hidden"));
         headerRow.addCell(new CellData("owner"));
+        headerRow.addCell(new CellData("country"));
         headerRow.addCell(new CellData("found"));
         result.addRow(headerRow);
 
@@ -64,6 +65,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
                 dataRow.addCell(new CellData("-"));
             }
             dataRow.addCell(new CellData(cache.getOwner(), Utility.getOwnerUrl(cache.getOwner())));
+            dataRow.addCell(new CellData(cache.getCountry()));
             final Log log = findFoundLog(cache);
             if (log != null) {
                 dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.format(log.getDate()), "http://www.geocaching.com/seek/log.aspx?LID=" + log.getId()));
