@@ -18,7 +18,7 @@ public enum LogType {
                 .collect(Collectors.toMap(LogType::getGpxDescription, identity()));
     }
 
-    LogType(String gpxText) {
+    LogType(final String gpxText) {
         this.gpxDescription = gpxText;
     }
 
@@ -26,7 +26,7 @@ public enum LogType {
         return this.gpxDescription;
     }
 
-    public static LogType getByGpxDescription(String description) {
+    public static LogType getByGpxDescription(final String description) {
         return Optional.ofNullable(gpxToType.get(description)).orElse(OTHER);
     }
 

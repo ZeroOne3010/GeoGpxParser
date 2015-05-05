@@ -25,15 +25,15 @@ public class CacheListParser implements ICachesToTabularDataParser {
         this(new DefaultCoordinateFormatter());
     }
 
-    public CacheListParser(CoordinateFormatter coordinateFormatter) {
+    public CacheListParser(final CoordinateFormatter coordinateFormatter) {
         this.coordinateFormatter = coordinateFormatter;
     }
 
     @Override
     public TableData getTabularInfo(final List<Geocache> caches) {
 
-        TableData result = new TableData("caches");
-        TableRow headerRow = new TableRow(true);
+        final TableData result = new TableData("caches");
+        final TableRow headerRow = new TableRow(true);
 
         headerRow.addCell(new CellData("gccode"));
         headerRow.addCell(new CellData("type"));
@@ -49,8 +49,8 @@ public class CacheListParser implements ICachesToTabularDataParser {
         headerRow.addCell(new CellData("found"));
         result.addRow(headerRow);
 
-        for (Geocache cache : caches) {
-            TableRow dataRow = new TableRow(false);
+        for (final Geocache cache : caches) {
+            final TableRow dataRow = new TableRow(false);
             dataRow.addCell(new CellData(cache.getGcCode(), "http://coord.info/" + cache.getGcCode()));
             dataRow.addCell(new CellData(cache.getType().name()));
             dataRow.addCell(new CellData(cache.getName()));

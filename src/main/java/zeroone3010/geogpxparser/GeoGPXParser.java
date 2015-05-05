@@ -66,7 +66,7 @@ public class GeoGPXParser {
 
     private String file = null;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(final String[] args) throws IOException {
         if (args == null || args.length == 0) {
             System.out.println("Usage:");
             System.out.println("1) java [-DcoordinateFormat=(dd|ddmm)] [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar caches.gpx");
@@ -75,13 +75,13 @@ public class GeoGPXParser {
             System.exit(1);
         }
 
-        GeoGPXParser parser = new GeoGPXParser(args[0]);
-        List<Geocache> caches = parser.parse();
-        TableData tabularRepresentation = new CacheListParser(buildCoordinateFormatter()).getTabularInfo(caches);
-        TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
-        TableData countryStats = new CountryStatsParser().getTabularInfo(caches);
+        final GeoGPXParser parser = new GeoGPXParser(args[0]);
+        final List<Geocache> caches = parser.parse();
+        final TableData tabularRepresentation = new CacheListParser(buildCoordinateFormatter()).getTabularInfo(caches);
+        final TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
+        final TableData countryStats = new CountryStatsParser().getTabularInfo(caches);
 
-        String outputType = System.getProperty("output", "html").toLowerCase();
+        final String outputType = System.getProperty("output", "html").toLowerCase();
 
         switch (outputType) {
             case "xml":
@@ -106,8 +106,8 @@ public class GeoGPXParser {
     }
 
     private static CoordinateFormatter buildCoordinateFormatter() {
-        CoordinateFormatter coordinateFormatter;
-        String coordinateFormat = System.getProperty("coordinateFormat", "ddmm").toLowerCase();
+        final CoordinateFormatter coordinateFormatter;
+        final String coordinateFormat = System.getProperty("coordinateFormat", "ddmm").toLowerCase();
         switch (coordinateFormat) {
         case "dd":
             coordinateFormatter = new DefaultCoordinateFormatter();
@@ -119,11 +119,11 @@ public class GeoGPXParser {
         return coordinateFormatter;
     }
 
-    private static void info(String text) {
+    private static void info(final String text) {
         System.out.println(text);
     }
 
-    public GeoGPXParser(String path) {
+    public GeoGPXParser(final String path) {
         this.file = path;
     }
 
@@ -131,7 +131,7 @@ public class GeoGPXParser {
         return parseXmlFilesToObjects(this.file);
     }
 
-    private static <T extends AbstractTabularDataFormatter> void writeDataToFile(T formatter) {
+    private static <T extends AbstractTabularDataFormatter> void writeDataToFile(final T formatter) {
         final String fileName = formatter.getFileName();
         try {
             info("Writing "+fileName+"...");
@@ -143,42 +143,42 @@ public class GeoGPXParser {
     }
 
     private void writeHtmlResources() throws IOException {
-        ClassLoader classLoader = getClass().getClassLoader();
-        for (String filename : new String[]{"jquery-1.9.1.min.js", "jquery.tablesorter.min.js", "jquery-ui.min.js"}) {
-            try (InputStream inputStream = classLoader.getResourceAsStream(filename)) {
+        final ClassLoader classLoader = getClass().getClassLoader();
+        for (final String filename : new String[]{"jquery-1.9.1.min.js", "jquery.tablesorter.min.js", "jquery-ui.min.js"}) {
+            try (final InputStream inputStream = classLoader.getResourceAsStream(filename)) {
                 Files.copy(inputStream, Paths.get(filename), StandardCopyOption.REPLACE_EXISTING);
             }
         }
     }
 
-    private List<Geocache> parseXMLtoObjects(Document dom) {
-        List<Geocache> geocaches = new LinkedList<>();
-        Element root = dom.getDocumentElement();
+    private List<Geocache> parseXMLtoObjects(final Document dom) {
+        final List<Geocache> geocaches = new LinkedList<>();
+        final Element root = dom.getDocumentElement();
 
-        NodeList caches = root.getElementsByTagName("wpt");
+        final NodeList caches = root.getElementsByTagName("wpt");
         info(caches.getLength() + " caches found...");
         if (caches == null || caches.getLength() < 1) {
             return new LinkedList<>();
         }
 
         for (int i = 0; i < caches.getLength(); i++) {
-            Element wptElement = (Element) caches.item(i);
-            Geocache geocache = getGeocache(wptElement);
+            final Element wptElement = (Element) caches.item(i);
+            final Geocache geocache = getGeocache(wptElement);
             geocaches.add(geocache);
         }
         return geocaches;
     }
 
-    private static Element getSubElement(Element parent, String subElementName) {
+    private static Element getSubElement(final Element parent, final String subElementName) {
         return (Element) parent.getElementsByTagName(subElementName).item(0);
     }
 
-    private static String getSubElementContent(Element parent, String subElementName) {
+    private static String getSubElementContent(final Element parent, final String subElementName) {
         return getSubElement(parent, subElementName).getTextContent();
     }
 
-    private Geocache getGeocache(Element wptElement) {
-        Geocache cache = new Geocache();
+    private Geocache getGeocache(final Element wptElement) {
+        final Geocache cache = new Geocache();
 
         cache.setLatitude(Double.valueOf(wptElement.getAttribute("lat")));
         cache.setLongitude(Double.valueOf(wptElement.getAttribute("lon")));
@@ -186,7 +186,7 @@ public class GeoGPXParser {
         cache.setHidden(parseTime(getSubElementContent(wptElement, "time")));
         cache.setGcCode(getSubElementContent(wptElement, "name"));
 
-        Element groundspeak = getSubElement(wptElement, "groundspeak:cache");
+        final Element groundspeak = getSubElement(wptElement, "groundspeak:cache");
         cache.setArchived(Boolean.valueOf(groundspeak.getAttribute("archived")));
         cache.setAvailable(Boolean.valueOf(groundspeak.getAttribute("available")));
 
@@ -204,13 +204,13 @@ public class GeoGPXParser {
 
         // Parse the attributes into a map where key is the attribute name and
         // value is the value of that attribute:
-        Element attributesElement = getSubElement(groundspeak, "groundspeak:attributes");
-        for (Element attributeElement : new IterableSubElements(attributesElement)) {
+        final Element attributesElement = getSubElement(groundspeak, "groundspeak:attributes");
+        for (final Element attributeElement : new IterableSubElements(attributesElement)) {
             cache.setAttribute(attributeElement.getTextContent(), "1".equals(attributeElement.getAttribute("inc")));
         }
 
-        Element logsElement = getSubElement(groundspeak, "groundspeak:logs");
-        for (Element logElement : new IterableSubElements(logsElement)) {
+        final Element logsElement = getSubElement(groundspeak, "groundspeak:logs");
+        for (final Element logElement : new IterableSubElements(logsElement)) {
             final Log log = new Log();
             log.setId(Long.parseLong(logElement.getAttribute("id")));
             log.setDate(parseTime(getSubElementContent(logElement, "groundspeak:date")));
@@ -223,10 +223,10 @@ public class GeoGPXParser {
         return cache;
     }
 
-    private List<Geocache> parseXmlFilesToObjects(String path) {
-        List<Geocache> caches = new LinkedList<>();
-        File[] files;
-        File gpx = new File(path);
+    private List<Geocache> parseXmlFilesToObjects(final String path) {
+        final List<Geocache> caches = new LinkedList<>();
+        final File[] files;
+        final File gpx = new File(path);
         if (gpx.isDirectory()) {
             files = gpx.listFiles(new GpxFileFilter());
         } else {
@@ -234,12 +234,12 @@ public class GeoGPXParser {
             files[0] = new File(path);
         }
         info("Found " + files.length + " files.");
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         for (File xmlFile : files) {
             info("Parsing file " + xmlFile + "...");
             try {
-                DocumentBuilder db = dbFactory.newDocumentBuilder();
-                Document xml = db.parse(xmlFile);
+                final DocumentBuilder db = dbFactory.newDocumentBuilder();
+                final Document xml = db.parse(xmlFile);
                 caches.addAll(this.parseXMLtoObjects(xml));
             } catch (ParserConfigurationException | SAXException xmlException) {
                 System.err.println("Error in parsing XML!");
@@ -252,7 +252,7 @@ public class GeoGPXParser {
         return caches;
     }
 
-    private LocalDateTime parseTime(String xmlTimeString) {
+    private LocalDateTime parseTime(final String xmlTimeString) {
         try {
             return ZonedDateTime.parse(xmlTimeString).toLocalDateTime();
         } catch (DateTimeParseException tryFormatWithTimeZoneMissing) {
@@ -269,7 +269,7 @@ public class GeoGPXParser {
     private static final class GpxFileFilter implements FilenameFilter {
 
         @Override
-        public boolean accept(File dir, String name) {
+        public boolean accept(final File dir, final String name) {
             return name.toLowerCase().endsWith(".gpx");
         }
     }

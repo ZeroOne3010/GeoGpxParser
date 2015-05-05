@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class DegreesAndMinutesFormatterTest {
-    DegreesAndMinutesFormatter formatter = new DegreesAndMinutesFormatter();
+    final DegreesAndMinutesFormatter formatter = new DegreesAndMinutesFormatter();
 
     @Test
     public void test_northern_latitudeString() {

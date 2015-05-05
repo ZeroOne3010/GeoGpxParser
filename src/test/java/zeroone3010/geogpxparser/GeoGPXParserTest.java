@@ -19,8 +19,8 @@ public class GeoGPXParserTest {
 
     @Before
     public void loadCaches() {
-        GeoGPXParser parser = new GeoGPXParser("src/test/java/zeroone3010/geogpxparser/test.gpx");
-        List<Geocache> caches = parser.parse();
+        final GeoGPXParser parser = new GeoGPXParser("src/test/java/zeroone3010/geogpxparser/test.gpx");
+        final List<Geocache> caches = parser.parse();
         assertNotNull(caches);
         assertEquals(3, caches.size());
         cache1 = caches.get(0);
@@ -98,9 +98,9 @@ public class GeoGPXParserTest {
 
     @Test
     public void test_attributes() {
-        Map<String,Boolean> attributes1 = cache1.getAttributes();
-        Map<String,Boolean> attributes2 = cache2.getAttributes();
-        Map<String,Boolean> attributes3 = cache3.getAttributes();
+        final Map<String,Boolean> attributes1 = cache1.getAttributes();
+        final Map<String,Boolean> attributes2 = cache2.getAttributes();
+        final Map<String,Boolean> attributes3 = cache3.getAttributes();
 
         assertEquals(2, attributes1.size());
         assertEquals(true, attributes1.get("Public transportation"));
@@ -158,7 +158,7 @@ public class GeoGPXParserTest {
 
     @Test
     public void test_logs1() {
-        List<Log> logs1 = cache1.getLogs();
+        final List<Log> logs1 = cache1.getLogs();
         assertNotNull(logs1);
         assertEquals(1, logs1.size());
         assertEquals(2010, logs1.get(0).getDate().getYear());
@@ -172,7 +172,7 @@ public class GeoGPXParserTest {
 
     @Test
     public void test_logs2() {
-        List<Log> logs2 = cache2.getLogs();
+        final List<Log> logs2 = cache2.getLogs();
         assertNotNull(logs2);
         assertEquals(2, logs2.size());
         assertEquals(450, logs2.get(0).getId());

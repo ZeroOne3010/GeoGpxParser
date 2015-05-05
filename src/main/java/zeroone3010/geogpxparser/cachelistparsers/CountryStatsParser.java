@@ -21,12 +21,12 @@ public class CountryStatsParser extends AbstractCacheGroupStatsParser {
     }
 
     @Override
-    CellData createTableGroupColumnRowContent(Group group) {
+    CellData createTableGroupColumnRowContent(final Group group) {
         return new CellData(group.getName());
     }
 
     @Override
-    String getCacheGroupKey(Geocache cache) {
+    String getCacheGroupKey(final Geocache cache) {
         return cache.getCountry();
     }
 }

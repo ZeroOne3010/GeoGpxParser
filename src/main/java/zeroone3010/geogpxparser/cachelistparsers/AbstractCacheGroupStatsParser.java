@@ -38,35 +38,35 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
      * @return A table that can be saved into a file in various formats
      */
     @Override
-    public final TableData getTabularInfo(List<Geocache> caches) {
+    public final TableData getTabularInfo(final List<Geocache> caches) {
 
         // Parse cache group info into a map:
-        for (Geocache cache : caches) {
+        for (final Geocache cache : caches) {
             addCacheToGroup(getCacheGroupKey(cache), cache);
         }
 
-        TableData result = new TableData(getTableId());
+        final TableData result = new TableData(getTableId());
 
         // Create titles:
-        TableRow headerRow = new TableRow(true);
+        final TableRow headerRow = new TableRow(true);
         headerRow.addCell(new CellData(getTableGroupColumnTitle()));
         headerRow.addCell(new CellData("Number of caches"));
         headerRow.addCell(new CellData("Number of cache types"));
-        for (CacheType cacheType : CacheType.values()) {
+        for (final CacheType cacheType : CacheType.values()) {
             headerRow.addCell(new CellData(cacheType.name()));
         }
         result.addRow(headerRow);
 
         // Create data rows:
-        for (Group group : groups.values()) {
-            TableRow dataRow = new TableRow(false);
+        for (final Group group : groups.values()) {
+            final TableRow dataRow = new TableRow(false);
             dataRow.addCell(createTableGroupColumnRowContent(group));
             dataRow.addCell(new CellData(String.valueOf(group.getTotalNumberOfCaches())));
             dataRow.addCell(new CellData(String.valueOf(group.getNumberOfCacheTypes())));
 
-            Map<CacheType, Collection<Geocache>> cacheMap = group.getCaches();
+            final Map<CacheType, Collection<Geocache>> cacheMap = group.getCaches();
 
-            for (Entry<CacheType, Collection<Geocache>> entry : cacheMap.entrySet()) {
+            for (final Entry<CacheType, Collection<Geocache>> entry : cacheMap.entrySet()) {
                 dataRow.addCell(new CellData(String.valueOf(entry.getValue().size())));
             }
             result.addRow(dataRow);
@@ -75,7 +75,7 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
         return result;
     }
 
-    private void addCacheToGroup(String groupName, Geocache cache) {
+    private void addCacheToGroup(final String groupName, final Geocache cache) {
         groups.merge(groupName, new Group(groupName), (existing, x) -> existing);
         groups.get(groupName).addCache(cache);
     }
@@ -84,20 +84,19 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
      * Represents a group of geocaches. Keeps track of the name of the group and
      * the different cache types it has.
      */
-    class Group {
+    final class Group {
 
         private final String name;
-        private Map<CacheType, Collection<Geocache>> caches;
+        private final Map<CacheType, Collection<Geocache>> caches = new LinkedHashMap<>();
 
-        public Group(String groupName) {
+        public Group(final String groupName) {
             name = groupName;
-            caches = new LinkedHashMap<>();
             for (CacheType cacheType : CacheType.values()) {
                 caches.put(cacheType, new LinkedHashSet<>());
             }
         }
 
-        public void addCache(Geocache cache) {
+        public void addCache(final Geocache cache) {
             caches.get(cache.getType()).add(cache);
         }
 
@@ -123,7 +122,7 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(final Object o) {
             if (o != null && !(o instanceof Group)) {
                 return false;
             }

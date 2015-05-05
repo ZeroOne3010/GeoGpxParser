@@ -17,9 +17,9 @@ public abstract class AbstractParserTest {
 
     protected List<Geocache> caches;
 
-    private static TableRow row(boolean header, Object... cellValues) {
-        TableRow row = new TableRow(header);
-        for (Object cellValue : cellValues) {
+    private static TableRow row(final boolean header, final Object... cellValues) {
+        final TableRow row = new TableRow(header);
+        for (final Object cellValue : cellValues) {
             if (cellValue instanceof String) {
                 row.addCell(new CellData((String) cellValue));
             } else if (cellValue instanceof CellData) {
@@ -31,15 +31,15 @@ public abstract class AbstractParserTest {
         return row;
     }
 
-    protected static TableRow row(Object... cellValues) {
+    protected static TableRow row(final Object... cellValues) {
         return row(false, cellValues);
     }
 
-    protected static TableRow headerRow(Object... cellValues) {
+    protected static TableRow headerRow(final Object... cellValues) {
         return row(true, cellValues);
     }
 
-    protected static CellData owner(String owner) {
+    protected static CellData owner(final String owner) {
         return new CellData(owner, "http://www.geocaching.com/seek/nearest.aspx?u=" + owner);
     }
 
@@ -53,7 +53,7 @@ public abstract class AbstractParserTest {
         final Log webcamLog = new Log().setDate(LocalDateTime.of(2010, 10, 13, 15, 00)).setText(":)").setType(LogType.WEBCAM_PHOTO_TAKEN).setUser("a").setId(34);
 
 
-        Geocache cache1 = new Geocache();
+        final Geocache cache1 = new Geocache();
         cache1.setGcCode("GC111");
         cache1.setName("Cache I");
         cache1.setOwner("John");
@@ -67,7 +67,7 @@ public abstract class AbstractParserTest {
         cache1.addLog(dnfLog1);
         cache1.setCountry("Finland");
 
-        Geocache cache2 = new Geocache();
+        final Geocache cache2 = new Geocache();
         cache2.setGcCode("GC222");
         cache2.setName("Cache II");
         cache2.setOwner("Mike");
@@ -82,7 +82,7 @@ public abstract class AbstractParserTest {
         cache2.addLog(foundLog);
         cache2.setCountry("Sweden");
 
-        Geocache cache3 = new Geocache();
+        final Geocache cache3 = new Geocache();
         cache3.setGcCode("GC333");
         cache3.setName("Cache III");
         cache3.setOwner("John");
@@ -96,7 +96,7 @@ public abstract class AbstractParserTest {
         cache3.addLog(attendedLog);
         cache3.setCountry("Finland");
 
-        Geocache cache4 = new Geocache();
+        final Geocache cache4 = new Geocache();
         cache4.setGcCode("GC444");
         cache4.setName("Cache IV");
         cache4.setOwner("Mike");
@@ -110,7 +110,7 @@ public abstract class AbstractParserTest {
         cache4.addLog(webcamLog);
         cache4.setCountry("United Kingdom");
 
-        Geocache cache5 = new Geocache();
+        final Geocache cache5 = new Geocache();
         cache5.setGcCode("GC555");
         cache5.setName("Cache V");
         cache5.setOwner("Jake");
