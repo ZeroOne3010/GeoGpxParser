@@ -19,12 +19,12 @@ public class CellData {
     /** The URL to which the text should link to, if any. **/
     private final URL url;
 
-    public CellData(String textParam) {
+    public CellData(final String textParam) {
         this.text = textParam;
         this.url = null;
     }
 
-    public CellData(String textParam, String urlParam) {
+    public CellData(final String textParam, final String urlParam) {
         this.text = textParam;
         URL tempUrl = null;
         if (urlParam != null) {
@@ -53,11 +53,11 @@ public class CellData {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof CellData)) {
             return false;
         }
-        CellData other = (CellData) o;
+        final CellData other = (CellData) o;
         if ((other.getText() == null && text == null) || (other.getText() != null && other.getText().equals(text))) {
             if ((other.getUrl() == null && url == null) || (other.getUrl() != null && other.getUrl().equals(url))) {
                 return true;

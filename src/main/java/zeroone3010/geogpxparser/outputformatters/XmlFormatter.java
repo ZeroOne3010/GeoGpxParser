@@ -13,13 +13,13 @@ public class XmlFormatter extends AbstractTabularDataFormatter {
 
     private static final String FILE_EXTENSION = "xml";
 
-    public XmlFormatter(TableData data) {
+    public XmlFormatter(final TableData data) {
         super(data);
     }
 
     @Override
     public String toString() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         JAXB.marshal(getTable(), outputStream);
         return outputStream.toString();
     }

@@ -23,10 +23,10 @@ public class CountryStatsParserTest extends AbstractParserTest {
         assertEquals(5, caches.size());
 
         // Start testing:
-        TableData result = new CountryStatsParser().getTabularInfo(caches);
+        final TableData result = new CountryStatsParser().getTabularInfo(caches);
         assertNotNull(result);
 
-        List<TableRow> rows = result.getRows();
+        final List<TableRow> rows = result.getRows();
         assertNotNull(rows);
         assertEquals(4, rows.size());
 

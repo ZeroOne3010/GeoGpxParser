@@ -9,7 +9,7 @@ public class IterableSubElements implements Iterable<Element> {
 
     private final Element mainElement;
 
-    public IterableSubElements(Element mainElement) {
+    public IterableSubElements(final Element mainElement) {
         this.mainElement = mainElement;
     }
 
@@ -23,7 +23,7 @@ public class IterableSubElements implements Iterable<Element> {
         private final Element mainElement;
         private Node current;
 
-        public SubElementIterator(Element mainElement) {
+        public SubElementIterator(final Element mainElement) {
             this.mainElement = mainElement;
             this.current = mainElement != null ? this.mainElement.getFirstChild() : null;
         }

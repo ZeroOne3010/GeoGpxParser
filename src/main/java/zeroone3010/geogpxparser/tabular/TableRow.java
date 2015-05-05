@@ -15,7 +15,7 @@ public class TableRow {
     private final boolean header;
     private final List<CellData> cells = new ArrayList<>();
 
-    public TableRow(boolean header) {
+    public TableRow(final boolean header) {
         this.header = header;
     }
 
@@ -29,25 +29,25 @@ public class TableRow {
         return cells;
     }
 
-    public void addCell(CellData cell) {
+    public void addCell(final CellData cell) {
         this.cells.add(cell);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        for (CellData cell : cells) {
+        for (final CellData cell : cells) {
             sb.append(cell.toString());
         }
         return sb.toString();
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (!(o instanceof TableRow)) {
             return false;
         }
-        TableRow other = (TableRow) o;
+        final TableRow other = (TableRow) o;
         if (other.getCells().size() != getCells().size()) {
             return false;
         }
@@ -55,8 +55,8 @@ public class TableRow {
             return false;
         }
         for (int i = 0; i < cells.size(); i++) {
-            CellData thisCell = cells.get(i);
-            CellData otherCell = other.getCells().get(i);
+            final CellData thisCell = cells.get(i);
+            final CellData otherCell = other.getCells().get(i);
             if (!thisCell.equals(otherCell)) {
                 return false;
             }

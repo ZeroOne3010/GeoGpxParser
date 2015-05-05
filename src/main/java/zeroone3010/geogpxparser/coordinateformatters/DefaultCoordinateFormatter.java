@@ -5,12 +5,12 @@ import java.util.Locale;
 public class DefaultCoordinateFormatter implements CoordinateFormatter {
 
     @Override
-    public String formatLatitude(double latitude) {
+    public String formatLatitude(final double latitude) {
         return String.format(Locale.US, "%.6f", latitude);
     }
 
     @Override
-    public String formatLongitude(double longitude) {
+    public String formatLongitude(final double longitude) {
         return String.format(Locale.US, "%.6f", longitude);
     }
 

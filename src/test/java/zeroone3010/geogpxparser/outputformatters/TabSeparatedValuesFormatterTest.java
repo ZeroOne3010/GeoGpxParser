@@ -14,13 +14,13 @@ import zeroone3010.geogpxparser.tabular.TableRow;
  */
 public class TabSeparatedValuesFormatterTest {
 
-    private TableData table;
+    private final TableData table;
 
     public TabSeparatedValuesFormatterTest() {
         table = new TableData("testTable");
-        TableRow row1 = new TableRow(true);
-        TableRow row2 = new TableRow(false);
-        TableRow row3 = new TableRow(false);
+        final TableRow row1 = new TableRow(true);
+        final TableRow row2 = new TableRow(false);
+        final TableRow row3 = new TableRow(false);
         row1.addCell(new CellData("one"));
         row1.addCell(new CellData("two"));
         row1.addCell(new CellData("three"));
@@ -41,7 +41,7 @@ public class TabSeparatedValuesFormatterTest {
     public void test_formatting_a_table() {
         assertNotNull(table);
 
-        String result = new TabSeparatedValuesFormatter(table).toString();
+        final String result = new TabSeparatedValuesFormatter(table).toString();
         assertEquals("one\ttwo\tthree\nfour\tfi ve\tsix\nseven\teight\tnine", result);
     }
 }

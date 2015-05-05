@@ -17,20 +17,20 @@ import zeroone3010.geogpxparser.tabular.TableRow;
  */
 public class CacheListParserTest extends AbstractParserTest {
 
-    private static CellData gc(String code) {
+    private static CellData gc(final String code) {
         return new CellData(code, "http://coord.info/" + code);
     }
 
-    private static CellData log(String date, long logId) {
+    private static CellData log(final String date, final long logId) {
         return new CellData(date, "http://www.geocaching.com/seek/log.aspx?LID=" + logId);
     }
 
     @Test
     public void test_getTabularInfo() {
-        TableData result = new CacheListParser().getTabularInfo(caches);
+        final TableData result = new CacheListParser().getTabularInfo(caches);
         assertNotNull(result);
 
-        List<TableRow> rows = result.getRows();
+        final List<TableRow> rows = result.getRows();
         assertNotNull(rows);
         assertEquals(6, rows.size());
 

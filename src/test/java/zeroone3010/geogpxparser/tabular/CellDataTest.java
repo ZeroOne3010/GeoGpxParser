@@ -18,21 +18,21 @@ public class CellDataTest {
 
     @Test
     public void test_normal_cell_creation() {
-        CellData cell = new CellData("hello");
+        final CellData cell = new CellData("hello");
         assertEquals("hello", cell.getText());
         assertNull(cell.getUrl());
     }
 
     @Test
     public void test_link_cell_creation() {
-        CellData cell = new CellData("hello", "http://www.example.com/foo");
+        final CellData cell = new CellData("hello", "http://www.example.com/foo");
         assertEquals("hello", cell.getText());
         assertEquals("http://www.example.com/foo", cell.getUrl().toString());
     }
 
     @Test
     public void malformed_url_should_leave_url_as_null() {
-        CellData cell = new CellData("hello", "omg : bbq ? foo / test");
+        final CellData cell = new CellData("hello", "omg : bbq ? foo / test");
         assertEquals("hello", cell.getText());
         assertNull(cell.getUrl());
     }
@@ -42,7 +42,7 @@ public class CellDataTest {
 
         @Parameters
         public static Collection<Object[]> data() {
-            Object[][] data = new Object[][]{ //
+            final Object[][] data = new Object[][]{ //
                 {new CellData("hello"), new CellData("hello")}, //
                 {new CellData(""), new CellData("")}, //
                 {new CellData("abc", "http://example.com/foo"), new CellData("abc", "http://example.com/foo")}, //
@@ -51,10 +51,10 @@ public class CellDataTest {
             };
             return Arrays.asList(data);
         }
-        private CellData a;
-        private CellData b;
+        private final CellData a;
+        private final CellData b;
 
-        public Equals_with_equal_values(CellData a, CellData b) {
+        public Equals_with_equal_values(final CellData a, final CellData b) {
             this.a = a;
             this.b = b;
         }
@@ -71,7 +71,7 @@ public class CellDataTest {
 
         @Parameters
         public static Collection<Object[]> data() {
-            Object[][] data = new Object[][]{ //
+            final Object[][] data = new Object[][]{ //
                 {new CellData("aaa"), new CellData("bbb")}, //
                 {new CellData("abc"), new CellData(null)}, //
                 {new CellData("abc", "http://example.com/foo"), new CellData("abc", "http://example.com/bar")}, //
@@ -80,10 +80,10 @@ public class CellDataTest {
             };
             return Arrays.asList(data);
         }
-        private CellData a;
-        private CellData b;
+        private final CellData a;
+        private final CellData b;
 
-        public Equals_with_unequal_values(CellData a, CellData b) {
+        public Equals_with_unequal_values(final CellData a, final CellData b) {
             this.a = a;
             this.b = b;
         }
