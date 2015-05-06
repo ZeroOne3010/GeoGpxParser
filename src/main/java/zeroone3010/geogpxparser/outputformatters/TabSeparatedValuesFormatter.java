@@ -9,7 +9,7 @@ import zeroone3010.geogpxparser.tabular.TableRow;
 /**
  * Formats the given TableData object into a string of tab separated values.
  */
-public class TabSeparatedValuesFormatter extends AbstractTabularDataFormatter {
+class TabSeparatedValuesFormatter extends AbstractTabularDataFormatter {
 
     private static final String SEPARATOR = "\t";
     private static final String REPLACEMENT = " ";

@@ -9,7 +9,7 @@ import zeroone3010.geogpxparser.tabular.TableData;
 /**
  * Formats the given TableData object into an XML string.
  */
-public class XmlFormatter extends AbstractTabularDataFormatter {
+class XmlFormatter extends AbstractTabularDataFormatter {
 
     private static final String FILE_EXTENSION = "xml";
 

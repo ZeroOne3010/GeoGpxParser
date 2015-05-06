@@ -20,7 +20,7 @@ import zeroone3010.geogpxparser.tabular.TableData;
 /**
  * Formats the given TableData object into an HTML string.
  */
-public class HtmlFormatter extends AbstractTabularDataFormatter {
+class HtmlFormatter extends AbstractTabularDataFormatter {
 
     private static final String XSLT_FILE_NAME = "xmlToHtml.xsl";
     private static final String FILE_EXTENSION = "html";
