@@ -22,31 +22,14 @@
  */
 package zeroone3010.geogpxparser;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeParseException;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import zeroone3010.geogpxparser.cachelistparsers.CacheListParser;
 import zeroone3010.geogpxparser.cachelistparsers.CountryStatsParser;
 import zeroone3010.geogpxparser.cachelistparsers.OwnerStatsParser;
+import zeroone3010.geogpxparser.cachelistparsers.StarChallengeParser;
 import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
 import zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
 import zeroone3010.geogpxparser.coordinateformatters.DegreesAndMinutesFormatter;
@@ -55,6 +38,23 @@ import zeroone3010.geogpxparser.outputformatters.HtmlFormatter;
 import zeroone3010.geogpxparser.outputformatters.TabSeparatedValuesFormatter;
 import zeroone3010.geogpxparser.outputformatters.XmlFormatter;
 import zeroone3010.geogpxparser.tabular.TableData;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * This class can be used to parse geocaches from a Groundspeak .gpx file into plain old Java objects (POJO). The cache
@@ -80,6 +80,7 @@ public class GeoGPXParser {
         final TableData tabularRepresentation = new CacheListParser(buildCoordinateFormatter()).getTabularInfo(caches);
         final TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
         final TableData countryStats = new CountryStatsParser().getTabularInfo(caches);
+        final TableData starStats = new StarChallengeParser().getTabularInfo(caches);
 
         final String outputType = System.getProperty("output", "html").toLowerCase();
 
@@ -88,17 +89,20 @@ public class GeoGPXParser {
                 writeDataToFile(new XmlFormatter(tabularRepresentation));
                 writeDataToFile(new XmlFormatter(ownerStats));
                 writeDataToFile(new XmlFormatter(countryStats));
+                writeDataToFile(new XmlFormatter(starStats));
                 break;
             case "html":
                 writeDataToFile(new HtmlFormatter(tabularRepresentation));
                 writeDataToFile(new HtmlFormatter(ownerStats));
                 writeDataToFile(new HtmlFormatter(countryStats));
+                writeDataToFile(new HtmlFormatter(starStats));
                 parser.writeHtmlResources();
                 break;
             default:
                 writeDataToFile(new TabSeparatedValuesFormatter(tabularRepresentation));
                 writeDataToFile(new TabSeparatedValuesFormatter(ownerStats));
                 writeDataToFile(new TabSeparatedValuesFormatter(countryStats));
+                writeDataToFile(new TabSeparatedValuesFormatter(starStats));
                 break;
         }
 
@@ -109,12 +113,12 @@ public class GeoGPXParser {
         final CoordinateFormatter coordinateFormatter;
         final String coordinateFormat = System.getProperty("coordinateFormat", "ddmm").toLowerCase();
         switch (coordinateFormat) {
-        case "dd":
-            coordinateFormatter = new DefaultCoordinateFormatter();
-            break;
-        default:
-            coordinateFormatter = new DegreesAndMinutesFormatter();
-            break;
+            case "dd":
+                coordinateFormatter = new DefaultCoordinateFormatter();
+                break;
+            default:
+                coordinateFormatter = new DegreesAndMinutesFormatter();
+                break;
         }
         return coordinateFormatter;
     }
@@ -134,8 +138,8 @@ public class GeoGPXParser {
     private static <T extends AbstractTabularDataFormatter> void writeDataToFile(final T formatter) {
         final String fileName = formatter.getFileName();
         try {
-            info("Writing "+fileName+"...");
-            Files.write(Paths.get(fileName), formatter.toString().getBytes());
+            info("Writing " + fileName + "...");
+            Files.write(Paths.get(fileName), formatter.toString().getBytes(Charset.forName("UTF-8")));
         } catch (IOException ex) {
             System.out.println("Saving the file " + fileName + " failed!");
             ex.printStackTrace();

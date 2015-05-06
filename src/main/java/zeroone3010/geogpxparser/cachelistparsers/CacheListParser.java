@@ -66,7 +66,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
             }
             dataRow.addCell(new CellData(cache.getOwner(), Utility.getOwnerUrl(cache.getOwner())));
             dataRow.addCell(new CellData(cache.getCountry()));
-            final Log log = findFoundLog(cache);
+            final Log log = Utility.findFoundLog(cache);
             if (log != null) {
                 dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.format(log.getDate()), "http://www.geocaching.com/seek/log.aspx?LID=" + log.getId()));
             } else {
@@ -76,11 +76,5 @@ public class CacheListParser implements ICachesToTabularDataParser {
         }
 
         return result;
-    }
-
-    private Log findFoundLog(final Geocache cache) {
-        return cache.getLogs().stream() //
-                .filter(log -> log.getType().countsAsFind() && log.getDate() != null) //
-                .findFirst().orElse(null);
     }
 }

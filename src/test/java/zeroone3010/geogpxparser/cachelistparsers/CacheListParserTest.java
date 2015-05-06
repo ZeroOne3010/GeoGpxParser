@@ -45,7 +45,7 @@ public class CacheListParserTest extends AbstractParserTest {
         assertEquals(row(gc("GC222"), "Multi", "Cache II", "3.300000", "4.400000", "Small", "1.5", "4.5", "2002-03-04", owner("Mike"), "Sweden", log("2010-08-13", 13)), rows.get(row));
 
         row = 3;
-        assertEquals(row(gc("GC333"), "Traditional", "Cache III", "5.500000", "6.600000", "Regular", "2.0", "4.0", "2003-05-06", owner("John"), "Finland", log("2010-09-13", 21)), rows.get(row));
+        assertEquals(row(gc("GC333"), "Traditional", "Cache III", "5.500000", "6.600000", "Regular", "2.0", "4.0", "2003-05-06", owner("John"), "Finland", log("2010-08-13", 21)), rows.get(row));
 
         row = 4;
         assertEquals(row(gc("GC444"), "Letterbox", "Cache IV", "7.700000", "8.800000", "Large", "2.5", "3.5", "2004-07-08", owner("Mike"), "United Kingdom", log("2010-10-13", 34)), rows.get(row));
