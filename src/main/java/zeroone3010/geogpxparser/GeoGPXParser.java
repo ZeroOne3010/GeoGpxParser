@@ -34,9 +34,7 @@ import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
 import zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
 import zeroone3010.geogpxparser.coordinateformatters.DegreesAndMinutesFormatter;
 import zeroone3010.geogpxparser.outputformatters.AbstractTabularDataFormatter;
-import zeroone3010.geogpxparser.outputformatters.HtmlFormatter;
-import zeroone3010.geogpxparser.outputformatters.TabSeparatedValuesFormatter;
-import zeroone3010.geogpxparser.outputformatters.XmlFormatter;
+import zeroone3010.geogpxparser.outputformatters.FormatterFactory;
 import zeroone3010.geogpxparser.tabular.TableData;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -55,6 +53,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * This class can be used to parse geocaches from a Groundspeak .gpx file into plain old Java objects (POJO). The cache
@@ -84,27 +83,11 @@ public class GeoGPXParser {
 
         final String outputType = System.getProperty("output", "html").toLowerCase();
 
-        switch (outputType) {
-            case "xml":
-                writeDataToFile(new XmlFormatter(tabularRepresentation));
-                writeDataToFile(new XmlFormatter(ownerStats));
-                writeDataToFile(new XmlFormatter(countryStats));
-                writeDataToFile(new XmlFormatter(starStats));
-                break;
-            case "html":
-                writeDataToFile(new HtmlFormatter(tabularRepresentation));
-                writeDataToFile(new HtmlFormatter(ownerStats));
-                writeDataToFile(new HtmlFormatter(countryStats));
-                writeDataToFile(new HtmlFormatter(starStats));
-                parser.writeHtmlResources();
-                break;
-            default:
-                writeDataToFile(new TabSeparatedValuesFormatter(tabularRepresentation));
-                writeDataToFile(new TabSeparatedValuesFormatter(ownerStats));
-                writeDataToFile(new TabSeparatedValuesFormatter(countryStats));
-                writeDataToFile(new TabSeparatedValuesFormatter(starStats));
-                break;
-        }
+        Stream.of(tabularRepresentation, ownerStats, countryStats, starStats)
+                .map(td -> FormatterFactory.createFormatter(td, outputType))
+                .forEach(GeoGPXParser::writeDataToFile);
+
+        parser.writeHtmlResources();
 
         info("Done!");
     }
