@@ -1,17 +1,18 @@
 package zeroone3010.geogpxparser.cachelistparsers;
 
+import zeroone3010.geogpxparser.CacheType;
+import zeroone3010.geogpxparser.Geocache;
+import zeroone3010.geogpxparser.tabular.CellData;
+import zeroone3010.geogpxparser.tabular.TableData;
+import zeroone3010.geogpxparser.tabular.TableRow;
+
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import zeroone3010.geogpxparser.CacheType;
-import zeroone3010.geogpxparser.Geocache;
-import zeroone3010.geogpxparser.tabular.CellData;
-import zeroone3010.geogpxparser.tabular.TableData;
-import zeroone3010.geogpxparser.tabular.TableRow;
+import java.util.Optional;
 
 /**
  * Parses cache group statistics from the given list of caches: the number of
@@ -42,7 +43,8 @@ public abstract class AbstractCacheGroupStatsParser implements ICachesToTabularD
 
         // Parse cache group info into a map:
         for (final Geocache cache : caches) {
-            addCacheToGroup(getCacheGroupKey(cache), cache);
+            final String cacheGroupKey = getCacheGroupKey(cache);
+            Optional.ofNullable(cacheGroupKey).ifPresent(cgk -> addCacheToGroup(cgk, cache));
         }
 
         final TableData result = new TableData(getTableId());
