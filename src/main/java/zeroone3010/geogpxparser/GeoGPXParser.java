@@ -41,7 +41,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -215,7 +214,7 @@ public class GeoGPXParser {
         final File[] files;
         final File gpx = new File(path);
         if (gpx.isDirectory()) {
-            files = gpx.listFiles(new GpxFileFilter());
+            files = gpx.listFiles((dir, name) -> name.toLowerCase().endsWith(".gpx"));
         } else {
             files = new File[1];
             files[0] = new File(path);
@@ -251,13 +250,5 @@ public class GeoGPXParser {
             }
         }
         return null;
-    }
-
-    private static final class GpxFileFilter implements FilenameFilter {
-
-        @Override
-        public boolean accept(final File dir, final String name) {
-            return name.toLowerCase().endsWith(".gpx");
-        }
     }
 }
