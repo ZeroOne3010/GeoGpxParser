@@ -22,8 +22,6 @@ import java.util.stream.Stream;
  */
 public class StarChallengeParser implements ICachesToTabularDataParser {
 
-    private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
     @Override
     public TableData getTabularInfo(final List<Geocache> caches) {
 
@@ -50,7 +48,7 @@ public class StarChallengeParser implements ICachesToTabularDataParser {
                     final float difficulty = summary.getDifficulty();
                     final float terrain = summary.getTerrain();
                     final TableRow row = new TableRow(false);
-                    row.addCell(new CellData(entry.getKey().format(OUTPUT_DATE_TIME_FORMAT)));
+                    row.addCell(new CellData(Utility.formatDate(entry.getKey())));
                     row.addCell(new CellData(Integer.toString(summary.getAmount())));
                     row.addCell(new CellData(Float.toString(difficulty)));
                     row.addCell(new CellData(Float.toString(terrain)));
