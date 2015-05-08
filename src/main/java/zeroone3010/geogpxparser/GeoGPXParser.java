@@ -28,6 +28,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import zeroone3010.geogpxparser.cachelistparsers.CacheListParser;
 import zeroone3010.geogpxparser.cachelistparsers.CountryStatsParser;
+import zeroone3010.geogpxparser.cachelistparsers.DateStatsParser;
 import zeroone3010.geogpxparser.cachelistparsers.OwnerStatsParser;
 import zeroone3010.geogpxparser.cachelistparsers.StarChallengeParser;
 import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
@@ -79,10 +80,11 @@ public class GeoGPXParser {
         final TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
         final TableData countryStats = new CountryStatsParser().getTabularInfo(caches);
         final TableData starStats = new StarChallengeParser().getTabularInfo(caches);
+        final TableData dateStats = new DateStatsParser().getTabularInfo(caches);
 
         final String outputType = System.getProperty("output", "html").toLowerCase();
 
-        Stream.of(tabularRepresentation, ownerStats, countryStats, starStats)
+        Stream.of(tabularRepresentation, ownerStats, countryStats, starStats, dateStats)
                 .map(td -> FormatterFactory.createFormatter(td, outputType))
                 .forEach(GeoGPXParser::writeDataToFile);
 
