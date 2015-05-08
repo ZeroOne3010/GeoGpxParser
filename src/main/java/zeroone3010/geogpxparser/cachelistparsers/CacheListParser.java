@@ -18,7 +18,6 @@ import zeroone3010.geogpxparser.tabular.TableRow;
  */
 public class CacheListParser implements ICachesToTabularDataParser {
 
-    private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final CoordinateFormatter coordinateFormatter;
 
     public CacheListParser() {
@@ -60,7 +59,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
             if( cache.getHidden() != null) {
-                dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.format(cache.getHidden())));
+                dataRow.addCell(new CellData(Utility.formatDate(cache.getHidden())));
             } else {
                 dataRow.addCell(new CellData("-"));
             }
@@ -68,7 +67,7 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(cache.getCountry()));
             final Log log = Utility.findFoundLog(cache);
             if (log != null) {
-                dataRow.addCell(new CellData(OUTPUT_DATE_TIME_FORMAT.format(log.getDate()), "http://www.geocaching.com/seek/log.aspx?LID=" + log.getId()));
+                dataRow.addCell(new CellData(Utility.formatDate(log.getDate()), "http://www.geocaching.com/seek/log.aspx?LID=" + log.getId()));
             } else {
                 dataRow.addCell(new CellData("-"));
             }
