@@ -1,6 +1,6 @@
 package zeroone3010.geogpxparser.comparison;
 
-import zeroone3010.geogpxparser.GeoGPXParser;
+import zeroone3010.geogpxparser.GeoXMLReader;
 import zeroone3010.geogpxparser.Geocache;
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableData;
@@ -23,7 +23,7 @@ public final class GeoGPXComparer {
     private final List<Geocache> cacheList2;
 
     public GeoGPXComparer(final String file1, final String file2) {
-        this(new GeoGPXParser(file1).parse(), new GeoGPXParser(file2).parse());
+        this(new GeoXMLReader(file1).parse(), new GeoXMLReader(file2).parse());
     }
 
     public GeoGPXComparer(final List<Geocache> cacheList1, final List<Geocache> cacheList2) {
