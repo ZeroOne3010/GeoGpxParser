@@ -189,35 +189,35 @@ public class GeoGPXParser {
     }
 
     private Geocache getGeocache(final Element wptElement) {
-        final Geocache cache = new Geocache();
-
-        cache.setLatitude(Double.valueOf(wptElement.getAttribute("lat")));
-        cache.setLongitude(Double.valueOf(wptElement.getAttribute("lon")));
-
-        cache.setHidden(parseTime(getSubElementContent(wptElement, "time")));
-        cache.setGcCode(getSubElementContent(wptElement, "name"));
-
         final Element groundspeak = getSubElement(wptElement, "groundspeak:cache");
-        cache.setArchived(Boolean.valueOf(groundspeak.getAttribute("archived")));
-        cache.setAvailable(Boolean.valueOf(groundspeak.getAttribute("available")));
+        final Geocache.Builder builder = Geocache.builder()
 
-        cache.setName(getSubElementContent(groundspeak, "groundspeak:name"));
-        cache.setCountry(getSubElementContent(groundspeak, "groundspeak:country"));
-        cache.setState(getSubElementContent(groundspeak, "groundspeak:state"));
-        cache.setOwner(getSubElementContent(groundspeak, "groundspeak:owner"));
-        cache.setType(CacheType.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:type")));
-        cache.setSize(CacheSize.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:container")));
-        cache.setDifficulty(Float.parseFloat(getSubElementContent(groundspeak, "groundspeak:difficulty")));
-        cache.setTerrain(Float.parseFloat(getSubElementContent(groundspeak, "groundspeak:terrain")));
-        cache.setShortDescription(getSubElementContent(groundspeak, "groundspeak:short_description"));
-        cache.setLongDescription(getSubElementContent(groundspeak, "groundspeak:long_description"));
-        cache.setHint(getSubElementContent(groundspeak, "groundspeak:encoded_hints"));
+                .latitude(Double.valueOf(wptElement.getAttribute("lat")))
+                .longitude(Double.valueOf(wptElement.getAttribute("lon")))
+
+                .hidden(parseTime(getSubElementContent(wptElement, "time")))
+                .gcCode(getSubElementContent(wptElement, "name"))
+
+                .archived(Boolean.valueOf(groundspeak.getAttribute("archived")))
+                .available(Boolean.valueOf(groundspeak.getAttribute("available")))
+
+                .name(getSubElementContent(groundspeak, "groundspeak:name"))
+                .country(getSubElementContent(groundspeak, "groundspeak:country"))
+                .state(getSubElementContent(groundspeak, "groundspeak:state"))
+                .owner(getSubElementContent(groundspeak, "groundspeak:owner"))
+                .type(CacheType.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:type")))
+                .size(CacheSize.getByGpxDescription(getSubElementContent(groundspeak, "groundspeak:container")))
+                .difficulty(Float.parseFloat(getSubElementContent(groundspeak, "groundspeak:difficulty")))
+                .terrain(Float.parseFloat(getSubElementContent(groundspeak, "groundspeak:terrain")))
+                .shortDescription(getSubElementContent(groundspeak, "groundspeak:short_description"))
+                .longDescription(getSubElementContent(groundspeak, "groundspeak:long_description"))
+                .hint(getSubElementContent(groundspeak, "groundspeak:encoded_hints"));
 
         // Parse the attributes into a map where key is the attribute name and
         // value is the value of that attribute:
         final Element attributesElement = getSubElement(groundspeak, "groundspeak:attributes");
         for (final Element attributeElement : new IterableSubElements(attributesElement)) {
-            cache.setAttribute(attributeElement.getTextContent(), "1".equals(attributeElement.getAttribute("inc")));
+            builder.attribute(attributeElement.getTextContent(), "1".equals(attributeElement.getAttribute("inc")));
         }
 
         final Element logsElement = getSubElement(groundspeak, "groundspeak:logs");
@@ -229,10 +229,10 @@ public class GeoGPXParser {
                     .user(getSubElementContent(logElement, "groundspeak:finder"))
                     .text(getSubElementContent(logElement, "groundspeak:text"))
                     .build();
-            cache.addLog(log);
+            builder.addLog(log);
         }
 
-        return cache;
+        return builder.build();
     }
 
     private List<Geocache> parseXmlFilesToObjects(final String path) {
