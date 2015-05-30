@@ -1,15 +1,15 @@
 package zeroone3010.geogpxparser.cachelistparsers;
 
-import java.time.format.DateTimeFormatter;
-import java.util.List;
-
 import zeroone3010.geogpxparser.Geocache;
 import zeroone3010.geogpxparser.Log;
+import zeroone3010.geogpxparser.Utility;
 import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
 import zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableData;
 import zeroone3010.geogpxparser.tabular.TableRow;
+
+import java.util.List;
 
 /**
  * A parser for transforming a List of Geocache objects into table format.

@@ -2,15 +2,17 @@ package zeroone3010.geogpxparser.cachelistparsers;
 
 import zeroone3010.geogpxparser.Geocache;
 import zeroone3010.geogpxparser.Log;
-import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
-import zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
+import zeroone3010.geogpxparser.Utility;
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableData;
 import zeroone3010.geogpxparser.tabular.TableRow;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

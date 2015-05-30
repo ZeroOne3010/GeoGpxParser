@@ -1,6 +1,7 @@
 package zeroone3010.geogpxparser.cachelistparsers;
 
 import zeroone3010.geogpxparser.Geocache;
+import zeroone3010.geogpxparser.Utility;
 import zeroone3010.geogpxparser.tabular.CellData;
 
 /**
