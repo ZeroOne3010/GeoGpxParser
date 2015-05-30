@@ -1,22 +1,18 @@
 package zeroone3010.geogpxparser;
 
-import org.junit.Ignore;
 import zeroone3010.geogpxparser.tabular.CellData;
 import zeroone3010.geogpxparser.tabular.TableRow;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
- * Provides test data for subclasses.
+ * Provides test data and helper methods.
  */
-@Ignore
-public abstract class AbstractParserTest {
+public final class ParserTestFixture {
 
-    protected List<Geocache> caches;
-
-    private static TableRow row(final boolean header, final Object... cellValues) {
+    public static TableRow row(final boolean header, final Object... cellValues) {
         final TableRow row = new TableRow(header);
         for (final Object cellValue : cellValues) {
             if (cellValue instanceof String) {
@@ -38,12 +34,11 @@ public abstract class AbstractParserTest {
         return row(true, cellValues);
     }
 
-    protected static CellData owner(final String owner) {
+    public static CellData owner(final String owner) {
         return new CellData(owner, "http://www.geocaching.com/seek/nearest.aspx?u=" + owner);
     }
 
-    public AbstractParserTest() {
-        caches = new ArrayList<>();
+    public static List<Geocache> getGeocaches() {
 
         final Log dnfLog1 = Log.builder().date(LocalDateTime.of(2010, 6, 13, 15, 00)).text(":(").type(LogType.DNF).user("a").build();
         final Log dnfLog2 = Log.builder().date(LocalDateTime.of(2010, 7, 13, 15, 00)).text(":((").type(LogType.DNF).user("a").build();
@@ -129,10 +124,6 @@ public abstract class AbstractParserTest {
                 .country("Sweden")
                 .build();
 
-        caches.add(cache1);
-        caches.add(cache2);
-        caches.add(cache3);
-        caches.add(cache4);
-        caches.add(cache5);
+        return Arrays.asList(cache1, cache2, cache3, cache4, cache5);
     }
 }
