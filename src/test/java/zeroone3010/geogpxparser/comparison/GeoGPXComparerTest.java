@@ -13,8 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
-import static zeroone3010.geogpxparser.AbstractParserTest.headerRow;
-import static zeroone3010.geogpxparser.AbstractParserTest.row;
+import static zeroone3010.geogpxparser.ParserTestFixture.headerRow;
+import static zeroone3010.geogpxparser.ParserTestFixture.row;
 
 public class GeoGPXComparerTest {
 

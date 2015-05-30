@@ -1,23 +1,27 @@
 package zeroone3010.geogpxparser.cachelistparsers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import java.util.List;
-
 import org.junit.Test;
-
-import zeroone3010.geogpxparser.AbstractParserTest;
+import zeroone3010.geogpxparser.Geocache;
+import zeroone3010.geogpxparser.ParserTestFixture;
 import zeroone3010.geogpxparser.tabular.TableData;
 import zeroone3010.geogpxparser.tabular.TableRow;
 
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static zeroone3010.geogpxparser.ParserTestFixture.headerRow;
+import static zeroone3010.geogpxparser.ParserTestFixture.owner;
+import static zeroone3010.geogpxparser.ParserTestFixture.row;
 /**
  * Tests for the OwnerStatsParser class.
  */
-public class OwnerStatsParserTest extends AbstractParserTest {
+public class OwnerStatsParserTest {
 
     @Test
     public void test_getTabularInfo() {
+        final List<Geocache> caches = ParserTestFixture.getGeocaches();
+
         // Assert that the test data has been initialized correctly:
         assertNotNull(caches);
         assertEquals(5, caches.size());
