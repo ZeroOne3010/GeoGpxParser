@@ -1,26 +1,26 @@
 package zeroone3010.geogpxparser;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * This is the unit test class for the GeoGPXParser class.
  */
-public class GeoGPXParserTest {
+public class GeoXMLReaderTest {
     Geocache cache1;
     Geocache cache2;
     Geocache cache3;
 
     @Before
     public void loadCaches() {
-        final GeoGPXParser parser = new GeoGPXParser("src/test/java/zeroone3010/geogpxparser/test.gpx");
-        final List<Geocache> caches = parser.parse();
+        final GeoXMLReader reader = new GeoXMLReader("src/test/java/zeroone3010/geogpxparser/test.gpx");
+        final List<Geocache> caches = reader.parse();
         assertNotNull(caches);
         assertEquals(3, caches.size());
         cache1 = caches.get(0);
