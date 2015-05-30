@@ -2,6 +2,7 @@ package zeroone3010.geogpxparser.cachelistparsers;
 
 import zeroone3010.geogpxparser.Geocache;
 import zeroone3010.geogpxparser.Log;
+import zeroone3010.geogpxparser.Utility;
 import zeroone3010.geogpxparser.tabular.CellData;
 
 import java.util.Optional;

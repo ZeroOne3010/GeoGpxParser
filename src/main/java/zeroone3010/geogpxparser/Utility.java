@@ -1,7 +1,4 @@
-package zeroone3010.geogpxparser.cachelistparsers;
-
-import zeroone3010.geogpxparser.Geocache;
-import zeroone3010.geogpxparser.Log;
+package zeroone3010.geogpxparser;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -10,13 +7,13 @@ import java.time.temporal.TemporalAccessor;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-final class Utility {
+public final class Utility {
     private static final String BASE_OWNER_SEARCH_URL = "http://www.geocaching.com/seek/nearest.aspx?u=";
     private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private Utility() { /* prevent */}
 
-    static String getOwnerUrl(final String owner) {
+    public static String getOwnerUrl(final String owner) {
         String otherCachesByOwnerUrl;
         try {
             otherCachesByOwnerUrl = BASE_OWNER_SEARCH_URL + URLEncoder.encode(owner, "UTF-8");
@@ -27,13 +24,13 @@ final class Utility {
         return otherCachesByOwnerUrl;
     }
     
-    static Log findFoundLog(final Geocache cache) {
+    public static Log findFoundLog(final Geocache cache) {
         return cache.getLogs().stream() //
                 .filter(log -> log.getType().countsAsFind() && log.getDate() != null) //
                 .findFirst().orElse(null);
     }
 
-    static String formatDate(final TemporalAccessor date) {
+    public static String formatDate(final TemporalAccessor date) {
         return OUTPUT_DATE_TIME_FORMAT.format(date);
     }
 }

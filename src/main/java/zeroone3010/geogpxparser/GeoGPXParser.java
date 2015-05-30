@@ -31,6 +31,7 @@ import zeroone3010.geogpxparser.cachelistparsers.CountryStatsParser;
 import zeroone3010.geogpxparser.cachelistparsers.DateStatsParser;
 import zeroone3010.geogpxparser.cachelistparsers.OwnerStatsParser;
 import zeroone3010.geogpxparser.cachelistparsers.StarChallengeParser;
+import zeroone3010.geogpxparser.comparison.GeoGPXComparer;
 import zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
 import zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
 import zeroone3010.geogpxparser.coordinateformatters.DegreesAndMinutesFormatter;
@@ -66,15 +67,19 @@ public class GeoGPXParser {
     private String file = null;
 
     public static void main(final String[] args) throws IOException {
-        if (args == null || args.length == 0) {
-            System.out.println("Usage:");
-            System.out.println("1) java [-DcoordinateFormat=(dd|ddmm)] [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar caches.gpx");
-            System.out.println("2) java [-DcoordinateFormat=(dd|ddmm)] [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar some/directory/with/gpx/files");
-            System.out.println("...where \"[...]\" denotes an optional parameter and \"(A|B|C)\" denotes alternatives: either A or B or C.");
-            System.exit(1);
+        if (args == null) {
+            showInstructions();
+        } else if (args.length == 1) {
+            createBasicTables(args[0]);
+        } else if (args.length == 2) {
+            createComparisonTable(args[0], args[1]);
+        } else {
+            showInstructions();
         }
+    }
 
-        final GeoGPXParser parser = new GeoGPXParser(args[0]);
+    private static void createBasicTables(final String file) throws IOException {
+        final GeoGPXParser parser = new GeoGPXParser(file);
         final List<Geocache> caches = parser.parse();
         final TableData tabularRepresentation = new CacheListParser(buildCoordinateFormatter()).getTabularInfo(caches);
         final TableData ownerStats = new OwnerStatsParser().getTabularInfo(caches);
@@ -91,6 +96,24 @@ public class GeoGPXParser {
         parser.writeHtmlResources();
 
         info("Done!");
+    }
+
+    private static void createComparisonTable(final String file1, final String file2) {
+        final GeoGPXComparer comparer = new GeoGPXComparer(file1, file2);
+        final TableData compare = comparer.compare();
+
+        writeDataToFile(FormatterFactory.createFormatter(compare, "html"));
+
+        info("Done!");
+    }
+
+    private static void showInstructions() {
+        System.out.println("Usage:");
+        System.out.println("1) java [-DcoordinateFormat=(dd|ddmm)] [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar caches.gpx");
+        System.out.println("2) java [-DcoordinateFormat=(dd|ddmm)] [-Doutput=(xml|html|txt)] -jar GeoGPXParser.jar some/directory/with/gpx/files");
+        System.out.println("3) java -jar GeoGPXParser.jar cachesOfUser1.gpx cachesOfUser2.gpx");
+        System.out.println("...where \"[...]\" denotes an optional parameter and \"(A|B|C)\" denotes alternatives: either A or B or C.");
+        System.exit(1);
     }
 
     private static CoordinateFormatter buildCoordinateFormatter() {

@@ -1,13 +1,12 @@
 package zeroone3010.geogpxparser;
 
+import org.junit.Ignore;
+import zeroone3010.geogpxparser.tabular.CellData;
+import zeroone3010.geogpxparser.tabular.TableRow;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.junit.Ignore;
-
-import zeroone3010.geogpxparser.tabular.CellData;
-import zeroone3010.geogpxparser.tabular.TableRow;
 
 /**
  * Provides test data for subclasses.
@@ -31,11 +30,11 @@ public abstract class AbstractParserTest {
         return row;
     }
 
-    protected static TableRow row(final Object... cellValues) {
+    public static TableRow row(final Object... cellValues) {
         return row(false, cellValues);
     }
 
-    protected static TableRow headerRow(final Object... cellValues) {
+    public static TableRow headerRow(final Object... cellValues) {
         return row(true, cellValues);
     }
 
