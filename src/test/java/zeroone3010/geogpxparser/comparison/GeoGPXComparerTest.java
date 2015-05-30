@@ -26,32 +26,32 @@ public class GeoGPXComparerTest {
         final Geocache only1 = new Geocache();
         only1.setGcCode("GC111");
         only1.setName("Cache I");
-        only1.addLog(new Log().setDate(LocalDateTime.of(2010, 8, 13, 15, 00)).setType(LogType.FOUND));
+        only1.addLog(Log.builder().date(LocalDateTime.of(2010, 8, 13, 15, 00)).type(LogType.FOUND).build());
 
         final Geocache only2_1 = new Geocache();
         only2_1.setGcCode("GC222");
         only2_1.setName("Cache II");
-        only2_1.addLog(new Log().setDate(LocalDateTime.of(2010, 8, 13, 15, 00)).setType(LogType.FOUND));
+        only2_1.addLog(Log.builder().date(LocalDateTime.of(2010, 8, 13, 15, 00)).type(LogType.FOUND).build());
 
         final Geocache only2_2 = new Geocache();
         only2_2.setGcCode("GC333");
         only2_2.setName("Cache III");
-        only2_2.addLog(new Log().setDate(LocalDateTime.of(2010, 8, 14, 15, 00)).setType(LogType.FOUND));
+        only2_2.addLog(Log.builder().date(LocalDateTime.of(2010, 8, 14, 15, 00)).type(LogType.FOUND).build());
 
         final Geocache only2_3 = new Geocache();
         only2_3.setGcCode("GC444");
         only2_3.setName("Cache IV");
-        only2_3.addLog(new Log().setDate(LocalDateTime.of(2010, 8, 14, 15, 00)).setType(LogType.FOUND));
+        only2_3.addLog(Log.builder().date(LocalDateTime.of(2010, 8, 14, 15, 00)).type(LogType.FOUND).build());
 
         final Geocache bothButOnDifferentDays1 = new Geocache();
         bothButOnDifferentDays1.setGcCode("GC555");
         bothButOnDifferentDays1.setName("Cache V");
-        bothButOnDifferentDays1.addLog(new Log().setDate(LocalDateTime.of(2014, 8, 13, 15, 00)).setType(LogType.FOUND));
+        bothButOnDifferentDays1.addLog(Log.builder().date(LocalDateTime.of(2014, 8, 13, 15, 00)).type(LogType.FOUND).build());
 
         final Geocache bothButOnDifferentDays2 = new Geocache();
         bothButOnDifferentDays2.setGcCode("GC555");
         bothButOnDifferentDays2.setName("Cache V");
-        bothButOnDifferentDays2.addLog(new Log().setDate(LocalDateTime.of(2013, 5, 2, 15, 00)).setType(LogType.FOUND));
+        bothButOnDifferentDays2.addLog(Log.builder().date(LocalDateTime.of(2013, 5, 2, 15, 00)).type(LogType.FOUND).build());
 
         comparer = new GeoGPXComparer(Arrays.asList(only1, bothButOnDifferentDays1),
                 Arrays.asList(only2_1, only2_2, bothButOnDifferentDays2, only2_3));

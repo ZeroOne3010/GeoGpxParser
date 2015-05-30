@@ -222,12 +222,13 @@ public class GeoGPXParser {
 
         final Element logsElement = getSubElement(groundspeak, "groundspeak:logs");
         for (final Element logElement : new IterableSubElements(logsElement)) {
-            final Log log = new Log();
-            log.setId(Long.parseLong(logElement.getAttribute("id")));
-            log.setDate(parseTime(getSubElementContent(logElement, "groundspeak:date")));
-            log.setType(LogType.getByGpxDescription(getSubElementContent(logElement, "groundspeak:type")));
-            log.setUser(getSubElementContent(logElement, "groundspeak:finder"));
-            log.setText(getSubElementContent(logElement, "groundspeak:text"));
+            final Log log = Log.builder()
+                    .id(Long.parseLong(logElement.getAttribute("id")))
+                    .date(parseTime(getSubElementContent(logElement, "groundspeak:date")))
+                    .type(LogType.getByGpxDescription(getSubElementContent(logElement, "groundspeak:type")))
+                    .user(getSubElementContent(logElement, "groundspeak:finder"))
+                    .text(getSubElementContent(logElement, "groundspeak:text"))
+                    .build();
             cache.addLog(log);
         }
 

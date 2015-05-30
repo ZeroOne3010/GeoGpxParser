@@ -45,11 +45,11 @@ public abstract class AbstractParserTest {
     public AbstractParserTest() {
         caches = new ArrayList<>();
 
-        final Log dnfLog1 = new Log().setDate(LocalDateTime.of(2010, 6, 13, 15, 00)).setText(":(").setType(LogType.DNF).setUser("a");
-        final Log dnfLog2 = new Log().setDate(LocalDateTime.of(2010, 7, 13, 15, 00)).setText(":((").setType(LogType.DNF).setUser("a");
-        final Log foundLog = new Log().setDate(LocalDateTime.of(2010, 8, 13, 15, 00)).setText(":)").setType(LogType.FOUND).setUser("a").setId(13);
-        final Log attendedLog = new Log().setDate(LocalDateTime.of(2010, 8, 13, 15, 00)).setText(":)").setType(LogType.ATTENDED).setUser("a").setId(21);
-        final Log webcamLog = new Log().setDate(LocalDateTime.of(2010, 10, 13, 15, 00)).setText(":)").setType(LogType.WEBCAM_PHOTO_TAKEN).setUser("a").setId(34);
+        final Log dnfLog1 = Log.builder().date(LocalDateTime.of(2010, 6, 13, 15, 00)).text(":(").type(LogType.DNF).user("a").build();
+        final Log dnfLog2 = Log.builder().date(LocalDateTime.of(2010, 7, 13, 15, 00)).text(":((").type(LogType.DNF).user("a").build();
+        final Log foundLog = Log.builder().date(LocalDateTime.of(2010, 8, 13, 15, 00)).text(":)").type(LogType.FOUND).user("a").id(13).build();
+        final Log attendedLog = Log.builder().date(LocalDateTime.of(2010, 8, 13, 15, 00)).text(":)").type(LogType.ATTENDED).user("a").id(21).build();
+        final Log webcamLog = Log.builder().date(LocalDateTime.of(2010, 10, 13, 15, 00)).text(":)").type(LogType.WEBCAM_PHOTO_TAKEN).user("a").id(34).build();
 
 
         final Geocache cache1 = new Geocache();
