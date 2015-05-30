@@ -1,50 +1,44 @@
 package zeroone3010.geogpxparser;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
-/**
- * This is the unit test class for the Geocache class.
- *
- * @author Ville Saalo (http://coord.info/PR32K8V)
- */
+import static org.junit.Assert.assertEquals;
+
 public class GeocacheTest {
-    final Geocache instance = new Geocache();
 
     @Test
     public void getting_hint_encrypted_basic() {
         final boolean decrypted = false;
-        instance.setHint("kiven alla");
+        final Geocache cache = Geocache.builder().hint("kiven alla").build();
         final String expResult = "xvira nyyn";
-        final String result = instance.getHint(decrypted);
+        final String result = cache.getHint(decrypted);
         assertEquals(expResult, result);
     }
 
     @Test
     public void getting_hint_decrypted_basic() {
-        instance.setHint("kiven alla");
+        final Geocache cache = Geocache.builder().hint("kiven alla").build();
         final boolean decrypted = true;
         final String expResult = "kiven alla";
-        final String result = instance.getHint(decrypted);
+        final String result = cache.getHint(decrypted);
         assertEquals(expResult, result);
     }
 
     @Test
     public void getting_hint_encrypted_with_non_alphabetic_chars() {
-        instance.setHint("@[`{ KIVEN YLLÄ 123");
+        final Geocache cache = Geocache.builder().hint("@[`{ KIVEN YLLÄ 123").build();
         final boolean decrypted = false;
         final String expResult = "@[`{ XVIRA LYYÄ 123";
-        final String result = instance.getHint(decrypted);
+        final String result = cache.getHint(decrypted);
         assertEquals(expResult, result);
     }
 
     @Test
     public void getting_hint_decrypted_with_non_alphabetic_chars() {
-        instance.setHint("@[`{ KIVEN YLLÄ 123");
+        final Geocache cache = Geocache.builder().hint("@[`{ KIVEN YLLÄ 123").build();
         final boolean decrypted = true;
         final String expResult = "@[`{ KIVEN YLLÄ 123";
-        final String result = instance.getHint(decrypted);
+        final String result = cache.getHint(decrypted);
         assertEquals(expResult, result);
     }
 }

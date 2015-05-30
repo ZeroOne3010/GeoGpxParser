@@ -23,35 +23,41 @@ public class GeoGPXComparerTest {
     @Before
     public void loadCaches() {
 
-        final Geocache only1 = new Geocache();
-        only1.setGcCode("GC111");
-        only1.setName("Cache I");
-        only1.addLog(Log.builder().date(LocalDateTime.of(2010, 8, 13, 15, 00)).type(LogType.FOUND).build());
+        final Geocache only1 = Geocache.builder()
+                .gcCode("GC111")
+                .name("Cache I")
+                .addLog(Log.builder().date(LocalDateTime.of(2010, 8, 13, 15, 00)).type(LogType.FOUND).build())
+                .build();
 
-        final Geocache only2_1 = new Geocache();
-        only2_1.setGcCode("GC222");
-        only2_1.setName("Cache II");
-        only2_1.addLog(Log.builder().date(LocalDateTime.of(2010, 8, 13, 15, 00)).type(LogType.FOUND).build());
+        final Geocache only2_1 = Geocache.builder()
+                .gcCode("GC222")
+                .name("Cache II")
+                .addLog(Log.builder().date(LocalDateTime.of(2010, 8, 13, 15, 00)).type(LogType.FOUND).build())
+                .build();
 
-        final Geocache only2_2 = new Geocache();
-        only2_2.setGcCode("GC333");
-        only2_2.setName("Cache III");
-        only2_2.addLog(Log.builder().date(LocalDateTime.of(2010, 8, 14, 15, 00)).type(LogType.FOUND).build());
+        final Geocache only2_2 = Geocache.builder()
+                .gcCode("GC333")
+                .name("Cache III")
+                .addLog(Log.builder().date(LocalDateTime.of(2010, 8, 14, 15, 00)).type(LogType.FOUND).build())
+                .build();
 
-        final Geocache only2_3 = new Geocache();
-        only2_3.setGcCode("GC444");
-        only2_3.setName("Cache IV");
-        only2_3.addLog(Log.builder().date(LocalDateTime.of(2010, 8, 14, 15, 00)).type(LogType.FOUND).build());
+        final Geocache only2_3 = Geocache.builder()
+                .gcCode("GC444")
+                .name("Cache IV")
+                .addLog(Log.builder().date(LocalDateTime.of(2010, 8, 14, 15, 00)).type(LogType.FOUND).build())
+                .build();
 
-        final Geocache bothButOnDifferentDays1 = new Geocache();
-        bothButOnDifferentDays1.setGcCode("GC555");
-        bothButOnDifferentDays1.setName("Cache V");
-        bothButOnDifferentDays1.addLog(Log.builder().date(LocalDateTime.of(2014, 8, 13, 15, 00)).type(LogType.FOUND).build());
+        final Geocache bothButOnDifferentDays1 = Geocache.builder()
+                .gcCode("GC555")
+                .name("Cache V")
+                .addLog(Log.builder().date(LocalDateTime.of(2014, 8, 13, 15, 00)).type(LogType.FOUND).build())
+                .build();
 
-        final Geocache bothButOnDifferentDays2 = new Geocache();
-        bothButOnDifferentDays2.setGcCode("GC555");
-        bothButOnDifferentDays2.setName("Cache V");
-        bothButOnDifferentDays2.addLog(Log.builder().date(LocalDateTime.of(2013, 5, 2, 15, 00)).type(LogType.FOUND).build());
+        final Geocache bothButOnDifferentDays2 = Geocache.builder()
+                .gcCode("GC555")
+                .name("Cache V")
+                .addLog(Log.builder().date(LocalDateTime.of(2013, 5, 2, 15, 00)).type(LogType.FOUND).build())
+                .build();
 
         comparer = new GeoGPXComparer(Arrays.asList(only1, bothButOnDifferentDays1),
                 Arrays.asList(only2_1, only2_2, bothButOnDifferentDays2, only2_3));
