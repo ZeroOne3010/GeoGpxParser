@@ -145,6 +145,13 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                         axis: "y",
                         helper: rowShouldStayFullWidthWhenDragged
                     });
+                    $('input#sortable').change(function() {
+                        if($(this).is(":checked")) {
+                            $("tbody").sortable("enable");
+                        } else {
+                            $("tbody").sortable("disable");
+                        }
+                    });
                 });
                 function colorCacheTypes() {
                     $("table#caches td:nth-child(2):contains('Mystery')").addClass('mystery');
@@ -158,6 +165,8 @@ sBA8IQQQH9Gx/7kA+1nVSxTwAAAABJRU5ErkJggg==" />
                     Hide these columns (<span class="why" title="You may want to do this if you intend to print this document. Just enter column numbers as a comma-separated list.">?</span>): 
                     <input type="text" id="hideCols" placeholder="1,6,7" pattern="(\d+,?)*" />
                     <input type="button" id="hideColsButton" value="Update" />
+                    <br/>
+                    <input type="checkbox" checked="checked" id="sortable"/><label for="sortable">Allow reordering the table rows by drag and drop</label>
                 </div>
                 <table id="{@identifier}">
                     <thead>
