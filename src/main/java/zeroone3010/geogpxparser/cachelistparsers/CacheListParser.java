@@ -37,8 +37,8 @@ public class CacheListParser implements ICachesToTabularDataParser {
         headerRow.addCell(new CellData("gccode"));
         headerRow.addCell(new CellData("type"));
         headerRow.addCell(new CellData("name"));
-        headerRow.addCell(new CellData("longitude"));
         headerRow.addCell(new CellData("latitude"));
+        headerRow.addCell(new CellData("longitude"));
         headerRow.addCell(new CellData("size"));
         headerRow.addCell(new CellData("difficulty"));
         headerRow.addCell(new CellData("terrain"));
@@ -53,8 +53,8 @@ public class CacheListParser implements ICachesToTabularDataParser {
             dataRow.addCell(new CellData(cache.getGcCode(), "http://coord.info/" + cache.getGcCode()));
             dataRow.addCell(new CellData(cache.getType().name()));
             dataRow.addCell(new CellData(cache.getName()));
-            dataRow.addCell(new CellData(coordinateFormatter.formatLongitude(cache.getLongitude())));
             dataRow.addCell(new CellData(coordinateFormatter.formatLatitude(cache.getLatitude())));
+            dataRow.addCell(new CellData(coordinateFormatter.formatLongitude(cache.getLongitude())));
             dataRow.addCell(new CellData(cache.getSize().getGpxDescription()));
             dataRow.addCell(new CellData(String.valueOf(cache.getDifficulty())));
             dataRow.addCell(new CellData(String.valueOf(cache.getTerrain())));
