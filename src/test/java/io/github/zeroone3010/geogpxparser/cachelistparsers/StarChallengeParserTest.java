@@ -1,17 +1,18 @@
 package io.github.zeroone3010.geogpxparser.cachelistparsers;
 
-import org.junit.Test;
 import io.github.zeroone3010.geogpxparser.Geocache;
 import io.github.zeroone3010.geogpxparser.ParserTestFixture;
 import io.github.zeroone3010.geogpxparser.tabular.TableData;
 import io.github.zeroone3010.geogpxparser.tabular.TableRow;
+import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static io.github.zeroone3010.geogpxparser.ParserTestFixture.headerRow;
 import static io.github.zeroone3010.geogpxparser.ParserTestFixture.row;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 /**
  * Tests the CacheListParser.
  */

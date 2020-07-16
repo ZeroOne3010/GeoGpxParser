@@ -1,9 +1,9 @@
 package io.github.zeroone3010.geogpxparser;
 
-import java.util.Iterator;
-
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+
+import java.util.Iterator;
 
 public class IterableSubElements implements Iterable<Element> {
 

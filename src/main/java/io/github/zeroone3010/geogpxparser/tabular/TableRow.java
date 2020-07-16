@@ -1,11 +1,10 @@
 package io.github.zeroone3010.geogpxparser.tabular;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
 
 /**
  * A class that represents a table row.
@@ -19,7 +18,7 @@ public class TableRow {
         this.header = header;
     }
 
-    @XmlAttribute(name="header")
+    @XmlAttribute(name = "header")
     public boolean isHeader() {
         return header;
     }

@@ -1,17 +1,17 @@
 package io.github.zeroone3010.geogpxparser.tabular;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertNull;
-
-import java.util.Arrays;
-import java.util.Collection;
-
 import org.junit.Test;
 import org.junit.experimental.runners.Enclosed;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertNull;
 
 @RunWith(Enclosed.class)
 public class CellDataTest {
@@ -43,14 +43,15 @@ public class CellDataTest {
         @Parameters
         public static Collection<Object[]> data() {
             final Object[][] data = new Object[][]{ //
-                {new CellData("hello"), new CellData("hello")}, //
-                {new CellData(""), new CellData("")}, //
-                {new CellData("abc", "http://example.com/foo"), new CellData("abc", "http://example.com/foo")}, //
-                {new CellData("abc", null), new CellData("abc", null)}, //
-                {new CellData(null, null), new CellData(null, null)}, //
+                    {new CellData("hello"), new CellData("hello")}, //
+                    {new CellData(""), new CellData("")}, //
+                    {new CellData("abc", "http://example.com/foo"), new CellData("abc", "http://example.com/foo")}, //
+                    {new CellData("abc", null), new CellData("abc", null)}, //
+                    {new CellData(null, null), new CellData(null, null)}, //
             };
             return Arrays.asList(data);
         }
+
         private final CellData a;
         private final CellData b;
 
@@ -72,14 +73,15 @@ public class CellDataTest {
         @Parameters
         public static Collection<Object[]> data() {
             final Object[][] data = new Object[][]{ //
-                {new CellData("aaa"), new CellData("bbb")}, //
-                {new CellData("abc"), new CellData(null)}, //
-                {new CellData("abc", "http://example.com/foo"), new CellData("abc", "http://example.com/bar")}, //
-                {new CellData("abc", null), new CellData("abc", "http://example.org/")}, //
-                {new CellData("abc", null), new CellData(null, "http://example.org/")}, //
+                    {new CellData("aaa"), new CellData("bbb")}, //
+                    {new CellData("abc"), new CellData(null)}, //
+                    {new CellData("abc", "http://example.com/foo"), new CellData("abc", "http://example.com/bar")}, //
+                    {new CellData("abc", null), new CellData("abc", "http://example.org/")}, //
+                    {new CellData("abc", null), new CellData(null, "http://example.org/")}, //
             };
             return Arrays.asList(data);
         }
+
         private final CellData a;
         private final CellData b;
 

@@ -1,8 +1,8 @@
 package io.github.zeroone3010.geogpxparser.coordinateformatters;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class DegreesAndMinutesFormatterTest {
     final DegreesAndMinutesFormatter formatter = new DegreesAndMinutesFormatter();

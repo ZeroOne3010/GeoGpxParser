@@ -1,10 +1,9 @@
 package io.github.zeroone3010.geogpxparser.outputformatters;
 
-import java.io.ByteArrayOutputStream;
+import io.github.zeroone3010.geogpxparser.tabular.TableData;
 
 import javax.xml.bind.JAXB;
-
-import io.github.zeroone3010.geogpxparser.tabular.TableData;
+import java.io.ByteArrayOutputStream;
 
 /**
  * Formats the given TableData object into an XML string.

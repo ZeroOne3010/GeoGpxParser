@@ -1,13 +1,12 @@
 package io.github.zeroone3010.geogpxparser.outputformatters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.Test;
-
 import io.github.zeroone3010.geogpxparser.tabular.CellData;
 import io.github.zeroone3010.geogpxparser.tabular.TableData;
 import io.github.zeroone3010.geogpxparser.tabular.TableRow;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Tests the TabSeparatedValuesFormatter.

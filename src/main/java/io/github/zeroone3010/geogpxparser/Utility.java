@@ -23,7 +23,7 @@ public final class Utility {
         }
         return otherCachesByOwnerUrl;
     }
-    
+
     public static Log findFoundLog(final Geocache cache) {
         return cache.getLogs().stream() //
                 .filter(log -> log.getType().countsAsFind() && log.getDate() != null) //

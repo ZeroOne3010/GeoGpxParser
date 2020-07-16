@@ -98,9 +98,9 @@ public class GeoXMLReaderTest {
 
     @Test
     public void test_attributes() {
-        final Map<String,Boolean> attributes1 = cache1.getAttributes();
-        final Map<String,Boolean> attributes2 = cache2.getAttributes();
-        final Map<String,Boolean> attributes3 = cache3.getAttributes();
+        final Map<String, Boolean> attributes1 = cache1.getAttributes();
+        final Map<String, Boolean> attributes2 = cache2.getAttributes();
+        final Map<String, Boolean> attributes3 = cache3.getAttributes();
 
         assertEquals(2, attributes1.size());
         assertEquals(true, attributes1.get("Public transportation"));

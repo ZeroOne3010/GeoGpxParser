@@ -1,11 +1,11 @@
 package io.github.zeroone3010.geogpxparser;
 
-import static java.util.function.Function.identity;
-
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static java.util.function.Function.identity;
 
 public enum LogType {
 

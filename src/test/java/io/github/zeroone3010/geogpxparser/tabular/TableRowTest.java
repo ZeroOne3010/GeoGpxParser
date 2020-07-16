@@ -1,9 +1,9 @@
 package io.github.zeroone3010.geogpxparser.tabular;
 
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotSame;
-
-import org.junit.Test;
 
 public class TableRowTest {
 
@@ -41,6 +41,7 @@ public class TableRowTest {
         assertNotSame(r1, r3);
         assertNotSame(r3, r1);
     }
+
     @Test
     public void header_row_and_non_header_row_should_not_be_equal() {
         assertNotSame(hr1, r1);

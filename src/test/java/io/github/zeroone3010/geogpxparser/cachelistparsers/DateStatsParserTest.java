@@ -11,7 +11,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static io.github.zeroone3010.geogpxparser.ParserTestFixture.row;
 
 public class DateStatsParserTest {
 
@@ -33,7 +32,7 @@ public class DateStatsParserTest {
 
         int row = 0;
         Assert.assertEquals(ParserTestFixture.headerRow("Date", "Number of caches", "Number of cache types", "Traditional", "Multi", "Mystery",
-                        "Letterbox", "Event", "EarthCache", "Virtual", "Webcam", "Wherigo", "MegaEvent", "CITO", "Other"),
+                "Letterbox", "Event", "EarthCache", "Virtual", "Webcam", "Wherigo", "MegaEvent", "CITO", "Other"),
                 rows.get(0));
 
         row = 1;

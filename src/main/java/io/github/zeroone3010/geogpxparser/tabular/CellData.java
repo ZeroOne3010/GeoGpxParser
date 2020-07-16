@@ -1,22 +1,25 @@
 package io.github.zeroone3010.geogpxparser.tabular;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlValue;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlValue;
-
 /**
  * A class that represents data in a table cell.
  */
 public class CellData {
-    /** The text that's displayed in the cell. **/
+    /**
+     * The text that's displayed in the cell.
+     **/
     private final String text;
 
-    /** The URL to which the text should link to, if any. **/
+    /**
+     * The URL to which the text should link to, if any.
+     **/
     private final URL url;
 
     public CellData(final String textParam) {

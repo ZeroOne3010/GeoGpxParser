@@ -1,8 +1,8 @@
 package io.github.zeroone3010.geogpxparser.comparison;
 
 import io.github.zeroone3010.geogpxparser.GeoXMLReader;
-import io.github.zeroone3010.geogpxparser.tabular.CellData;
 import io.github.zeroone3010.geogpxparser.Geocache;
+import io.github.zeroone3010.geogpxparser.tabular.CellData;
 import io.github.zeroone3010.geogpxparser.tabular.TableData;
 import io.github.zeroone3010.geogpxparser.tabular.TableRow;
 

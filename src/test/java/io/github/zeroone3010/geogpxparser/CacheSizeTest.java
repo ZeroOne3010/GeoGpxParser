@@ -1,10 +1,10 @@
 package io.github.zeroone3010.geogpxparser;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 import java.util.Arrays;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 public class CacheSizeTest {
     @Test

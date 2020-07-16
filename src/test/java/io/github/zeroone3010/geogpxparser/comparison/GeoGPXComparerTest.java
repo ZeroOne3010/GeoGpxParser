@@ -1,20 +1,20 @@
 package io.github.zeroone3010.geogpxparser.comparison;
 
-import org.junit.Before;
-import org.junit.Test;
 import io.github.zeroone3010.geogpxparser.Geocache;
 import io.github.zeroone3010.geogpxparser.Log;
 import io.github.zeroone3010.geogpxparser.LogType;
 import io.github.zeroone3010.geogpxparser.tabular.TableData;
 import io.github.zeroone3010.geogpxparser.tabular.TableRow;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static junit.framework.Assert.assertEquals;
 import static io.github.zeroone3010.geogpxparser.ParserTestFixture.headerRow;
 import static io.github.zeroone3010.geogpxparser.ParserTestFixture.row;
+import static junit.framework.Assert.assertEquals;
 
 public class GeoGPXComparerTest {
 

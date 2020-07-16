@@ -7,6 +7,7 @@ import io.github.zeroone3010.geogpxparser.tabular.TableData;
  */
 public abstract class AbstractTabularDataFormatter {
     private final TableData table;
+
     public AbstractTabularDataFormatter(final TableData data) {
         this.table = data;
     }

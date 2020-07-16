@@ -1,10 +1,10 @@
 package io.github.zeroone3010.geogpxparser.outputformatters;
 
-import java.util.Iterator;
-
 import io.github.zeroone3010.geogpxparser.tabular.CellData;
 import io.github.zeroone3010.geogpxparser.tabular.TableData;
 import io.github.zeroone3010.geogpxparser.tabular.TableRow;
+
+import java.util.Iterator;
 
 /**
  * Formats the given TableData object into a string of tab separated values.
@@ -23,9 +23,9 @@ class TabSeparatedValuesFormatter extends AbstractTabularDataFormatter {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
 
-        for (final Iterator<TableRow> rowIter = getTable().getRows().iterator(); rowIter.hasNext();) {
+        for (final Iterator<TableRow> rowIter = getTable().getRows().iterator(); rowIter.hasNext(); ) {
             final TableRow tableRow = rowIter.next();
-            for (final Iterator<CellData> colIter = tableRow.getCells().iterator(); colIter.hasNext();) {
+            for (final Iterator<CellData> colIter = tableRow.getCells().iterator(); colIter.hasNext(); ) {
                 final CellData cellData = colIter.next();
                 sb.append(cellData.getText().replaceAll(SEPARATOR, REPLACEMENT));
                 if (colIter.hasNext()) {

@@ -4,13 +4,13 @@ import io.github.zeroone3010.geogpxparser.cachelistparsers.CacheListParser;
 import io.github.zeroone3010.geogpxparser.cachelistparsers.CountryStatsParser;
 import io.github.zeroone3010.geogpxparser.cachelistparsers.DateStatsParser;
 import io.github.zeroone3010.geogpxparser.cachelistparsers.OwnerStatsParser;
+import io.github.zeroone3010.geogpxparser.cachelistparsers.StarChallengeParser;
 import io.github.zeroone3010.geogpxparser.comparison.GeoGPXComparer;
 import io.github.zeroone3010.geogpxparser.coordinateformatters.CoordinateFormatter;
 import io.github.zeroone3010.geogpxparser.coordinateformatters.DefaultCoordinateFormatter;
 import io.github.zeroone3010.geogpxparser.coordinateformatters.DegreesAndMinutesFormatter;
 import io.github.zeroone3010.geogpxparser.outputformatters.AbstractTabularDataFormatter;
 import io.github.zeroone3010.geogpxparser.outputformatters.FormatterFactory;
-import io.github.zeroone3010.geogpxparser.cachelistparsers.StarChallengeParser;
 import io.github.zeroone3010.geogpxparser.tabular.TableData;
 
 import java.io.IOException;
