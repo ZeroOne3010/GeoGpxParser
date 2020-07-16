@@ -21,8 +21,8 @@ Download the GeoGPXParser.zip file if you just want to use the program and do
 not care about the source code. :) The usage happens from the command line and
 the simple instructions for that are inside the download package as README.txt.
 
-Note: This project was previously hosted
-at [Google Code](http://code.google.com/p/geocache-gpx-parser/)
+Note: This project was previously hosted in a Mercurial repository
+at [Bitbucket](https://bitbucket.org/ZeroOne3010/geogpxparser/).
 
 This project uses the following external JavaScript libraries:
 
