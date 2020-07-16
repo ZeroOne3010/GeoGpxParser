@@ -4,3 +4,12 @@ target
 *.settings
 *.classpath
 *.iml
+/jquery.tablesorter.min.js
+/jquery-1.9.1.min.js
+/jquery-ui.min.js
+caches.html
+comparison.html
+countries.html
+dates.html
+owners.html
+starsPerDay.html
