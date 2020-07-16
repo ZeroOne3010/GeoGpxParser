@@ -30,7 +30,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>zeroone3010.geogpxparser.GeoGPXParser</mainClass>
+              <mainClass>io.github.zeroone3010.geogpxparser.GeoGPXParser</mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
@@ -47,7 +47,7 @@
             <manifest>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib/</classpathPrefix>
-              <mainClass>zeroone3010.geogpxparser.GeoGPXParser</mainClass>
+              <mainClass>io.github.zeroone3010.geogpxparser.GeoGPXParser</mainClass>
             </manifest>
           </archive>
         </configuration>
