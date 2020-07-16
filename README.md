@@ -1,3 +1,5 @@
+# GeoGPX Parser
+
 This program is great especially for analyzing your My Finds Pocket Query files.
 You can also load in any other Pocket Query and, say, use this program to create
 a web page of the caches, which you can then print out as a reference when you go
@@ -16,7 +18,7 @@ many and what kind of caches have you found from different owners and from diffe
 countries.
 
 Download the GeoGPXParser.zip file if you just want to use the program and do
-not care about the source code. :) The usage happens from the command line and
+not care about the source code. The usage happens from the command line and
 the simple instructions for that are inside the download package as README.txt.
 
 Note: This project was previously hosted in a Mercurial repository
