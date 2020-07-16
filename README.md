@@ -1,4 +1,4 @@
-[![Build Status](https://drone.io/bitbucket.org/ZeroOne3010/geogpxparser/status.png)](https://drone.io/bitbucket.org/ZeroOne3010/geogpxparser/latest)
+[![Build Status](https://cloud.drone.io/api/badges/ZeroOne3010/GeoGpxParser/status.svg)](https://cloud.drone.io/ZeroOne3010/GeoGpxParser)
 
 This program is great especially for analyzing your My Finds Pocket Query files.
 You can also load in any other Pocket Query and, say, use this program to create
